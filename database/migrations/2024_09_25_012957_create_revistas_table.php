@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('revistas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('image');
             $table->text('descripcion');
             $table->string('url');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

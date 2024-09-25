@@ -23,9 +23,9 @@
   /* Background color for the entire website, including individual sections */
   --default-color: #222222;
   /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #172a28;
+  --heading-color: #27bbac;
   /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #008374;
+  --accent-color: #442020;
   /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff;
   /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
@@ -65,11 +65,11 @@
 }
 
 .accent-background {
-  --background-color: #008374;
+  --background-color: #ec0000;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   --accent-color: #ffffff;
-  --surface-color: #00b6a1;
+  --surface-color: #1200b6;
   --contrast-color: #ffffff;
 }
 
@@ -243,7 +243,7 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: #008374;
+  --background-color: #051614;
   --heading-color: #ffffff;
   color: var(--default-color);
   transition: all 0.5s;

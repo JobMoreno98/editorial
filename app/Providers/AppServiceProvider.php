@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Categoria;
 use App\Models\ConfiguracionSitio;
+use App\Models\Revistas;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;

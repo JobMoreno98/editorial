@@ -6,6 +6,8 @@ use App\Filament\Resources\ConfiguracionSitioResource\Pages;
 use App\Filament\Resources\ConfiguracionSitioResource\RelationManagers;
 use App\Models\ConfiguracionSitio;
 use Filament\Forms;
+use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -35,6 +37,22 @@ class ConfiguracionSitioResource extends Resource
                     ->image()
                     ->required()->imageEditor()
                     ->imageCropAspectRatio('16:3'),
+                Section::make('Colores')->schema([
+                    ColorPicker::make('background_color')
+                        ->rgb()->default("#e2e2e2"),
+                    ColorPicker::make('accent_color')
+                        ->rgb()->default("#e2e2e2"),
+                    ColorPicker::make('heading_color')
+                        ->rgb()->default("#e2e2e2"),
+                    ColorPicker::make('nav_color')
+                        ->rgb()->default("#e2e2e2"),
+                    ColorPicker::make('nav_hover_color')
+                        ->rgb()->default("#e2e2e2"),
+                    ColorPicker::make('nav_dropdown_color')
+                        ->rgb()->default("#e2e2e2"),
+                    ColorPicker::make('nav_dropdown_hover_color')
+                        ->rgb()->default("#e2e2e2"),
+                ])->columns(3),
             ]);
     }
 

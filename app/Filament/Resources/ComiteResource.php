@@ -32,7 +32,7 @@ class ComiteResource extends Resource
                     ->imageEditorAspectRatios([
                         '16:9',
                         '1:1',
-                    ])->alignCenter()->columnSpanFull(),
+                    ])->alignCenter()->columnSpanFull()->directory('comite'),
                 Section::make()->schema([
                     Forms\Components\TextInput::make('nombre')
                         ->required()

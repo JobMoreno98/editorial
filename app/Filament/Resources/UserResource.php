@@ -31,7 +31,7 @@ class UserResource extends Resource
                 Forms\Components\FileUpload::make('avatar_url')->name('Avatar')
                     ->image()->avatar()
                     ->imageEditor()
-                    ->circleCropper()->alignCenter()->columnSpanFull(),
+                    ->circleCropper()->alignCenter()->columnSpanFull()->directory('users'),
 
                 Section::make()->schema([
                     Forms\Components\TextInput::make('name')

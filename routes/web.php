@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicacionesController;
+use App\Http\Controllers\RevistasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,5 @@ Route::get('/directorio', [HomeController::class, 'directorio'])->name('director
 Route::get('/comite-editorial', [HomeController::class, 'comite'])->name('comite');
 Route::resource('publicaciones', PublicacionesController::class);
 Route::get('/publicacion/{slug}', [PublicacionesController::class, 'ver_publicacion'])->name('ver-publicacion');
+Route::get('/colecciones/{colecciones}', [PublicacionesController::class, 'colecciones'])->name('publicaciones.colecciones');
+Route::get('/revistas-cientificas', [RevistasController::class, 'index'])->name('revistas.index');

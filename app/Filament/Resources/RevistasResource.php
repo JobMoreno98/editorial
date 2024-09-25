@@ -6,6 +6,7 @@ use App\Filament\Resources\RevistasResource\Pages;
 use App\Filament\Resources\RevistasResource\RelationManagers;
 use App\Models\Revistas;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -26,12 +27,13 @@ class RevistasResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('descripcion')
-                    ->required()
-                    ->columnSpanFull(),
                 Forms\Components\TextInput::make('url')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)->url(),
+                Forms\Components\Textarea::make('descripcion')
+                    ->required()
+                    ->autosize(),
+                FileUpload::make('image')->directory('revistas')->required()->imageEditor()->imageCropAspectRatio('1:1'),
             ]);
     }
 

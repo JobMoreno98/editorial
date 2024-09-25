@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\ConfiguracionSitioResource\Pages;
 
 use App\Filament\Resources\ConfiguracionSitioResource;
+use App\Models\ConfiguracionSitio;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -12,8 +13,13 @@ class ListConfiguracionSitios extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
-        ];
+        $site = ConfiguracionSitio::count();
+        if($site==0){
+            return [
+                Actions\CreateAction::make(),
+            ];
+        }
+        return [];
+
     }
 }

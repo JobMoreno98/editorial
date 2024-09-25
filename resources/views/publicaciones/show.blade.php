@@ -4,31 +4,38 @@
     <section id="team" class="team section ">
         @if (isset($publicacion))
             <!-- Section Title -->
-            <div class="container section-title " data-aos="fade-up">
+            <div class="container section-title pb-0" data-aos="fade-up">
                 <h2>{{ $publicacion->nombre }}</h2>
                 <p>Categoria: {{ $publicacion->categoria->name }}</p>
             </div><!-- End Section Title -->
 
             <div class="container">
-                <div class="d-flex justify-content-start">
+                <div class="d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start">
                     <div class="col-sm-12 col-md-3" data-aos="fade-up" data-aos-delay="100">
                         <div class="member text-center">
-                            <img src="{{ asset('storage/' . $publicacion->imagen) }}" class="img-fluid" alt="">
+                            <a href="{{ asset('storage/' . $publicacion->imagen) }}" data-gallery="portfolio-gallery-app"
+                                class="glightbox">
+                                <img src="{{ asset('storage/' . $publicacion->imagen) }}" class="img-fluid"
+                                    style="aspect-ratio: 9 / 16; object-fit: cover;" alt="">
+                            </a>
                         </div>
                     </div>
-                    <div>
-                        <span class="fs-5"><b>Autor - {{ $publicacion->autor }}</b></span>
+                    <div class="mt-2 text-center text-md-start">
                         <p>
-                            <span class="my-1"><b>ISBN: {{ $publicacion->isbn }}</b></span>
+                            <span class="fs-5  text-uppercase"><b>Autor - {{ $publicacion->autor }}</b></span>
+                        </p>
+
+                        <p>
+                            <span><b>ISBN: {{ $publicacion->isbn }}</b></span>
                         </p>
                         <p>
-                            <span class="my-1"><b>Corrdinadores: {{ $publicacion->coordinadores }}</b></span>
+                            <span><b>Corrdinadores: {{ $publicacion->coordinadores }}</b></span>
                         </p>
                         <p>
-                            <span class="my-1"><b>Año de publicación: {{ $publicacion->año_publicacion }}</b></span>
+                            <span><b>Año de publicación: {{ $publicacion->año_publicacion }}</b></span>
 
                         </p>
-                        <p><span class="my-1"><b>Descripción: {{ $publicacion->descripcion }}</b></span></p>
+                        <p><span><b>Descripción: {{ $publicacion->descripcion }}</b></span></p>
                         <p>
                             <a href="{{ asset('storage/' . $publicacion->archivo) }}" target="_blank"
                                 class="btn btn-primary btn-sm">Ver archivo</a>

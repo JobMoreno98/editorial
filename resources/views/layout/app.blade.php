@@ -31,6 +31,35 @@
 
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/glightbox.min.css') }}">
+    <style>
+        :root {
+            --accent-color: {{ $site->accent_color }};
+            --heading-color: {{ $site->heading_color }};
+            --nav-color: {{ $site->nav_color }};
+            --nav-hover-color: {{ $site->nav_hover_color }};
+            --nav-dropdown-color: {{ $site->nav_dropdown_color }};
+            --nav-dropdown-hover-color: {{ $site->nav_dropdown_hover_color }};
+        }
+
+        .header {
+            --background-color: {{ $site->heading_color }};
+        }
+
+        .accent-background {
+            --background-color: {{ $site->background_color }};
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        #footer {
+            margin-top: auto;
+        }
+    </style>
 
 </head>
 
@@ -57,21 +86,22 @@
         <div class="branding d-flex align-items-cente">
 
             <div class="container position-relative d-flex align-items-center justify-content-between">
-                <a href="index.html" class="logo d-flex align-items-center">
+                <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
                     <h1 class="sitename">{{ env('APP_NAME') }}</h1>
                     <span>.</span>
                 </a>
-
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="{{ route('home') }}" class="active">Home<br></a></li>
-                        <li><a href="{{ route('directorio') }}">Directorio</a></li>
+                        <li><a href="{{ route('home') }}" class="{{ Route::is('home') ? 'active' : '' }}">Home</a>
+                        </li>
+                        <li><a href="{{ route('directorio') }}"
+                                class="{{ Route::is('directorio') ? 'active' : '' }}">Directorio</a></li>
                         <li><a href="{{ route('comite') }}">Consejo Editorial</a></li>
-                        <li class="dropdown"><a
-                                href="{{ route('publicaciones.show', 'todas') }}"><span>Publicaciones</span> <i
-                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <li class="dropdown"><a href="{{ route('publicaciones.show', 'todas') }}"
+                                class="{{ Route::is('publicaciones.show') ? 'active' : '' }}"><span>Publicaciones</span>
+                                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
                                 @foreach ($publicaciones as $item)
                                     <li><a
@@ -80,21 +110,22 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li class="dropdown"><a
-                                href="{{ route('publicaciones.show', 'todas') }}"><span>Colecciones</span> <i
-                                    class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <li class="dropdown"><a href="{{ route('publicaciones.colecciones', 'todas') }}"
+                                class="{{ Route::is('publicaciones.colecciones') ? 'active' : '' }}"><span>Colecciones</span>
+                                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                             <ul>
                                 @foreach ($colecciones as $item)
                                     <li><a
-                                            href="{{ route('publicaciones.show', $item->name) }}">{{ $item->name }}</a>
+                                            href="{{ route('publicaciones.colecciones', $item->name) }}">{{ $item->name }}</a>
                                     </li>
                                 @endforeach
                             </ul>
                         </li>
+                        <li><a href="{{ route('revistas.index') }}"
+                                class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas Cientificas</a></li>
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
-
             </div>
 
         </div>
@@ -155,7 +186,7 @@
 
             </div>
         </div>
-
+        {{--
         <div class="container copyright text-center mt-4">
             <p>© <span>Copyright</span> <strong class="px-1 sitename">Impact</strong> <span>All Rights Reserved</span>
             </p>
@@ -167,7 +198,7 @@
                 Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </div>
-
+--}}
     </footer>
 
     <!-- Scroll Top -->
@@ -180,10 +211,9 @@
     <!-- Vendor JS Files -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        < script src = "assets/vendor/php-email-form/validate.js" >
     </script>
     <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="{{ asset('js/glightbox.min.js') }}"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>

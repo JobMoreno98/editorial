@@ -5,7 +5,7 @@
 
         <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
-            <h2>Publicaciones de la categoria - {{ $categoria->name }}</h2>
+            <h2 class="text-uppercase">{{ $categoria->name }}</h2>
             <p>{{ $categoria->descripcion }}</p>
         </div><!-- End Section Title -->
 
@@ -17,12 +17,13 @@
                             <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                 src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid" alt="">
                             <h4>{{ $item->nombre }}</h4>
-                            <span class="fs-5"><b>Autor - {{ $item->autor }}</b></span>
+                            <span class="fs-5 text-uppercase"><b>{{ $item->autor }}</b></span>
                             <p>
-                                <span class="my-1"><b>ISBN: {{ $item->isbn }}</b></span>
+                                <span class="my-1  text-uppercase"><b>ISBN: {{ $item->isbn }}</b></span>
                                 <span class="my-1"><b>Corrdinadores: {{ $item->coordinadores }}</b></span>
                                 <span class="my-1"><b>Año de publicación: {{ $item->año_publicacion }}</b></span>
-                                <span><a href="{{ route('ver-publicacion', $item->slug) }}" class="mt-1">Ver más</a></span>
+                                <span><a href="{{ route('ver-publicacion', $item->slug) }}" class="mt-1">Ver
+                                        más</a></span>
                             </p>
                         </div>
                     </div><!-- End Team Member -->
