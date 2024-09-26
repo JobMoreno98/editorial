@@ -25,5 +25,16 @@ class DatabaseSeeder extends Seeder
             'email' => 'jobmoreno.mtz@gmail.com',
             'password' => Hash::make('password')
         ]);
+
+        DB::table('roles')->insert([
+            'name' => 'Super Admin',
+            'guard_name ' => 'web',
+        ]);
+
+        DB::table('roles')->insert([
+            'role_id' => 1,
+            'model_type ' => 'App\Models\User',
+            'model_id' => 1
+        ]);
     }
 }
