@@ -7,7 +7,6 @@ use App\Filament\Resources\PublicacionesResource\RelationManagers;
 use App\Models\Categoria;
 use App\Models\Publicaciones;
 use Filament\Forms;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -31,7 +30,7 @@ class PublicacionesResource extends Resource
 {
     protected static ?string $model = Publicaciones::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document';
 
     public static function form(Form $form): Form
     {
@@ -39,14 +38,14 @@ class PublicacionesResource extends Resource
             Forms\Components\TextInput::make('nombre')->required()->maxLength(255)->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
             TextInput::make('slug'),
-            Forms\Components\TextInput::make('autor')->required()->maxLength(255),
+            TextInput::make('autor')->required()->maxLength(255),
             Forms\Components\TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
             Forms\Components\TextInput::make('paginas')->label('Páginas')->required()->numeric(),
             Forms\Components\TextInput::make('coordinadores')->required()->maxLength(255),
             TextInput::make('año_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
             Textarea::make('descripcion')->required()->maxLength(400),
             Select::make('tipo')->options(['publicación' => 'Publicación', 'colección' => 'Colección'])->required(),
-            Select::make('categoria_id')->label('Categoria')->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name', 'id'))->searchable()->preload(),
+            Select::make('categoria_id')->label('Categoria')->required()->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name', 'id'))->searchable()->preload(),
 
             Section::make('Archvios')->schema([
                 FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor()
@@ -61,6 +60,7 @@ class PublicacionesResource extends Resource
                     ->preserveFilenames()
                     ->moveFiles()->removeUploadedFileButtonPosition('right'),
             ])->columns(1)->columnSpan(1),
+
             Section::make()->schema([
                 Toggle::make('novedad')->required(),
                 Toggle::make('active')->onColor('success')->offColor('danger')->inline()->default(true)->required(),

@@ -16,10 +16,20 @@ use Filament\Tables\Table;
 class ConfiguracionSitioResource extends Resource
 {
     protected static ?string $model = ConfiguracionSitio::class;
-    protected static ?string $pluralModelLabel  = 'Configuración Sitio';
+    protected static ?string $pluralModelLabel  = 'Configuración del Sitio';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static ?int $navigationSort = 1;
 
+    public static function getNavigationLabel(): string
+{
+    return __('Site');
+}
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Settings');
+    }
     public static function form(Form $form): Form
     {
         return $form

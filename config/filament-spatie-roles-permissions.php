@@ -31,8 +31,8 @@ return [
      * Set as true to use simple modal resource.
      */
     'should_use_simple_modal_resource' => [
-        'permissions' => false,
-        'roles' => false,
+        'permissions' => true,
+        'roles' => true,
     ],
 
     /*
@@ -48,11 +48,11 @@ return [
      */
     'should_redirect_to_index' => [
         'permissions' => [
-            'after_create' => false,
+            'after_create' => true,
             'after_edit' => false
         ],
         'roles' => [
-            'after_create' => false,
+            'after_create' => true,
             'after_edit' => false
         ],
     ],
@@ -68,7 +68,7 @@ return [
 
     'guard_names' => [
         'web' => 'web',
-        'api' => 'api',
+        //'api' => 'api',
     ],
 
     'toggleable_guard_names' => [

@@ -20,7 +20,12 @@ class DirectorioResource extends Resource
     protected static ?string $pluralModelLabel  = 'Directorio';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?int $navigationSort = 1;
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Directory');
+    }
     public static function form(Form $form): Form
     {
         return $form

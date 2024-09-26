@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $site->nombre }}</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -89,7 +89,7 @@
                 <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 class="sitename">{{ env('APP_NAME') }}</h1>
+                    <h1 class="sitename">{{ $site->nombre }}</h1>
                     <span>.</span>
                 </a>
                 <nav id="navmenu" class="navmenu">
@@ -99,28 +99,35 @@
                         <li><a href="{{ route('directorio') }}"
                                 class="{{ Route::is('directorio') ? 'active' : '' }}">Directorio</a></li>
                         <li><a href="{{ route('comite') }}">Consejo Editorial</a></li>
-                        <li class="dropdown"><a href="{{ route('publicaciones.show', 'todas') }}"
-                                class="{{ Route::is('publicaciones.show') ? 'active' : '' }}"><span>Publicaciones</span>
-                                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                @foreach ($publicaciones as $item)
-                                    <li><a
-                                            href="{{ route('publicaciones.show', $item->name) }}">{{ $item->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                        <li class="dropdown"><a href="{{ route('publicaciones.colecciones', 'todas') }}"
-                                class="{{ Route::is('publicaciones.colecciones') ? 'active' : '' }}"><span>Colecciones</span>
-                                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                            <ul>
-                                @foreach ($colecciones as $item)
-                                    <li><a
-                                            href="{{ route('publicaciones.colecciones', $item->name) }}">{{ $item->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
+                        @if (!$publicaciones->isEmpty())
+                            <li class="dropdown">
+                                <a href="{{ route('publicaciones.show', 'todas') }}"
+                                    class="{{ Route::is('publicaciones.show') ? 'active' : '' }}"><span>Publicaciones</span>
+                                    <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    @foreach ($publicaciones as $item)
+                                        <li><a
+                                                href="{{ route('publicaciones.show', $item->name) }}">{{ $item->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endif
+                        @if (!$colecciones->isEmpty())
+                            <li class="dropdown">
+                                <a href="{{ route('publicaciones.colecciones', 'todas') }}"
+                                    class="{{ Route::is('publicaciones.colecciones') ? 'active' : '' }}"><span>Colecciones</span>
+                                    <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                                <ul>
+                                    @foreach ($colecciones as $item)
+                                        <li><a
+                                                href="{{ route('publicaciones.colecciones', $item->name) }}">{{ $item->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                        @endif
+
                         <li><a href="{{ route('revistas.index') }}"
                                 class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas Cientificas</a></li>
                     </ul>
