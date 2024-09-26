@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('roles')->insert([
             'name' => 'Super Admin',
-            'guard_name ' => 'web',
+            'guard_name' => 'web',
         ]);
 
         DB::table('roles')->insert([
