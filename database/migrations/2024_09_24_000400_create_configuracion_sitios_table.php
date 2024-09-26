@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('configuracion_sitios', function (Blueprint $table) {
+        Schema::create('configuracion_sitio', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('contacto');
-            $table->string('direcccion');
+            $table->string('direccion');
             $table->string('image_banner');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('configuracion_sitios');
+        Schema::dropIfExists('configuracion_sitio');
     }
 };

@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row gy-4 d-flex justify-content-center">
                 @foreach ($directorio as $item)
-                    <div class="col-xl-3 col-md-6 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-xl-3 col-md-4 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
                         <div class="member">
                             <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid" alt="">
                             <h4>{{ $item->nombre }}</h4>

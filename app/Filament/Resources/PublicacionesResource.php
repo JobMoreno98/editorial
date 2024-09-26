@@ -7,7 +7,9 @@ use App\Filament\Resources\PublicacionesResource\RelationManagers;
 use App\Models\Categoria;
 use App\Models\Publicaciones;
 use Filament\Forms;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -38,24 +40,33 @@ class PublicacionesResource extends Resource
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
             TextInput::make('slug'),
             Forms\Components\TextInput::make('autor')->required()->maxLength(255),
-            Forms\Components\TextInput::make('isbn', 'ISBN')->required()->maxLength(255),
-            Forms\Components\TextInput::make('paginas')->required()->numeric(),
+            Forms\Components\TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
+            Forms\Components\TextInput::make('paginas')->label('Páginas')->required()->numeric(),
             Forms\Components\TextInput::make('coordinadores')->required()->maxLength(255),
-            Forms\Components\TextInput::make('año_publicacion')->required()->numeric(),
-            FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor(),
-            FileUpload::make('archivo')
-                ->required()
-                ->acceptedFileTypes(['application/pdf'])
-                ->openable()
-                ->directory('files')
-                ->preserveFilenames()
-                ->moveFiles(),
+            TextInput::make('año_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
             Textarea::make('descripcion')->required()->maxLength(400),
             Select::make('tipo')->options(['publicación' => 'Publicación', 'colección' => 'Colección'])->required(),
-            Select::make('categoria_id')->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name','id'))->searchable()->preload(),
-            Forms\Components\Toggle::make('novedad')->required(),
-            Toggle::make('active')->onColor('success')->offColor('danger')->inline()->default(true),
-        ])->columns(3);
+            Select::make('categoria_id')->label('Categoria')->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name', 'id'))->searchable()->preload(),
+
+            Section::make('Archvios')->schema([
+                FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor()
+                    ->removeUploadedFileButtonPosition('right')
+                    ->imagePreviewHeight('150')
+                    ->uploadButtonPosition('left'),
+                FileUpload::make('archivo')
+                    ->required()
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->openable()
+                    ->directory('files')
+                    ->preserveFilenames()
+                    ->moveFiles()->removeUploadedFileButtonPosition('right'),
+            ])->columns(1)->columnSpan(1),
+            Section::make()->schema([
+                Toggle::make('novedad')->required(),
+                Toggle::make('active')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
+            ])->columnSpan(1),
+
+        ])->columns(2);
     }
 
     public static function table(Table $table): Table
@@ -66,7 +77,7 @@ class PublicacionesResource extends Resource
                 Tables\Columns\TextColumn::make('autor')->searchable(),
                 Tables\Columns\TextColumn::make('isbn')->searchable(),
                 Tables\Columns\TextColumn::make('coordinadores')->searchable(),
-                Tables\Columns\TextColumn::make('año_publicacion')->numeric()->sortable(),
+                Tables\Columns\TextColumn::make('año_publicacion')->sortable()->searchable(),
                 TextColumn::make('tipo')->searchable()->sortable(),
                 Tables\Columns\IconColumn::make('novedad')->boolean(),
                 ToggleColumn::make('active')->onColor('success')->offColor('danger'),

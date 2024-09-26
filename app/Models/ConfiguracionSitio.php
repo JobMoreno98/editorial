@@ -9,4 +9,5 @@ class ConfiguracionSitio extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $table = 'configuracion_sitio';
 }

@@ -239,7 +239,7 @@
     <section id="call-to-action" class="call-to-action section dark-background">
 
         <div class="container">
-            <img src="assets/img/cta-bg.jpg" alt="">
+            <img src="https://picsum.photos/1250/200" alt="">
             <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
                 <div class="col-xl-10">
                     <div class="text-center">
@@ -500,180 +500,6 @@
 
     </section><!-- /Testimonials Section -->
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section">
-
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Portfolio</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
-        <div class="container">
-
-            <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-                <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-                    <li data-filter="*" class="filter-active">All</li>
-                    <li data-filter=".filter-app">App</li>
-                    <li data-filter=".filter-product">Product</li>
-                    <li data-filter=".filter-branding">Branding</li>
-                    <li data-filter=".filter-books">Books</li>
-                </ul><!-- End Portfolio Filters -->
-
-                <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/app-1.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/app-1.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">App 1</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/product-1.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/product-1.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Product 1</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/branding-1.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/branding-1.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Branding 1</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/books-1.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/books-1.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Books 1</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/app-2.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/app-2.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">App 2</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/product-2.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/product-2.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Product 2</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/branding-2.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/branding-2.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Branding 2</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/books-2.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/books-2.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Books 2</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/app-3.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/app-3.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">App 3</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/product-3.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/product-3.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Product 3</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/branding-3.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/branding-3.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Branding 3</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                    <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
-                        <div class="portfolio-content h-100">
-                            <a href="assets/img/portfolio/books-3.jpg" data-gallery="portfolio-gallery-app"
-                                class="glightbox"><img src="assets/img/portfolio/books-3.jpg" class="img-fluid"
-                                    alt=""></a>
-                            <div class="portfolio-info">
-                                <h4><a href="portfolio-details.html" title="More Details">Books 3</a></h4>
-                                <p>Lorem ipsum, dolor sit amet consectetur</p>
-                            </div>
-                        </div>
-                    </div><!-- End Portfolio Item -->
-
-                </div><!-- End Portfolio Container -->
-
-            </div>
-
-        </div>
-
-    </section><!-- /Portfolio Section -->
 
     <!-- Team Section -->
     <section id="team" class="team section">
@@ -749,82 +575,6 @@
         </div>
 
     </section><!-- /Team Section -->
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing section">
-
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Pricing</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
-        <div class="container" data-aos="zoom-in" data-aos-delay="100">
-
-            <div class="row g-4">
-
-                <div class="col-lg-4">
-                    <div class="pricing-item">
-                        <h3>Free Plan</h3>
-                        <div class="icon">
-                            <i class="bi bi-box"></i>
-                        </div>
-                        <h4><sup>$</sup>0<span> / month</span></h4>
-                        <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span>
-                            </li>
-                            <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis
-                                    hendrerit</span></li>
-                        </ul>
-                        <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-                    </div>
-                </div><!-- End Pricing Item -->
-
-                <div class="col-lg-4">
-                    <div class="pricing-item featured">
-                        <h3>Business Plan</h3>
-                        <div class="icon">
-                            <i class="bi bi-rocket"></i>
-                        </div>
-
-                        <h4><sup>$</sup>29<span> / month</span></h4>
-                        <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                        </ul>
-                        <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-                    </div>
-                </div><!-- End Pricing Item -->
-
-                <div class="col-lg-4">
-                    <div class="pricing-item">
-                        <h3>Developer Plan</h3>
-                        <div class="icon">
-                            <i class="bi bi-send"></i>
-                        </div>
-                        <h4><sup>$</sup>49<span> / month</span></h4>
-                        <ul>
-                            <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                            <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                            <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                        </ul>
-                        <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
-                    </div>
-                </div><!-- End Pricing Item -->
-
-            </div>
-
-        </div>
-
-    </section><!-- /Pricing Section -->
 
     <!-- Faq Section -->
     <section id="faq" class="faq section">
@@ -932,7 +682,7 @@
                     <article>
 
                         <div class="post-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                            <img src="https://picsum.photos/500/200" alt="" class="img-fluid">
                         </div>
 
                         <p class="post-category">Politics</p>
@@ -942,7 +692,7 @@
                         </h2>
 
                         <div class="d-flex align-items-center">
-                            <img src="assets/img/blog/blog-author.jpg" alt=""
+                            <img src="https://picsum.photos/100" alt=""
                                 class="img-fluid post-author-img flex-shrink-0">
                             <div class="post-meta">
                                 <p class="post-author">Maria Doe</p>
@@ -959,7 +709,7 @@
                     <article>
 
                         <div class="post-img">
-                            <img src="assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
+                            <img src="https://picsum.photos/500/200" alt="" class="img-fluid">
                         </div>
 
                         <p class="post-category">Sports</p>
@@ -969,7 +719,7 @@
                         </h2>
 
                         <div class="d-flex align-items-center">
-                            <img src="assets/img/blog/blog-author-2.jpg" alt=""
+                            <img src="https://picsum.photos/100" alt=""
                                 class="img-fluid post-author-img flex-shrink-0">
                             <div class="post-meta">
                                 <p class="post-author">Allisa Mayer</p>
@@ -986,7 +736,7 @@
                     <article>
 
                         <div class="post-img">
-                            <img src="assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
+                            <img src="https://picsum.photos/500/200" alt="" class="img-fluid">
                         </div>
 
                         <p class="post-category">Entertainment</p>
@@ -997,7 +747,7 @@
                         </h2>
 
                         <div class="d-flex align-items-center">
-                            <img src="assets/img/blog/blog-author-3.jpg" alt=""
+                            <img src="https://picsum.photos/100" alt=""
                                 class="img-fluid post-author-img flex-shrink-0">
                             <div class="post-meta">
                                 <p class="post-author">Mark Dower</p>

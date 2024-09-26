@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('configuracion_sitios', function (Blueprint $table) {
+        Schema::table('configuracion_sitio', function (Blueprint $table) {
             $table->string('accent_color');
             $table->string('heading_color');
             $table->string('nav_color');
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('configuracion_sitios', function (Blueprint $table) {
+        Schema::table('configuracion_sitio', function (Blueprint $table) {
             //
         });
     }
