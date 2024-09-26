@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('model_has_roles')->insert([
             'role_id' => 1,
-            'model_type ' => 'App\Models\User',
+            'model_type' => 'App\Models\User',
             'model_id' => 1
         ]);
     }
