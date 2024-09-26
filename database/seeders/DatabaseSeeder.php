@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             'guard_name' => 'web',
         ]);
 
-        DB::table('roles')->insert([
+        DB::table('model_has_roles')->insert([
             'role_id' => 1,
             'model_type ' => 'App\Models\User',
             'model_id' => 1
