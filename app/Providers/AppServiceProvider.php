@@ -4,11 +4,8 @@ namespace App\Providers;
 
 use App\Models\Categoria;
 use App\Models\ConfiguracionSitio;
-use App\Models\Revistas;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
-
 use Spatie\Health\Facades\Health;
 use Spatie\Health\Checks\Checks\OptimizedAppCheck;
 use Spatie\Health\Checks\Checks\DebugModeCheck;
@@ -30,15 +27,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch->locales(['es', 'en', 'fr']); // also accepts a closure
+            $switch->locales(['es', 'en']);
         });
-        $publicaciones = Categoria::select('name')->where('tipo','publicación')->get();
-        $colecciones = Categoria::select('name')->where('tipo','colección')->get();
-        $site = ConfiguracionSitio::latest()->first();
-        View::share('site', $site);
-        View::share('publicaciones', $publicaciones);
-        View::share('colecciones', $colecciones);
-        
+
+        view()->composer('layout.app', function ($view) {
+            $site = ConfiguracionSitio::latest()->first();
+            $publicaciones = Categoria::select('name')->where('tipo', 'publicación')->get();
+            $colecciones = Categoria::select('name')->where('tipo', 'colección')->get();
+
+            $view->with('colecciones', $colecciones)->with('publicaciones', $publicaciones)->with('site', $site);
+        });
+
         Health::checks([
             OptimizedAppCheck::new(),
             DebugModeCheck::new(),

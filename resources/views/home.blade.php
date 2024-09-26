@@ -4,46 +4,13 @@
     <section id="hero" class="hero section accent-background">
         <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
             <div class="row gy-5 justify-content-between">
-                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center"
+                    style="padding-bottom:30px;margin-top: 30px;">
                     <img src="{{ asset('storage/' . $site->image_banner) }}" class="h-100" alt="">
                 </div>
             </div>
         </div>
 
-        <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
-            <div class="container position-relative">
-                <div class="row gy-4 mt-5">
-
-                    <div class="col-xl-3 col-md-6">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-easel"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-gem"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Sed ut perspiciatis</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-geo-alt"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Magni Dolores</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-
-                    <div class="col-xl-3 col-md-6">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bi bi-command"></i></div>
-                            <h4 class="title"><a href="" class="stretched-link">Nemo Enim</a></h4>
-                        </div>
-                    </div><!--End Icon Box -->
-                </div>
-            </div>
-        </div>
     </section><!-- /Hero Section -->
     <!-- About Section -->
     <section id="about" class="about section">
@@ -157,8 +124,8 @@
                     </div>
                     <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
                     </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid"
-                            alt=""></div>
+                    <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
+                    </div>
                 </div>
             </div>
 
