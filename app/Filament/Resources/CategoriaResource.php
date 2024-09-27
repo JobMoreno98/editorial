@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoriaResource\Pages;
 use App\Filament\Resources\CategoriaResource\RelationManagers;
+use App\Filament\Resources\CategoriaResource\Widgets\CategoriasOverview;
 use App\Models\Categoria;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
@@ -79,6 +80,12 @@ class CategoriaResource extends Resource
             'index' => Pages\ListCategorias::route('/'),
             'create' => Pages\CreateCategoria::route('/create'),
             'edit' => Pages\EditCategoria::route('/{record}/edit'),
+        ];
+    }
+    public static function getWidgets(): array
+    {
+        return [
+            CategoriasOverview::class,
         ];
     }
 }

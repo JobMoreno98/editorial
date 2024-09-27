@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
+use App\Filament\Resources\CategoriaResource\Widgets\CategoriasOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -39,12 +40,14 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                //Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                //Widgets\AccountWidget::class,
+                //Widgets\FilamentInfoWidget::class,
+                CategoriasOverview::class,
+                //Widgets\AccountWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -72,6 +75,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             ->plugin(FilamentSpatieLaravelBackupPlugin::make()->noTimeout())
             ->plugin(\Hasnayeen\Themes\ThemesPlugin::make())->plugin(FilamentSpatieLaravelHealthPlugin::make(HealthCheckResults::class))
+            ->unsavedChangesAlerts()
             ->authMiddleware([
                 Authenticate::class,
             ]);
