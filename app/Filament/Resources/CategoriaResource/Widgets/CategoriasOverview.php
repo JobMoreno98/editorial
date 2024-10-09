@@ -16,10 +16,8 @@ class CategoriasOverview extends StatsOverviewWidget
     use InteractsWithPageFilters;
 
     protected static ?int $navigationSort = -5;
-    protected int | string | array $columnSpan = [
-        'md' => 2,
-        'xl' => 3,
-    ];
+
+
     protected function getStats(): array
     {
         $roles = $this->filters['roles'] ?? null;
@@ -31,9 +29,12 @@ class CategoriasOverview extends StatsOverviewWidget
                     ->when($roles, fn(Builder $query) =>
                     $query->rightJoin('model_has_roles', 'model_has_roles.role_id', '=', 'roles.id')
                         ->where('roles.id', '=', $roles))->count()
-            )                   
-                ->description('32k increase')
-                ->descriptionIcon('heroicon-m-arrow-trending-up', IconPosition::Before)
+            ) //->description('32k increase')
+            //->descriptionIcon('heroicon-m-arrow-trending-up', IconPosition::Before)
         ];
+    }
+    public static function canView(): bool
+    {
+        return auth()->user()->hasRole('Super Admin');
     }
 }

@@ -46,11 +46,7 @@ class DirectorioResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()
                     ->required()->imageEditor()
-                    ->imageEditorAspectRatios([
-                        '16:9',
-                        '4:3',
-                        '1:1',
-                    ])->directory('directorio'),
+                    ->imageCropAspectRatio('1:1')->directory('directorio'),
             ]);
     }
 

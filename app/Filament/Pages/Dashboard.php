@@ -18,19 +18,23 @@ class Dashboard extends \Filament\Pages\Dashboard
     use HasFiltersForm;
 
     protected static string $routePath = '/';
-    protected static ?int $sort = 2;
+    protected static bool $isLazy = false;
+
     public function filtersForm(Form $form): Form
     {
         return $form
             ->schema([
+
                 Section::make()
                     ->schema([
                         Select::make('roles')->options(fn(Get $get): Collection => Roles::query()->pluck('name', 'id'))->searchable()->preload(),
                     ]),
+                    
             ]);
     }
     public function getColumns(): int | string | array
     {
-        return 2;
+        return 1;
     }
+
 }

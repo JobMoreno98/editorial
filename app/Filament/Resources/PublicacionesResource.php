@@ -48,7 +48,12 @@ class PublicacionesResource extends Resource
                 FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor()
                     ->removeUploadedFileButtonPosition('right')
                     ->imagePreviewHeight('150')
-                    ->uploadButtonPosition('left'),
+                    ->uploadButtonPosition('left')->imageEditorAspectRatios([
+                        '9:16',
+                        '16:9',
+                        '4:3',
+                        '1:1',
+                    ]),
                 FileUpload::make('archivo')
                     ->required()
                     ->acceptedFileTypes(['application/pdf'])

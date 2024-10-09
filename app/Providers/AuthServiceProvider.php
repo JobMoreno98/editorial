@@ -10,6 +10,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 
 use App\Policies\RolesPolicy;
+use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
@@ -34,5 +35,6 @@ class AuthServiceProvider extends ServiceProvider
         });
         Gate::policy(Role::class, RolesPolicy::class);
         Gate::policy(Permission::class, PermisosPolicy::class);
+        Gate::policy(FilamentSpatieLaravelBackupPlugin::class, PermisosPolicy::class);
     }
 }

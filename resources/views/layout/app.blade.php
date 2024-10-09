@@ -40,6 +40,7 @@
             --nav-hover-color: {{ $site->nav_hover_color }};
             --nav-dropdown-color: {{ $site->nav_dropdown_color }};
             --nav-dropdown-hover-color: {{ $site->nav_dropdown_hover_color }};
+
         }
 
         .header {
@@ -58,6 +59,10 @@
 
         #footer {
             margin-top: auto;
+        }
+
+        .btn-primary {
+            --bs-btn-bg: {{ $site->accent_color }};
         }
     </style>
 
