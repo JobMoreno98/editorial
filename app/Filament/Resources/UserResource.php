@@ -51,8 +51,7 @@ class UserResource extends Resource
                         ->password()
                         ->required()->hiddenOn(['edit', 'view'])
                         ->maxLength(255),
-                    Select::make('roles')->multiple()->relationship('roles', 'name')->hidden(! auth()->user()->hasRole('Super Admin')),
-                    CheckboxList::make('categorias')->relationship('categorias', 'name'),
+                    Select::make('roles')->relationship('roles', 'name')->hidden(! auth()->user()->hasRole('Super Admin')),
                 ])->columns(2),
             ]);
     }

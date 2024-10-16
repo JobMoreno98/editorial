@@ -69,7 +69,7 @@ class PublicacionesResource extends Resource
             ])->columns(1)->columnSpan(1),
 
             Section::make()->schema([
-                Toggle::make('novedad')->required(),
+                Toggle::make('novedad')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
                 Toggle::make('active')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
             ])->columnSpan(1),
 
@@ -80,16 +80,16 @@ class PublicacionesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')->searchable()->words(100)->wrap(),
-                Tables\Columns\TextColumn::make('autor')->searchable(),
-                Tables\Columns\TextColumn::make('isbn')->searchable(),
-                Tables\Columns\TextColumn::make('coordinadores')->searchable(),
-                Tables\Columns\TextColumn::make('anio_publicacion')->sortable()->searchable(),
-                TextColumn::make('tipo')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\IconColumn::make('novedad')->boolean(),
+                TextColumn::make('nombre')->searchable()->words(100)->wrap(),
+                TextColumn::make('autor')->searchable(),
+                TextColumn::make('isbn')->searchable(),
+                TextColumn::make('coordinadores')->searchable(),
+                TextColumn::make('anio_publicacion')->sortable()->searchable(),
+                ToggleColumn::make('novedad')->onColor('success')->offColor('danger'),
                 ToggleColumn::make('active')->onColor('success')->offColor('danger'),
-                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
+                TextColumn::make('tipo')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 Filter::make('novedad')
