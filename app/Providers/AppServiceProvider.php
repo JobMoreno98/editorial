@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Categoria;
 use App\Models\ConfiguracionSitio;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Health\Facades\Health;
 use Spatie\Health\Checks\Checks\OptimizedAppCheck;
@@ -26,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
             $switch->locales(['es', 'en']);
         });

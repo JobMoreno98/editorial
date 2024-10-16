@@ -17,14 +17,14 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>About Us<br></h2>
+            <h2>{{ __('About Us') }}<br></h2>
             <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div><!-- End Section Title -->
 
         <div class="container">
 
             <div class="row gy-4">
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-6" style="text-align: justify" data-aos="fade-up" data-aos-delay="100">
                     <h3>Voluptatem dignissimos provident laboris nisi ut aliquip ex ea commodo</h3>
                     <img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
                     <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat
@@ -35,7 +35,7 @@
                         ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut
                         omnis beatae neque deleniti repellendus.</p>
                 </div>
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+                <div class="col-lg-6" style="text-align: justify" data-aos="fade-up" data-aos-delay="250">
                     <div class="content ps-0 ps-lg-5">
                         <p class="fst-italic">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -57,11 +57,6 @@
                             velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                             proident
                         </p>
-
-                        <div class="position-relative mt-4">
-                            <img src="assets/img/about-2.jpg" class="img-fluid rounded-4" alt="">
-                            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -76,6 +71,7 @@
         <div class="container">
 
             <div class="swiper init-swiper">
+                <h3 class="text-center border-bottom my-2 py-2">Novedades</h3>
                 <script type="application/json" class="swiper-config">
             {
               "loop": true,
@@ -91,7 +87,7 @@
               },
               "breakpoints": {
                 "320": {
-                  "slidesPerView": 2,
+                  "slidesPerView": 1,
                   "spaceBetween": 40
                 },
                 "480": {
@@ -103,104 +99,37 @@
                   "spaceBetween": 80
                 },
                 "992": {
-                  "slidesPerView": 6,
+                  "slidesPerView": 4,
                   "spaceBetween": 120
                 }
               }
             }
           </script>
                 <div class="swiper-wrapper align-items-center">
-                    <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt="">
-                    </div>
-                    <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt="">
-                    </div>
+                    @foreach ($novedades as $item)
+                        <div class="swiper-slide h-100">
+                            <div class="member text-center w-100">
+                                <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
+                                    src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded" alt="">
+                                <div class="fs-6">
+                                    <h4 class="mt-2 border-top border-1 pt-2">{{ $item->nombre }}</h4>
+                                    <span class="fs-5 text-uppercase"><b>{{ $item->autor }}</b></span> <br>
+                                    <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
+                                </div>
+                                <p>
+                                    <a href="{{ route('ver-publicacion', $item->slug) }}"
+                                        class="btn-sm btn btn-primary mt-1">Ver más</a>
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
+
             </div>
 
         </div>
 
     </section><!-- /Clients Section -->
-
-    <!-- Stats Section -->
-    <section id="stats" class="stats section">
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="row gy-4 align-items-center">
-
-                <div class="col-lg-5">
-                    <img src="assets/img/stats-img.svg" alt="" class="img-fluid">
-                </div>
-
-                <div class="col-lg-7">
-
-                    <div class="row gy-4">
-
-                        <div class="col-lg-6">
-                            <div class="stats-item d-flex">
-                                <i class="bi bi-emoji-smile flex-shrink-0"></i>
-                                <div>
-                                    <span data-purecounter-start="0" data-purecounter-end="232"
-                                        data-purecounter-duration="1" class="purecounter"></span>
-                                    <p><strong>Happy Clients</strong> <span>consequuntur quae</span></p>
-                                </div>
-                            </div>
-                        </div><!-- End Stats Item -->
-
-                        <div class="col-lg-6">
-                            <div class="stats-item d-flex">
-                                <i class="bi bi-journal-richtext flex-shrink-0"></i>
-                                <div>
-                                    <span data-purecounter-start="0" data-purecounter-end="521"
-                                        data-purecounter-duration="1" class="purecounter"></span>
-                                    <p><strong>Projects</strong> <span>adipisci atque cum quia aut</span></p>
-                                </div>
-                            </div>
-                        </div><!-- End Stats Item -->
-
-                        <div class="col-lg-6">
-                            <div class="stats-item d-flex">
-                                <i class="bi bi-headset flex-shrink-0"></i>
-                                <div>
-                                    <span data-purecounter-start="0" data-purecounter-end="1453"
-                                        data-purecounter-duration="1" class="purecounter"></span>
-                                    <p><strong>Hours Of Support</strong> <span>aut commodi quaerat</span></p>
-                                </div>
-                            </div>
-                        </div><!-- End Stats Item -->
-
-                        <div class="col-lg-6">
-                            <div class="stats-item d-flex">
-                                <i class="bi bi-people flex-shrink-0"></i>
-                                <div>
-                                    <span data-purecounter-start="0" data-purecounter-end="32"
-                                        data-purecounter-duration="1" class="purecounter"></span>
-                                    <p><strong>Hard Workers</strong> <span>rerum asperiores dolor</span></p>
-                                </div>
-                            </div>
-                        </div><!-- End Stats Item -->
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section><!-- /Stats Section -->
 
     <!-- Call To Action Section -->
     <section id="call-to-action" class="call-to-action section dark-background">
@@ -320,229 +249,6 @@
 
     </section><!-- /Services Section -->
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
-
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Testimonials</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="swiper init-swiper">
-                <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 10
-                }
-              }
-            }
-          </script>
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                            <h3>Saul Goodman</h3>
-                            <h4>Ceo &amp; Founder</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum
-                                    suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et.
-                                    Maecen aliquam, risus at semper.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                            <h3>Sara Wilsson</h3>
-                            <h4>Designer</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum
-                                    quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat
-                                    irure amet legam anim culpa.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                            <h3>Jena Karlis</h3>
-                            <h4>Store Owner</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla
-                                    quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore
-                                    quis sint minim.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                            <h3>Matt Brandon</h3>
-                            <h4>Freelancer</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                    fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore
-                                    quem dolore labore illum veniam.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                    <div class="swiper-slide">
-                        <div class="testimonial-item">
-                            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                            <h3>John Larson</h3>
-                            <h4>Entrepreneur</h4>
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                    class="bi bi-star-fill"></i>
-                            </div>
-                            <p>
-                                <i class="bi bi-quote quote-icon-left"></i>
-                                <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor
-                                    noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam
-                                    esse veniam culpa fore nisi cillum quid.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                            </p>
-                        </div>
-                    </div><!-- End testimonial item -->
-
-                </div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-        </div>
-
-    </section><!-- /Testimonials Section -->
-
-
-    <!-- Team Section -->
-    <section id="team" class="team section">
-
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Our Team</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
-        <div class="container">
-
-            <div class="row gy-4">
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
-                    <div class="member">
-                        <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
-                        <h4>Walter White</h4>
-                        <span>Web Development</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div><!-- End Team Member -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-                    <div class="member">
-                        <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
-                        <h4>Sarah Jhinson</h4>
-                        <span>Marketing</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div><!-- End Team Member -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
-                    <div class="member">
-                        <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
-                        <h4>William Anderson</h4>
-                        <span>Content</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div><!-- End Team Member -->
-
-                <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
-                    <div class="member">
-                        <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
-                        <h4>Amanda Jepson</h4>
-                        <span>Accountant</span>
-                        <div class="social">
-                            <a href=""><i class="bi bi-twitter-x"></i></a>
-                            <a href=""><i class="bi bi-facebook"></i></a>
-                            <a href=""><i class="bi bi-instagram"></i></a>
-                            <a href=""><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div><!-- End Team Member -->
-
-            </div>
-
-        </div>
-
-    </section><!-- /Team Section -->
-
     <!-- Faq Section -->
     <section id="faq" class="faq section">
 
@@ -632,113 +338,14 @@
 
     </section><!-- /Faq Section -->
 
-    <!-- Recent Posts Section -->
-    <section id="recent-posts" class="recent-posts section">
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Recent Blog Posts</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
-        <div class="container">
-
-            <div class="row gy-4">
-
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <article>
-
-                        <div class="post-img">
-                            <img src="https://picsum.photos/500/200" alt="" class="img-fluid">
-                        </div>
-
-                        <p class="post-category">Politics</p>
-
-                        <h2 class="title">
-                            <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
-                        </h2>
-
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/100" alt=""
-                                class="img-fluid post-author-img flex-shrink-0">
-                            <div class="post-meta">
-                                <p class="post-author">Maria Doe</p>
-                                <p class="post-date">
-                                    <time datetime="2022-01-01">Jan 1, 2022</time>
-                                </p>
-                            </div>
-                        </div>
-
-                    </article>
-                </div><!-- End post list item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <article>
-
-                        <div class="post-img">
-                            <img src="https://picsum.photos/500/200" alt="" class="img-fluid">
-                        </div>
-
-                        <p class="post-category">Sports</p>
-
-                        <h2 class="title">
-                            <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
-                        </h2>
-
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/100" alt=""
-                                class="img-fluid post-author-img flex-shrink-0">
-                            <div class="post-meta">
-                                <p class="post-author">Allisa Mayer</p>
-                                <p class="post-date">
-                                    <time datetime="2022-01-01">Jun 5, 2022</time>
-                                </p>
-                            </div>
-                        </div>
-
-                    </article>
-                </div><!-- End post list item -->
-
-                <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                    <article>
-
-                        <div class="post-img">
-                            <img src="https://picsum.photos/500/200" alt="" class="img-fluid">
-                        </div>
-
-                        <p class="post-category">Entertainment</p>
-
-                        <h2 class="title">
-                            <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et
-                                soluta</a>
-                        </h2>
-
-                        <div class="d-flex align-items-center">
-                            <img src="https://picsum.photos/100" alt=""
-                                class="img-fluid post-author-img flex-shrink-0">
-                            <div class="post-meta">
-                                <p class="post-author">Mark Dower</p>
-                                <p class="post-date">
-                                    <time datetime="2022-01-01">Jun 22, 2022</time>
-                                </p>
-                            </div>
-                        </div>
-
-                    </article>
-                </div><!-- End post list item -->
-
-            </div><!-- End recent posts list -->
-
-        </div>
-
-    </section><!-- /Recent Posts Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>Contact</h2>
+            <h2>{{ __('Contact Us') }}</h2>
             <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div><!-- End Section Title -->
 
@@ -751,7 +358,7 @@
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
-                                <h3>Address</h3>
+                                <h3>{{ __('Address') }}</h3>
                                 <p>A108 Adam Street, New York, NY 535022</p>
                             </div>
                         </div><!-- End Info Item -->
@@ -759,8 +366,8 @@
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                             <i class="bi bi-telephone flex-shrink-0"></i>
                             <div>
-                                <h3>Call Us</h3>
-                                <p>+1 5589 55488 55</p>
+                                <h3>{{ __('Contact Us') }}</h3>
+                                <p>{{ $site->contacto }}</p>
                             </div>
                         </div><!-- End Info Item -->
 
@@ -771,7 +378,7 @@
                                 <p>info@example.com</p>
                             </div>
                         </div><!-- End Info Item -->
-
+                        {{--
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
                             <i class="bi bi-clock flex-shrink-0"></i>
                             <div>
@@ -779,7 +386,7 @@
                                 <p>Mon-Sat: 11AM - 23PM</p>
                             </div>
                         </div><!-- End Info Item -->
-
+--}}
                     </div>
 
                 </div>

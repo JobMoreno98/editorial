@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('novedad');
             $table->string('imagen');
             $table->string('archivo');
-            $table->string('descripcion', 400);
+            $table->text('descripcion');
             $table->timestamps();
         });
     }

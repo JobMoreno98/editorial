@@ -32,6 +32,8 @@
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/glightbox.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
         :root {
             --accent-color: {{ $site->accent_color }};
@@ -63,6 +65,9 @@
 
         .btn-primary {
             --bs-btn-bg: {{ $site->accent_color }};
+            --bs-btn-border-color: {{ $site->accent_color }};
+            --bs-btn-hover-bg: {{ $site->background_color }};
+            --bs-btn-hover-border-color: {{ $site->background_color }};
         }
     </style>
 
@@ -71,19 +76,27 @@
 <body class="index-page">
 
     <header id="header" class="header sticky-top">
-
-        <div class="topbar d-flex align-items-center">
+        <div class="topbar d-flex align-items-center py-1" style="height: 50px;">
             <div class="container d-flex justify-content-center justify-content-md-between">
                 <div class="contact-info d-flex align-items-center">
                     <i class="bi bi-envelope d-flex align-items-center"><a
                             href="mailto:contact@example.com">contact@example.com</a></i>
                     <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{ $site->contacto }}</span></i>
                 </div>
-                <div class="social-links d-none d-md-flex align-items-center">
+                <div class="social-links d-none d-md-flex align-items-center my-1 py-1">
+                    <form action="{{ route('buscador') }}" class="fs-6 my-1 py-1" method="get">
+                        <div class="d-flex p-2">
+                            <input type="text" name="buscar" class="m-1 p-1 form-control" placeholder="Buscar">
+                            <button class="btn btn-sm btn-secoundary border-white my-1 py-1 text-white"
+                                type="submit"><i class="bi bi-search"></i></button>
+                        </div>
+                    </form>
+                    {{--
                     <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
                     <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                    --}}
                 </div>
             </div>
         </div><!-- End Top Bar -->
@@ -99,10 +112,11 @@
                 </a>
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="{{ route('home') }}" class="{{ Route::is('home') ? 'active' : '' }}">Home</a>
+                        <li><a href="{{ route('home') }}"
+                                class="{{ Route::is('home') ? 'active' : '' }}">{{ __('Home') }}</a>
                         </li>
                         <li><a href="{{ route('directorio') }}"
-                                class="{{ Route::is('directorio') ? 'active' : '' }}">Directorio</a></li>
+                                class="{{ Route::is('directorio') ? 'active' : '' }}">{{ __('Directory') }}</a></li>
                         <li><a href="{{ route('comite') }}">Consejo Editorial</a></li>
                         @if (!$publicaciones->isEmpty())
                             <li class="dropdown">
@@ -192,7 +206,7 @@
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                     <h4>{{ __('Contact Us') }}</h4>
                     <p>{{ $site->direccion }}</p>
-                    <p class="mt-4"><strong>{{ __('phone') }}:</strong> <span>+1 5589 55488 55</span></p>
+                    <p class="mt-4"><strong>{{ __('Phone') }}:</strong> <span>{{ $site->contacto }}</span></p>
                     <p><strong>Email:</strong> <span>info@example.com</span></p>
                 </div>
 
@@ -224,9 +238,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+
     <script src="assets/vendor/aos/aos.js"></script>
     <script src="{{ asset('js/glightbox.min.js') }}"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>

@@ -20,7 +20,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="mt-2 text-center text-md-start">
+                    <div class="m-3 text-center text-md-start">
                         <p>
                             <span class="fs-5  text-uppercase"><b>Autor - {{ $publicacion->autor }}</b></span>
                         </p>
@@ -35,11 +35,9 @@
                             <span><b>Año de publicación: {{ $publicacion->año_publicacion }}</b></span>
 
                         </p>
-                        <p><span><b>Descripción: {{ $publicacion->descripcion }}</b></span></p>
-                        <p>
-                            <a href="{{ asset('storage/' . $publicacion->archivo) }}" target="_blank"
-                                class="btn btn-primary btn-sm">Ver archivo</a>
-                            <a href="{{ asset('storage/' . $publicacion->archivo) }}" download
+                        <p style="text-align: justify"><span><b>Descripción: {{ $publicacion->descripcion }}</b></span></p>
+                        <p class="text-end">
+                            <a target="_blank" href="{{ route('ver-archivo', $publicacion) }}"
                                 class="btn btn-primary btn-sm">Descargar archivo</a>
                         </p>
                     </div>

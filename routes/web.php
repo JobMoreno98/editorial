@@ -24,3 +24,7 @@ Route::resource('publicaciones', PublicacionesController::class);
 Route::get('/publicacion/{slug}', [PublicacionesController::class, 'ver_publicacion'])->name('ver-publicacion');
 Route::get('/colecciones/{colecciones}', [PublicacionesController::class, 'colecciones'])->name('publicaciones.colecciones');
 Route::get('/revistas-cientificas', [RevistasController::class, 'index'])->name('revistas.index');
+Route::get('/publicaciones/{file}/download', [PublicacionesController::class, 'getFile'])->name('ver-archivo');
+
+
+Route::get('/buscador', [PublicacionesController::class, 'buscador'])->name('buscador');

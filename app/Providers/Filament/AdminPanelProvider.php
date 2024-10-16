@@ -71,7 +71,7 @@ class AdminPanelProvider extends PanelProvider
                         hasAvatars: true, // Enables the avatar upload form component (default = false)
                         slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
                     )->enableTwoFactorAuthentication()
-            )
+            )->spa()
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             ->plugin(FilamentSpatieLaravelBackupPlugin::make()->noTimeout())
             ->plugin(\Hasnayeen\Themes\ThemesPlugin::make())->plugin(FilamentSpatieLaravelHealthPlugin::make(HealthCheckResults::class))

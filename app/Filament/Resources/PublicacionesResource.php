@@ -5,6 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PublicacionesResource\Pages;
 use App\Models\Categoria;
 use App\Models\Publicaciones;
+use Filament\Tables\Filters\Filter;
+use Illuminate\Database\Eloquent\Builder;
+
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
@@ -23,6 +26,8 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
+use Filament\Tables\Filters\TernaryFilter;
+
 class PublicacionesResource extends Resource
 {
     protected static ?string $model = Publicaciones::class;
@@ -39,7 +44,7 @@ class PublicacionesResource extends Resource
             Forms\Components\TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
             Forms\Components\TextInput::make('paginas')->label('Páginas')->required()->numeric(),
             Forms\Components\TextInput::make('coordinadores')->required()->maxLength(255),
-            TextInput::make('año_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
+            TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
             Textarea::make('descripcion')->required()->maxLength(400),
             Select::make('tipo')->options(['publicación' => 'Publicación', 'colección' => 'Colección'])->required(),
             Select::make('categoria_id')->label('Categoria')->required()->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name', 'id'))->searchable()->preload(),
@@ -75,19 +80,23 @@ class PublicacionesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')->searchable(),
+                Tables\Columns\TextColumn::make('nombre')->searchable()->words(100)->wrap(),
                 Tables\Columns\TextColumn::make('autor')->searchable(),
                 Tables\Columns\TextColumn::make('isbn')->searchable(),
                 Tables\Columns\TextColumn::make('coordinadores')->searchable(),
-                Tables\Columns\TextColumn::make('año_publicacion')->sortable()->searchable(),
-                TextColumn::make('tipo')->searchable()->sortable(),
+                Tables\Columns\TextColumn::make('anio_publicacion')->sortable()->searchable(),
+                TextColumn::make('tipo')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('novedad')->boolean(),
                 ToggleColumn::make('active')->onColor('success')->offColor('danger'),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
-                //
+                Filter::make('novedad')
+                    ->query(fn(Builder $query): Builder => $query->where('novedad', true))->toggle(),
+                Filter::make('active')
+                    ->query(fn(Builder $query): Builder => $query->where('active', true))->toggle()->label('Activo'),
+
             ])
             ->actions([Tables\Actions\EditAction::make()])
             ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
