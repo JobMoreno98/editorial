@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('isbn');
             $table->integer('paginas');
             $table->string('coordinadores');
-            $table->integer('año_publicacion');
+            $table->integer('anio_publicacion');
             $table->boolean('novedad');
             $table->string('imagen');
             $table->string('archivo');

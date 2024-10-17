@@ -14,12 +14,14 @@
             <div class="text-center col-lg-1 my-1 py-1">
                 <h4 class="border-bottom my-1 py-1">Años</h4>
                 @foreach ($anios as $item => $value)
-                    <a class="btn btn-primary btn-sm my-1" style="min-width: 100px;" href=" {{ $item }}"> {{ $item }} </a>
+                    <a class="btn btn-primary btn-sm my-1" style="min-width: 100px;" href=" {{ $url . '/' . $item }}">
+                        {{ $item }} </a>
                 @endforeach
             </div>
             <div class="col-md-11 d-flex justify-content-evenly flex-wrap">
                 @foreach ($publicaciones_items as $item)
-                    <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center m-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center m-1" data-aos="fade-up"
+                        data-aos-delay="100">
                         <div class="member text-center w-100">
                             <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                 src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid" alt="">
