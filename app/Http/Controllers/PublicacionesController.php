@@ -77,6 +77,7 @@ class PublicacionesController extends Controller
     }
     public function buscador(HttpRequest $request)
     {
+        
         $result = Publicaciones::search($request->buscar)->paginate(10);
         $buscado = $request->buscar;
         return view('publicaciones.buscar', compact('result', 'buscado'));

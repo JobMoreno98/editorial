@@ -112,9 +112,18 @@
                 </a>
                 <nav id="navmenu" class="navmenu">
                     <ul>
-                        <li><a href="{{ route('home') }}"
-                                class="{{ Route::is('home') ? 'active' : '' }}">{{ __('Home') }}</a>
+                        <li class="d-md-none">
+                            <form action="{{ route('buscador') }}" class="fs-6 my-1 py-1" method="get">
+                                <div class="d-flex p-2">
+                                    <input type="text" name="buscar" class="m-1 p-1 form-control"
+                                        placeholder="Buscar">
+                                    <button class="btn btn-sm btn-primary my-1 py-1"
+                                        type="submit"><i class="bi bi-search"></i></button>
+                                </div>
+                            </form>
                         </li>
+                        <li><a href="{{ route('home') }}"
+                                class="{{ Route::is('home') ? 'active' : '' }}">{{ __('Home') }}</a></li>
                         <li><a href="{{ route('directorio') }}"
                                 class="{{ Route::is('directorio') ? 'active' : '' }}">{{ __('Directory') }}</a></li>
                         <li><a href="{{ route('comite') }}">Consejo Editorial</a></li>
@@ -173,14 +182,16 @@
                     </a>
                     <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
                         valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    {{--
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
                         <a href=""><i class="bi bi-facebook"></i></a>
                         <a href=""><i class="bi bi-instagram"></i></a>
                         <a href=""><i class="bi bi-linkedin"></i></a>
                     </div>
+                    --}}
                 </div>
-
+                {{--
                 <div class="col-lg-2 col-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
@@ -191,7 +202,7 @@
                         <li><a href="#">Privacy policy</a></li>
                     </ul>
                 </div>
-
+                
                 <div class="col-lg-2 col-6 footer-links">
                     <h4>Our Services</h4>
                     <ul>
@@ -202,7 +213,7 @@
                         <li><a href="#">Graphic Design</a></li>
                     </ul>
                 </div>
-
+--}}
                 <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                     <h4>{{ __('Contact Us') }}</h4>
                     <p>{{ $site->direccion }}</p>
@@ -244,6 +255,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>

@@ -38,7 +38,7 @@ class PublicacionesResource extends Resource
     {
         return $form->schema([
             Forms\Components\TextInput::make('nombre')->required()->maxLength(255)->live(onBlur: true)
-                ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
             TextInput::make('slug'),
             TextInput::make('autor')->required()->maxLength(255),
             Forms\Components\TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
@@ -80,9 +80,9 @@ class PublicacionesResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nombre')->searchable()->words(100)->wrap(),
-                TextColumn::make('autor')->searchable(),
-                TextColumn::make('isbn')->searchable(),
+                TextColumn::make('nombre')->searchable()->words(100)->wrap()->sortable(),
+                TextColumn::make('autor')->searchable()->sortable(),
+                TextColumn::make('isbn')->searchable()->sortable(),
                 TextColumn::make('coordinadores')->searchable(),
                 TextColumn::make('anio_publicacion')->sortable()->searchable(),
                 ToggleColumn::make('novedad')->onColor('success')->offColor('danger'),

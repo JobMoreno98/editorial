@@ -65,7 +65,6 @@
 
     </section><!-- /About Section -->
 
-    <!-- Clients Section -->
     <section id="clients" class="clients section">
 
         <div class="container">
@@ -88,26 +87,30 @@
               "breakpoints": {
                 "320": {
                   "slidesPerView": 1,
-                  "spaceBetween": 40
+                  "spaceBetween": 15
                 },
                 "480": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 60
+                  "slidesPerView":2,
+                  "spaceBetween": 20
                 },
                 "640": {
-                  "slidesPerView": 4,
-                  "spaceBetween": 80
+                  "slidesPerView": 3,
+                  "spaceBetween": 50
                 },
-                "992": {
-                  "slidesPerView": 4,
-                  "spaceBetween": 120
-                }
+                "1400": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 50
+                },
+                "1450": {
+                    "slidesPerView": 4,
+                    "spaceBetween": 50
+                  }
               }
             }
           </script>
                 <div class="swiper-wrapper align-items-center">
                     @foreach ($novedades as $item)
-                        <div class="swiper-slide h-100">
+                        <div class="swiper-slide h-100 p-3 rounded shadow-sm d-flex flex-column justify-content-around" style="min-width:250px;min-height:500px;">
                             <div class="member text-center w-100">
                                 <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                     src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded" alt="">
@@ -116,10 +119,10 @@
                                     <span class="fs-5 text-uppercase"><b>{{ $item->autor }}</b></span> <br>
                                     <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
                                 </div>
-                                <p>
-                                    <a href="{{ route('ver-publicacion', $item->slug) }}"
-                                        class="btn-sm btn btn-primary mt-1">Ver más</a>
-                                </p>
+                            </div>
+                            <div class="text-end">
+                                <a href="{{ route('ver-publicacion', $item->slug) }}"
+                                    class="btn-sm btn btn-primary mt-1">Ver más</a>
                             </div>
                         </div>
                     @endforeach
@@ -129,13 +132,11 @@
 
         </div>
 
-    </section><!-- /Clients Section -->
+    </section>
 
-    <!-- Call To Action Section -->
-    <section id="call-to-action" class="call-to-action section dark-background">
-
+    <section id="call-to-action" class="call-to-action section dark-background m-2">
         <div class="container">
-            <img src="https://picsum.photos/1250/200" alt="">
+            <img src="https://picsum.photos/1250/500" alt="">
             <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
                 <div class="col-xl-10">
                     <div class="text-center">
@@ -150,21 +151,15 @@
             </div>
         </div>
 
-    </section><!-- /Call To Action Section -->
+    </section>
 
-    <!-- Services Section -->
     <section id="services" class="services section">
-
-        <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>Our Services</h2>
             <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
+        </div>
         <div class="container">
-
             <div class="row gy-4">
-
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="service-item  position-relative">
                         <div class="icon">
@@ -176,8 +171,7 @@
                         <a href="service-details.html" class="readmore stretched-link">Read more <i
                                 class="bi bi-arrow-right"></i></a>
                     </div>
-                </div><!-- End Service Item -->
-
+                </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-item position-relative">
                         <div class="icon">

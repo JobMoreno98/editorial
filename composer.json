@@ -17,6 +17,7 @@
         "laravel/scout": "^10.11",
         "laravel/tinker": "^2.8",
         "pxlrbt/filament-excel": "^2.3",
+        "realrashid/sweet-alert": "^7.2",
         "shuvroroy/filament-spatie-laravel-backup": "^2.2",
         "shuvroroy/filament-spatie-laravel-health": "^2.1"
     },
