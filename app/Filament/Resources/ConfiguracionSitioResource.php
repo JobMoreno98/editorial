@@ -3,11 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ConfiguracionSitioResource\Pages;
-use App\Filament\Resources\ConfiguracionSitioResource\RelationManagers;
 use App\Models\ConfiguracionSitio;
-use Filament\Forms;
 use Filament\Forms\Components\ColorPicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,9 +23,9 @@ class ConfiguracionSitioResource extends Resource
     protected static ?int $navigationSort = 1;
 
     public static function getNavigationLabel(): string
-{
-    return __('Site');
-}
+    {
+        return __('Site');
+    }
 
     public static function getNavigationGroup(): ?string
     {
@@ -34,20 +35,24 @@ class ConfiguracionSitioResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('contacto')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('direccion')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('image_banner')
-                    ->image()
-                    ->required()->imageEditor()
-                    ->imageCropAspectRatio('16:3'),
-                Section::make('Colores')->schema([
+                Section::make('Información del sitio')->schema([
+                    FileUpload::make('image_banner')
+                        ->image()
+                        ->required()->imageEditor()
+                        ->imageCropAspectRatio('16:3')->columnSpanFull(),
+                    TextInput::make('nombre')
+                        ->required()
+                        ->maxLength(255),
+                    TextInput::make('contacto')
+                        ->required()
+                        ->maxLength(255),
+                    TextInput::make('direccion')
+                        ->required()
+                        ->maxLength(255),
+                    TextInput::make('email')->required()->email(),
+                    Textarea::make('about')->autosize()->required()->columnSpanFull(),
+                ])->columns(2),
+                Section::make('Colores del sitio')->schema([
                     ColorPicker::make('background_color')
                         ->rgb()->default("#e2e2e2"),
                     ColorPicker::make('accent_color')
