@@ -20,6 +20,7 @@ class Dashboard extends \Filament\Pages\Dashboard
     protected static string $routePath = '/';
     protected static bool $isLazy = false;
 
+
     public function filtersForm(Form $form): Form
     {
         return $form
@@ -28,7 +29,7 @@ class Dashboard extends \Filament\Pages\Dashboard
                 Section::make()
                     ->schema([
                         Select::make('roles')->options(fn(Get $get): Collection => Roles::query()->pluck('name', 'id'))->searchable()->preload(),
-                    ]),
+                    ])->hidden(! auth()->user()->hasRole('Super Admin')),
                     
             ]);
     }

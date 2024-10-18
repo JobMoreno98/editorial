@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title','Busqueda')
+
 @section('content')
     <section id="team" class="team section ">
         <div class="container section-title " data-aos="fade-up">

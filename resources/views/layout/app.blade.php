@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{{ $site->nombre }}</title>
+    <title>{{ $site->nombre }} | @yield('title') </title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -80,13 +80,14 @@
             <div class="container d-flex justify-content-center justify-content-md-between">
                 <div class="contact-info d-flex align-items-center">
                     <i class="bi bi-envelope d-flex align-items-center"><a
-                            href="mailto:contact@example.com">contact@example.com</a></i>
+                            href="mailto:{{ $site->email }}">{{ $site->email }}</a></i>
                     <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{ $site->contacto }}</span></i>
                 </div>
                 <div class="social-links d-none d-md-flex align-items-center my-1 py-1">
                     <form action="{{ route('buscador') }}" class="fs-6 my-1 py-1" method="get">
                         <div class="d-flex p-2">
-                            <input type="text" name="buscar" class="m-1 p-1 form-control" placeholder="Buscar">
+                            <input type="text" name="buscar" class="m-1 p-1 form-control" placeholder="Buscar"
+                                required>
                             <button class="btn btn-sm btn-secoundary border-white my-1 py-1 text-white"
                                 type="submit"><i class="bi bi-search"></i></button>
                         </div>
@@ -117,8 +118,8 @@
                                 <div class="d-flex p-2">
                                     <input type="text" name="buscar" class="m-1 p-1 form-control"
                                         placeholder="Buscar">
-                                    <button class="btn btn-sm btn-primary my-1 py-1"
-                                        type="submit"><i class="bi bi-search"></i></button>
+                                    <button class="btn btn-sm btn-primary my-1 py-1" type="submit"><i
+                                            class="bi bi-search"></i></button>
                                 </div>
                             </form>
                         </li>
@@ -175,13 +176,26 @@
 
     <footer id="footer" class="footer sticky-bottom accent-background">
         <div class="container footer-top">
-            <div class="row gy-4">
-                <div class="col-lg-5 col-md-12 footer-about">
+            <div class="row">
+                <div class="col-sm-12  footer-about">
                     <a href="index.html" class="logo d-flex align-items-center">
                         <span class="sitename">{{ config('app.name', 'Laravel') }}</span>
                     </a>
-                    <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
-                        valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                    <div class="d-flex  flex-column flex-md-row  align-items-center ">
+                        <div class="mx-1">
+                            <h4>{{ __('Address') }}</h4>
+                            <p>{{ $site->direccion }}</p>
+
+                        </div>
+                        <div class="mx-1">
+                            <h4>{{ __('Contact Us') }}</h4>
+                            <p>
+                                <strong>{{ __('Phone') }}:</strong>
+                                <span>{{ $site->contacto }}</span> <br>
+                                <strong>{{ __('Email') }}:</strong> <span>{{ $site->email }}</span>
+                            </p>
+                        </div>
+                    </div>
                     {{--
                     <div class="social-links d-flex mt-4">
                         <a href=""><i class="bi bi-twitter-x"></i></a>
@@ -214,12 +228,6 @@
                     </ul>
                 </div>
 --}}
-                <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                    <h4>{{ __('Contact Us') }}</h4>
-                    <p>{{ $site->direccion }}</p>
-                    <p class="mt-4"><strong>{{ __('Phone') }}:</strong> <span>{{ $site->contacto }}</span></p>
-                    <p><strong>Email:</strong> <span>info@example.com</span></p>
-                </div>
 
             </div>
         </div>
@@ -262,6 +270,7 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>
+    @include('sweetalert::alert')
 
 </body>
 

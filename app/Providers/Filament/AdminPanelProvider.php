@@ -7,11 +7,9 @@ use App\Filament\Resources\CategoriaResource\Widgets\CategoriasOverview;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets;
 use Hasnayeen\Themes\Http\Middleware\SetTheme;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
@@ -35,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Purple,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
@@ -74,8 +72,12 @@ class AdminPanelProvider extends PanelProvider
             )->spa()
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             ->plugin(FilamentSpatieLaravelBackupPlugin::make()->noTimeout())
-            ->plugin(\Hasnayeen\Themes\ThemesPlugin::make())->plugin(FilamentSpatieLaravelHealthPlugin::make(HealthCheckResults::class))
-            ->unsavedChangesAlerts()
+            ->plugin(\Hasnayeen\Themes\ThemesPlugin::make())
+            ->plugin(FilamentSpatieLaravelHealthPlugin::make(HealthCheckResults::class))
+            ->unsavedChangesAlerts()->sidebarCollapsibleOnDesktop()
+            ->resources([
+                config('filament-logger.activity_resource')
+            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);

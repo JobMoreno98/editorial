@@ -8,6 +8,7 @@
         "php": "^8.1",
         "althinect/filament-spatie-roles-permissions": "^2.2",
         "bezhansalleh/filament-language-switch": "^3.1",
+        "doctrine/dbal": "^3.9",
         "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
         "hasnayeen/themes": "^3.0",
@@ -19,7 +20,9 @@
         "pxlrbt/filament-excel": "^2.3",
         "realrashid/sweet-alert": "^7.2",
         "shuvroroy/filament-spatie-laravel-backup": "^2.2",
-        "shuvroroy/filament-spatie-laravel-health": "^2.1"
+        "shuvroroy/filament-spatie-laravel-health": "^2.1",
+        "spatie/security-advisories-health-check": "^1.2",
+        "z3d0x/filament-logger": "^0.7.2"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

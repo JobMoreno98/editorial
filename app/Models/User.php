@@ -14,6 +14,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
+use Filament\Panel;
 
 class User extends Authenticatable implements HasAvatar
 {
@@ -54,6 +55,7 @@ class User extends Authenticatable implements HasAvatar
     {
         return asset('storage/' . $this->avatar_url);
     }
+    
     public function categorias(): BelongsToMany
     {
         return $this->belongsToMany(Categoria::class,'categorias_to_usuarios');

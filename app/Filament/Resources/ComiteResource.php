@@ -11,6 +11,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,10 +33,10 @@ class ComiteResource extends Resource
                 Forms\Components\FileUpload::make('image')
                     ->image()->avatar()
                     ->required()->imageEditor()
-                    ->imageEditorAspectRatios([
-                        '16:9',
-                        '1:1',
-                    ])->alignCenter()->columnSpanFull()->directory('comite'),
+                    ->imageCropAspectRatio('1:1')
+                    ->alignCenter()
+                    ->columnSpanFull()
+                    ->directory('comite'),
                 Section::make()->schema([
                     Forms\Components\TextInput::make('nombre')
                         ->required()
@@ -54,17 +55,17 @@ class ComiteResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')
+                TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+                TextColumn::make('reseña')->words(100)->wrap()->sortable(),
                 ToggleColumn::make('active')
                     ->onColor('success')
                     ->offColor('danger'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

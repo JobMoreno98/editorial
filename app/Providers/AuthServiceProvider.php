@@ -5,14 +5,17 @@ namespace App\Providers;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Models\User;
+use App\Policies\ActivityPolicy;
+use App\Policies\BackupsPolicy;
 use App\Policies\PermisosPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
 use App\Policies\RolesPolicy;
-use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
+use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackup;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use \Spatie\Activitylog\Models\Activity;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -33,8 +36,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::before(function (User $user, string $ability) {
             return $user->isSuperAdmin() ? true : null;
         });
+        
         Gate::policy(Role::class, RolesPolicy::class);
         Gate::policy(Permission::class, PermisosPolicy::class);
-        Gate::policy(FilamentSpatieLaravelBackupPlugin::class, PermisosPolicy::class);
+        Gate::policy(FilamentSpatieLaravelBackup::class, BackupsPolicy::class);
+        Gate::policy(Activity::class, ActivityPolicy::class);
     }
 }

@@ -18,7 +18,7 @@ class HomeController extends Controller
     }
     public function directorio()
     {
-        $directorio = Directorio::all();
+        $directorio = Directorio::where('active', true)->orderBy('orden')->get();
         return view('directorio', compact('directorio'));
     }
     public function comite()

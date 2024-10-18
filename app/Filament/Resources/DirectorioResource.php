@@ -6,10 +6,16 @@ use App\Filament\Resources\DirectorioResource\Pages;
 use App\Filament\Resources\DirectorioResource\RelationManagers;
 use App\Models\Directorio;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -17,7 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class DirectorioResource extends Resource
 {
     protected static ?string $model = Directorio::class;
-    protected static ?string $pluralModelLabel  = 'Directorio';
+    protected static ?string $pluralModelLabel = 'Directorio';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?int $navigationSort = 1;
@@ -28,69 +34,57 @@ class DirectorioResource extends Resource
     }
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('puesto')
-                    ->required(),
-                Forms\Components\TextInput::make('correo')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('telefono')
-                    ->tel()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('direccion')
-                    ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->image()
-                    ->required()->imageEditor()
-                    ->imageCropAspectRatio('1:1')->directory('directorio'),
-            ]);
+        return $form->schema([
+            FileUpload::make('image')
+                ->image()
+                ->required()
+                ->imageEditor()
+                ->imageCropAspectRatio('1:1')
+                ->directory('directorio')
+                ->columnSpanFull()
+                ->avatar()
+                ->alignCenter(),
+            TextInput::make('nombre')->required()->maxLength(255),
+            TextInput::make('puesto')->required(),
+            TextInput::make('correo')->required()->maxLength(255),
+            TextInput::make('telefono')->tel()->maxLength(255),
+            TextInput::make('direccion')->maxLength(255),
+            TextInput::make('orden')->integer()->required()          
+            ->minValue(1)
+            ->maxValue(10)->default(5),
+            Toggle::make('active')
+            ->onColor('success')
+            ->offColor('danger')->inline(),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')
-                    ->searchable()->sortable(),
-                Tables\Columns\TextColumn::make('puesto'),
-                Tables\Columns\TextColumn::make('correo')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('telefono')
-                    ->searchable()->hidden(),
-                Tables\Columns\TextColumn::make('direccion')
-                    ->searchable()->hidden(),
-                Tables\Columns\ImageColumn::make('image')->hidden(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
+                TextColumn::make('nombre')->searchable()->sortable(), 
+                TextColumn::make('puesto'), 
+                TextColumn::make('correo')->searchable(), 
+                TextColumn::make('telefono')->searchable(), 
+                TextColumn::make('direccion')->searchable()->hidden(),
+                ToggleColumn::make('active')
+                    ->onColor('success')
+                    ->offColor('danger'),
+                //ImageColumn::make('image')->hidden(), 
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true), 
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->actions([Tables\Actions\EditAction::make()])
+            ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

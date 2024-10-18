@@ -1,8 +1,9 @@
 @extends('layout.app')
 
+@section('title','Revistas Cientificas')
+
 @section('content')
     <section id="team" class="team section ">
-
         <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
             <h2>Revistas Cientificas</h2>
@@ -23,8 +24,8 @@
                                 <p style="text-align: justify">
                                     <b>Reseña</b> <br> {{ $item->descripcion }}
                                 </p>
-                                <p>
-                                    <a href="{{ $item->url }}" class="btn btn-sm btn-outline-success">Visitar</a>
+                                <p class="text-end">
+                                    <a href="{{ $item->url }}" class="btn btn-sm btn-primary">Visitar</a>
                                 </p>
                             </div>
                         </div>

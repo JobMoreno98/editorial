@@ -1,16 +1,16 @@
 @extends('layout.app')
-
+@section('title','Consejo Editorial')
 @section('content')
     <section id="team" class="team section ">
 
         <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
-            <h2>Our Team</h2>
+            <h2>Consejo Editorial</h2>
             <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div><!-- End Section Title -->
 
         <div class="container">
-            <div class="row gy-4 d-flex justify-content-center">
+            <div class="row d-flex justify-content-center">
                 @foreach ($comite as $item)
                     <div class="col-sm-12 d-flex  justify-content-center shadow" data-aos="fade-up"
                         data-aos-delay="100">
@@ -25,7 +25,8 @@
                                 </p>
                             </div>
                         </div>
-                    </div><!-- End Team Member -->
+                    </div>
+                    <!-- End Team Member -->
                 @endforeach
             </div>
         </div>

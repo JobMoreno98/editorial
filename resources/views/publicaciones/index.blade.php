@@ -1,5 +1,5 @@
 @extends('layout.app')
-
+@section('title', 'Publicaciones')
 @section('content')
     <section id="team" class="team section ">
         <!-- Section Title -->
@@ -14,8 +14,8 @@
             <div class="text-center col-lg-1 my-1 py-1">
                 <h4 class="border-bottom my-1 py-1">Años</h4>
                 @foreach ($anios as $item => $value)
-                    <a class="btn btn-primary btn-sm my-1" style="min-width: 100px;" href=" {{ $url . '/' . $item }}">
-                        {{ $item }} </a>
+                    <a class="btn btn-primary btn-sm my-1" style="min-width: 100px;" href=" {{ $url . '/' . $value->anio }}">
+                        {{ $value->anio }} </a>
                 @endforeach
             </div>
             <div class="col-md-11 d-flex justify-content-evenly flex-wrap">

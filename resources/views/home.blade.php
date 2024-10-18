@@ -1,5 +1,5 @@
 @extends('layout.app')
-
+@section('title','Inicio')
 @section('content')
     <section id="hero" class="hero section accent-background">
         <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
@@ -18,8 +18,9 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>{{ __('About Us') }}<br></h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            <p style="text-align: justify">{{ $site->about }}</p>
         </div><!-- End Section Title -->
+        
 
         <div class="container">
 
@@ -110,7 +111,7 @@
           </script>
                 <div class="swiper-wrapper align-items-center">
                     @foreach ($novedades as $item)
-                        <div class="swiper-slide h-100 p-3 rounded shadow-sm d-flex flex-column justify-content-around" style="min-width:250px;min-height:500px;">
+                        <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-around" style="min-width:250px;min-height:500px;">
                             <div class="member text-center w-100">
                                 <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                     src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded" alt="">
@@ -353,7 +354,7 @@
                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                             <div>
                                 <h3>{{ __('Address') }}</h3>
-                                <p>A108 Adam Street, New York, NY 535022</p>
+                                <p>{{ $site->direccion }}</p>
                             </div>
                         </div><!-- End Info Item -->
 
@@ -368,8 +369,8 @@
                         <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                             <i class="bi bi-envelope flex-shrink-0"></i>
                             <div>
-                                <h3>Email Us</h3>
-                                <p>info@example.com</p>
+                                <h3>{{ __('Email') }}</h3>
+                                <p>{{ $site->email }}</p>
                             </div>
                         </div><!-- End Info Item -->
                         {{--
