@@ -64,7 +64,10 @@
             --bs-btn-bg: {{ $site->accent_color }};
             --bs-btn-border-color: {{ $site->accent_color }};
             --bs-btn-hover-bg: {{ $site->background_color }};
-            --bs-btn-hover-border-color: {{ $site->background_color }};
+            --bs-btn-ho ver-border-color: {{ $site->background_color }};
+        }
+        .sticky-bottom {
+            z-index: 900 !important;
         }
     </style>
 
@@ -158,7 +161,8 @@
                         @endif
 
                         <li><a href="{{ route('revistas.index') }}"
-                                class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas Cientificas</a></li>
+                                class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas Cientificas</a>
+                        </li>
                         @if (isset($site->archivo))
                             <li><a href="{{ asset('storage/' . $site->archivo) }}">Lineamientos y normas
                                     editoriales</a>

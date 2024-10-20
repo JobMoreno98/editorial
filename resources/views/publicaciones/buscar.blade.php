@@ -40,7 +40,7 @@
         </div>
         @if ($result->isEmpty())
             <div class="container">
-                <h2>Aun no se han añadido publicaciones a esta categoria, próximamente se añadiran ...</h2>
+                <h2>Aun no se han añadido publicaciones con lo que estas buscando, próximamente se añadiran ...</h2>
             </div>
         @endif
     </section><!-- /Team Section -->
