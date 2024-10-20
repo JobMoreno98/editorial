@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row d-flex justify-content-center">
                 @foreach ($directorio as $item)
-                    <div class="col-sm-12 d-flex justify-content-center my-2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-sm-12 d-flex justify-content-center my-2" data-aos="fade-up" data-aos-delay="50">
                         <div class="member d-flex w-100 flex-column flex-md-row  align-items-center justify-content-md-start">
                             <div style="max-width: 200px">
                                 <img src="{{ asset('storage/' . $item->image) }}" class="w-100 m-1" alt="">

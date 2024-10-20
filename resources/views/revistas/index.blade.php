@@ -12,7 +12,7 @@
         <div class="container">
             <div class="row gy-4 d-flex justify-content-center">
                 @foreach ($revistas as $item)
-                    <div class="col-sm-12 col-md-6 d-flex  justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="col-sm-12 col-md-6 d-flex  justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                         <div
                             class="member d-flex w-100 flex-column flex-md-row  align-items-center justify-content-md-start">
                             <div style="max-width: 250px">

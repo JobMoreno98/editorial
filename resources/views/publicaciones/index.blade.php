@@ -14,7 +14,7 @@
         </div>
         <div class="container d-flex flex-column flex-lg-row">
             @if (!$publicaciones_items->isEmpty())
-                <div class="text-center col-lg-1 my-1 py-1" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center col-lg-1 my-1 py-1" data-aos="fade-up" data-aos-delay="50">
                     <h4 class="border-bottom my-1 py-1">Años</h4>
                     @foreach ($anios as $item => $value)
                         <a class="btn btn-primary btn-sm my-1" style="min-width: 100px;"
@@ -52,7 +52,7 @@
                 {{ $publicaciones_items->links() }}
             </div>
             @if ($publicaciones_items->isEmpty())
-                <div data-aos="fade-up" data-aos-delay="100">
+                <div data-aos="fade-up" data-aos-delay="50">
                     <h2>Aun no se han añadido publicaciones a esta categoria, próximamente se añadiran ...</h2>
                 </div>
             @endif

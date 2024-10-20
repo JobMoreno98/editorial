@@ -28,6 +28,7 @@ use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
 
 class PublicacionesResource extends Resource
 {
@@ -87,14 +88,15 @@ class PublicacionesResource extends Resource
             ->columns([
                 TextColumn::make('nombre')->searchable()->words(100)->wrap()->sortable(),
                 TextColumn::make('autor')->searchable()->sortable()->wrap()->badge()->separator(','),
-                TextColumn::make('isbn')->searchable()->sortable(),
+                TextColumn::make('isbn')->searchable()->sortable()->label('ISBN'),
                 TextColumn::make('coordinadores')->searchable()->toggleable(isToggledHiddenByDefault: true)->badge()->separator(','),
-                TextColumn::make('anio_publicacion')->sortable()->searchable(),
-                ToggleColumn::make('novedad')->onColor('success')->offColor('danger'),
-                ToggleColumn::make('active')->onColor('success')->offColor('danger'),
+                TextColumn::make('anio_publicacion')->sortable()->searchable()->label('Año de Publicación'),
+                TextColumn::make('download')->sortable()->label('Descargas'),
+                ToggleColumn::make('novedad')->onColor('success')->offColor('danger')->toggleable(isToggledHiddenByDefault: false),
+                ToggleColumn::make('active')->onColor('success')->offColor('danger')->label('Activo')->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('tipo')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Creado'),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Actualizado'),
             ])
             ->filters([
                 Filter::make('novedad')
@@ -104,7 +106,10 @@ class PublicacionesResource extends Resource
 
             ])
             ->actions([Tables\Actions\EditAction::make()])
-            ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
+            ->bulkActions([
+                Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()]),
+                ExportBulkAction::make()
+            ]);
     }
 
     public static function getRelations(): array

@@ -66,6 +66,7 @@
             --bs-btn-hover-bg: {{ $site->background_color }};
             --bs-btn-ho ver-border-color: {{ $site->background_color }};
         }
+
         .sticky-bottom {
             z-index: 900 !important;
         }
@@ -125,6 +126,7 @@
                         </li>
                         <li><a href="{{ route('home') }}"
                                 class="{{ Route::is('home') ? 'active' : '' }}">{{ __('Home') }}</a></li>
+
                         <li><a href="{{ route('directorio') }}"
                                 class="{{ Route::is('directorio') ? 'active' : '' }}">{{ __('Directory') }}</a></li>
 

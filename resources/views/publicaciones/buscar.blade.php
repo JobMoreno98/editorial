@@ -10,7 +10,7 @@
         <div class="container d-flex flex-column flex-lg-row">
             <div class=" col-md-11 d-flex justify-content-evenly flex-wrap">
                 @foreach ($result as $item)
-                    <div class="  col-sm-12 d-flex justify-content-center m-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="  col-sm-12 d-flex justify-content-center m-1" data-aos="fade-up" data-aos-delay="50">
                         <div class="member">
                             <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                 src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded" alt="">

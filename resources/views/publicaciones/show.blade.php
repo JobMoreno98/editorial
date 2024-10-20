@@ -14,7 +14,7 @@
 
             <div class="container">
                 <div class="d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start">
-                    <div class="col-sm-12 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="col-sm-12 col-md-3" data-aos="fade-up" data-aos-delay="50">
                         <div class="member text-center">
                             <a href="{{ asset('storage/' . $publicacion->imagen) }}" data-gallery="portfolio-gallery-app"
                                 class="glightbox">
@@ -23,7 +23,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="m-3 text-center text-md-start" data-aos="fade-up" data-aos-delay="100">
+                    <div class="m-3 text-center text-md-start" data-aos="fade-up" data-aos-delay="50">
                         <p>
                             <span class="fs-5  text-uppercase"><b>Autor - {{ $publicacion->autor }}</b></span>
                         </p>
