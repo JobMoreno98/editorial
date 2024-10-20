@@ -50,6 +50,7 @@ class PublicacionesController extends Controller
         $publicacion = Publicaciones::where('slug', $slug)->first();
         return view('publicaciones.show', compact('publicacion'));
     }
+    
     public function getFile($slug)
     {
         $publicacion = Publicaciones::where('slug', $slug)->first();
