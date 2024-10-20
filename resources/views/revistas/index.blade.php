@@ -7,7 +7,6 @@
         <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
             <h2>Revistas Cientificas</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
         </div><!-- End Section Title -->
 
         <div class="container">

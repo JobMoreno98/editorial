@@ -45,16 +45,28 @@ class DirectorioResource extends Resource
                 ->avatar()
                 ->alignCenter(),
             TextInput::make('nombre')->required()->maxLength(255),
-            TextInput::make('puesto')->required(),
+            Select::make('puesto')->options([
+                'Rector' => 'Rector',
+                'Rectora' => 'Rectora',
+                'Secretaria Académica' => 'Secretaria Académica',
+                'Secretario Académico' => 'Secretario Académico',
+                'Secretaria Administrativa' => 'Secretaria Administrativa',
+                'Secretario Administrativo' => 'Secretario Administrativo',
+                'Coordinador' => 'Coordinador',
+                'Coordinadora' => 'Coordinadora',
+                'Jefa' => 'Jefa',
+                'Jefe' => 'Jefe',
+
+            ])->required(),
             TextInput::make('correo')->required()->maxLength(255),
-            TextInput::make('telefono')->tel()->maxLength(255),
-            TextInput::make('direccion')->maxLength(255),
-            TextInput::make('orden')->integer()->required()          
-            ->minValue(1)
-            ->maxValue(10)->default(5),
+            TextInput::make('telefono')->maxLength(40)->required(),
+            TextInput::make('direccion')->maxLength(255)->required(),
+            TextInput::make('orden')->integer()->required()
+                ->minValue(1)
+                ->maxValue(10)->default(5),
             Toggle::make('active')
-            ->onColor('success')
-            ->offColor('danger')->inline(),
+                ->onColor('success')
+                ->offColor('danger')->inline(),
         ]);
     }
 
@@ -62,17 +74,18 @@ class DirectorioResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('nombre')->searchable()->sortable(), 
-                TextColumn::make('puesto'), 
-                TextColumn::make('correo')->searchable(), 
-                TextColumn::make('telefono')->searchable(), 
+                TextColumn::make('nombre')->searchable()->sortable(),
+                TextColumn::make('puesto'),
+                TextColumn::make('correo')->searchable(),
+                TextColumn::make('telefono')->searchable(),
                 TextColumn::make('direccion')->searchable()->hidden(),
                 ToggleColumn::make('active')
                     ->onColor('success')
                     ->offColor('danger'),
                 //ImageColumn::make('image')->hidden(), 
-                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true), 
-                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)])
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
+            ])
             ->filters([
                 //
             ])
@@ -83,8 +96,8 @@ class DirectorioResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

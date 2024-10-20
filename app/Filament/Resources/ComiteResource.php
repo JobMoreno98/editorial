@@ -22,6 +22,11 @@ class ComiteResource extends Resource
     protected static ?string $model = Comite::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationLabel = 'Consejo Editorial';
+    
+    protected static ?string $pluralModelLabel = 'Consejo Editorial';
+
     public static function getNavigationGroup(): ?string
     {
         return __('Directory');

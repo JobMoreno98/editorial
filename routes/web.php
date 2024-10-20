@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/directorio', [HomeController::class, 'directorio'])->name('directorio');
-Route::get('/comite-editorial', [HomeController::class, 'comite'])->name('comite');
+
+Route::get('/consejo-editorial', [HomeController::class, 'comite'])->name('consejo.editorial');
+
 Route::resource('publicaciones', PublicacionesController::class)->except(['show']);
 Route::get('/publicaciones/{pubicacion}/{anio?}',[PublicacionesController::class, 'show'])->name('publicaciones.show');
 Route::get('/publicacion/{slug}', [PublicacionesController::class, 'ver_publicacion'])->name('ver-publicacion');

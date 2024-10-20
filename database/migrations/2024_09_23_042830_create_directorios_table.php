@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('directorios', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->enum('puesto', ['Rector', 'Rectora', 'Secretaria Académica', 'Secretaría Administrativa', 'Coordinadora', 'Coordinador', 'Jefa', 'Jefe']);
+            $table->enum('puesto', ['Rector', 'Rectora', 'Secretaria Académica', 'Secretario Académico', 'Secretario Administrativo', 'Secretaria Administrativa', 'Coordinadora', 'Coordinador', 'Jefa', 'Jefe']);
             $table->string('correo');
             $table->string('telefono')->nullable();
             $table->string('direccion')->nullable();

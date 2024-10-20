@@ -17,6 +17,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/scout": "^10.11",
         "laravel/tinker": "^2.8",
+        "mohamedsabil83/filament-forms-tinyeditor": "^2.3",
         "pxlrbt/filament-excel": "^2.3",
         "realrashid/sweet-alert": "^7.2",
         "shuvroroy/filament-spatie-laravel-backup": "^2.2",

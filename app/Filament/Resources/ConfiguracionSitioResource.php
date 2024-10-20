@@ -6,20 +6,23 @@ use App\Filament\Resources\ConfiguracionSitioResource\Pages;
 use App\Models\ConfiguracionSitio;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class ConfiguracionSitioResource extends Resource
 {
     protected static ?string $model = ConfiguracionSitio::class;
+
     protected static ?string $pluralModelLabel  = 'Configuración del Sitio';
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+
     protected static ?int $navigationSort = 1;
 
     public static function getNavigationLabel(): string
@@ -50,7 +53,7 @@ class ConfiguracionSitioResource extends Resource
                         ->required()
                         ->maxLength(255),
                     TextInput::make('email')->required()->email(),
-                    Textarea::make('about')->autosize()->required()->columnSpanFull(),
+                    TinyEditor::make('about')->required()->columnSpanFull()->language('es_MX'),
                 ])->columns(2),
                 Section::make('Colores del sitio')->schema([
                     ColorPicker::make('background_color')
@@ -68,6 +71,14 @@ class ConfiguracionSitioResource extends Resource
                     ColorPicker::make('nav_dropdown_hover_color')
                         ->rgb()->default("#e2e2e2"),
                 ])->columns(3),
+                Section::make('Lineamientos Editoriales')->schema([
+                    FileUpload::make('archivo')->required()
+                        ->acceptedFileTypes(['application/pdf'])
+                        ->openable()
+                        ->directory('files')
+                        ->preserveFilenames()
+                        ->moveFiles()->removeUploadedFileButtonPosition('right'),
+                ])->columnSpan(1),
             ]);
     }
 

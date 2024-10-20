@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title','Consejo Editorial')
+@section('title', 'Consejo Editorial')
 @section('content')
     <section id="team" class="team section ">
 
@@ -12,14 +12,13 @@
         <div class="container">
             <div class="row d-flex justify-content-center">
                 @foreach ($comite as $item)
-                    <div class="col-sm-12 d-flex  justify-content-center shadow" data-aos="fade-up"
-                        data-aos-delay="100">
+                    <div class="col-sm-12 d-flex  justify-content-center " data-aos="fade-up" data-aos-delay="100">
                         <div class="member d-flex w-100 flex-column flex-md-row  align-items-center justify-content-md-start">
-                            <div style="max-width: 250px">
-                                <img src="{{ asset('storage/' . $item->image) }}" class="w-100 m-1" alt="" >
+                            <div style="min-width: 150px;">
+                                <img src="{{ asset('storage/' . $item->image) }}" class="w-100 m-1" alt="">
                             </div>
-                            <div  class="mx-3">
-                                <h4 class="border-bottom my-2 py-2">{{ $item->nombre }}</h4>
+                            <div class="mx-3">
+                                <h4 class="border-bottom my-2 py-2 text-center text-md-start">{{ $item->nombre }}</h4>
                                 <p style="text-align: justify">
                                     <b>Reseña</b> <br> {{ $item->reseña }}
                                 </p>

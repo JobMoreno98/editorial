@@ -12,6 +12,10 @@ class Publicaciones extends Model
     use HasFactory;
     use Searchable;
     protected $guarded = [];
+    protected $casts = [
+        'autor' => 'array',
+        'coordinadores' => 'array',
+    ];
     public function categoria(): BelongsTo
     {
         return $this->belongsTo(Categoria::class);
@@ -22,8 +26,8 @@ class Publicaciones extends Model
             'nombre' => $this->nombre,
             'autor' => $this->autor,
             'coordinadores' => $this->coordinadores,
-            'descripcion'=> $this->descripcion,
-            'anio_publicacion'=> $this->anio_publicacion,
+            'descripcion' => $this->descripcion,
+            'anio_publicacion' => $this->anio_publicacion,
         ];
     }
 }

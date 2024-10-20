@@ -10,9 +10,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -25,8 +27,7 @@ use Filament\Forms\Set;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-
-use Filament\Tables\Filters\TernaryFilter;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class PublicacionesResource extends Resource
 {
@@ -37,17 +38,25 @@ class PublicacionesResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            Forms\Components\TextInput::make('nombre')->required()->maxLength(255)->live(onBlur: true)
+            TextInput::make('nombre')->required()->maxLength(255)->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
             TextInput::make('slug'),
-            TextInput::make('autor')->required()->maxLength(255),
-            Forms\Components\TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
-            Forms\Components\TextInput::make('paginas')->label('Páginas')->required()->numeric(),
-            Forms\Components\TextInput::make('coordinadores')->required()->maxLength(255),
+            //TextInput::make('autor')->required()->maxLength(255),
+            TagsInput::make('autor')->reorderable()->separator(','),
+            TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
+            TinyEditor::make('descripcion')->required()->columnSpanFull(),
+
+            TextInput::make('paginas')->label('Páginas')->required()->numeric(),
+            TagsInput::make('coordinadores')->reorderable()->separator(','),
             TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
-            Textarea::make('descripcion')->required()->maxLength(400),
+
             Select::make('tipo')->options(['publicación' => 'Publicación', 'colección' => 'Colección'])->required(),
             Select::make('categoria_id')->label('Categoria')->required()->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name', 'id'))->searchable()->preload(),
+
+            Section::make()->schema([
+                Toggle::make('novedad')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
+                Toggle::make('active')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
+            ])->columnSpan(1)->columns(2),
 
             Section::make('Archvios')->schema([
                 FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor()
@@ -66,12 +75,8 @@ class PublicacionesResource extends Resource
                     ->directory('files')
                     ->preserveFilenames()
                     ->moveFiles()->removeUploadedFileButtonPosition('right'),
-            ])->columns(1)->columnSpan(1),
+            ])->columns(2),
 
-            Section::make()->schema([
-                Toggle::make('novedad')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
-                Toggle::make('active')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
-            ])->columnSpan(1),
 
         ])->columns(2);
     }
@@ -81,9 +86,9 @@ class PublicacionesResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nombre')->searchable()->words(100)->wrap()->sortable(),
-                TextColumn::make('autor')->searchable()->sortable(),
+                TextColumn::make('autor')->searchable()->sortable()->wrap()->badge()->separator(','),
                 TextColumn::make('isbn')->searchable()->sortable(),
-                TextColumn::make('coordinadores')->searchable(),
+                TextColumn::make('coordinadores')->searchable()->toggleable(isToggledHiddenByDefault: true)->badge()->separator(','),
                 TextColumn::make('anio_publicacion')->sortable()->searchable(),
                 ToggleColumn::make('novedad')->onColor('success')->offColor('danger'),
                 ToggleColumn::make('active')->onColor('success')->offColor('danger'),

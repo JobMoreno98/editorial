@@ -602,7 +602,7 @@ h6 {
 }
 
 .footer .footer-top {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 .footer .footer-about .logo {
@@ -1082,19 +1082,19 @@ section,
 /*--------------------------------------------------------------
 # Clients Section
 --------------------------------------------------------------*/
-.clients .swiper {
+.novedades .swiper {
   padding: 10px 0;
 }
 
-.clients .swiper-wrapper {
+.novedades .swiper-wrapper {
   height: auto;
 }
 
-.clients .swiper-slide img {
+.novedades .swiper-slide img {
   transition: 0.3s;
 }
 
-.clients .swiper-slide img:hover {
+.novedades .swiper-slide img:hover {
   transform: scale(1.1);
 }
 

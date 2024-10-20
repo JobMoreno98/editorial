@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title','Inicio')
+@section('title', 'Inicio')
 @section('content')
     <section id="hero" class="hero section accent-background">
         <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
@@ -18,9 +18,9 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
             <h2>{{ __('About Us') }}<br></h2>
-            <p style="text-align: justify">{{ $site->about }}</p>
+            <p style="text-align: justify">{!! $site->about !!}</p>
         </div><!-- End Section Title -->
-        
+
 
         <div class="container">
 
@@ -66,10 +66,9 @@
 
     </section><!-- /About Section -->
 
-    <section id="clients" class="clients section">
+    <section id="novedades" class="novedades section">
 
         <div class="container">
-
             <div class="swiper init-swiper">
                 <h3 class="text-center border-bottom my-2 py-2">Novedades</h3>
                 <script type="application/json" class="swiper-config">
@@ -111,13 +110,14 @@
           </script>
                 <div class="swiper-wrapper align-items-center">
                     @foreach ($novedades as $item)
-                        <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-around" style="min-width:250px;min-height:500px;">
+                        <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-around"
+                            style="min-width:250px;min-height:500px;">
                             <div class="member text-center w-100">
                                 <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                     src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded" alt="">
                                 <div class="fs-6">
-                                    <h4 class="mt-2 border-top border-1 pt-2">{{ $item->nombre }}</h4>
-                                    <span class="fs-5 text-uppercase"><b>{{ $item->autor }}</b></span> <br>
+                                    <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 80) }}</h6>
+                                    <hr>
                                     <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
                                 </div>
                             </div>
@@ -127,6 +127,11 @@
                             </div>
                         </div>
                     @endforeach
+
+                </div>
+                <div class="mt-2">
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
                 </div>
 
             </div>
@@ -246,15 +251,12 @@
 
     <!-- Faq Section -->
     <section id="faq" class="faq section">
-
         <div class="container">
-
             <div class="row gy-4">
-
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="content px-xl-5">
-                        <h3><span>Frequently Asked </span><strong>Questions</strong></h3>
-                        <p>
+                        <h3><span>Preguntas</span><strong><br>frecuentes</strong></h3>
+                        <p style="text-align: justify">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
                         </p>
@@ -264,61 +266,48 @@
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
 
                     <div class="faq-container">
-                        <div class="faq-item faq-active">
-                            <h3><span class="num">1.</span> <span>Non consectetur a erat nam at lectus urna
-                                    duis?</span></h3>
+                        <div class="faq-item ">
+                            <h3><span class="num">1.</span> <span>Pregunta 1 ?</span></h3>
                             <div class="faq-content">
-                                <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus
-                                    laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor
-                                    rhoncus dolor purus non.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit.</p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
                         </div><!-- End Faq item-->
 
                         <div class="faq-item">
-                            <h3><span class="num">2.</span> <span>Feugiat scelerisque varius morbi enim nunc
-                                    faucibus a pellentesque?</span></h3>
+                            <h3><span class="num">2.</span> <span>Pregunta 2 ?</span></h3>
                             <div class="faq-content">
-                                <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                    interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus
-                                    scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
-                                    Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit.</p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
                         </div><!-- End Faq item-->
 
                         <div class="faq-item">
-                            <h3><span class="num">3.</span> <span>Dolor sit amet consectetur adipiscing elit
-                                    pellentesque?</span></h3>
+                            <h3><span class="num">3.</span> <span>Pregunta 3 ?</span></h3>
                             <div class="faq-content">
-                                <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci.
-                                    Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl
-                                    suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis
-                                    convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
                                 </p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
                         </div><!-- End Faq item-->
 
                         <div class="faq-item">
-                            <h3><span class="num">4.</span> <span>Ac odio tempor orci dapibus. Aliquam eleifend
-                                    mi in nulla?</span></h3>
+                            <h3><span class="num">4.</span> <span>Pregunta 4 ?</span></h3>
                             <div class="faq-content">
-                                <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id
-                                    interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus
-                                    scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.
-                                    Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit.</p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
                         </div><!-- End Faq item-->
 
                         <div class="faq-item">
-                            <h3><span class="num">5.</span> <span>Tempus quam pellentesque nec nam aliquam sem
-                                    et tortor consequat?</span></h3>
+                            <h3><span class="num">5.</span> <span>Pregunta 5 ?</span></h3>
                             <div class="faq-content">
-                                <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse
-                                    in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                                    suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
                                 </p>
                             </div>
                             <i class="faq-toggle bi bi-chevron-right"></i>
@@ -334,97 +323,4 @@
     </section><!-- /Faq Section -->
 
 
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-            <h2>{{ __('Contact Us') }}</h2>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-            <div class="row gx-lg-0 gy-4">
-
-                <div class="col-lg-4">
-                    <div class="info-container d-flex flex-column align-items-center justify-content-center">
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                            <i class="bi bi-geo-alt flex-shrink-0"></i>
-                            <div>
-                                <h3>{{ __('Address') }}</h3>
-                                <p>{{ $site->direccion }}</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                            <i class="bi bi-telephone flex-shrink-0"></i>
-                            <div>
-                                <h3>{{ __('Contact Us') }}</h3>
-                                <p>{{ $site->contacto }}</p>
-                            </div>
-                        </div><!-- End Info Item -->
-
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                            <i class="bi bi-envelope flex-shrink-0"></i>
-                            <div>
-                                <h3>{{ __('Email') }}</h3>
-                                <p>{{ $site->email }}</p>
-                            </div>
-                        </div><!-- End Info Item -->
-                        {{--
-                        <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                            <i class="bi bi-clock flex-shrink-0"></i>
-                            <div>
-                                <h3>Open Hours:</h3>
-                                <p>Mon-Sat: 11AM - 23PM</p>
-                            </div>
-                        </div><!-- End Info Item -->
---}}
-                    </div>
-
-                </div>
-
-                <div class="col-lg-8">
-                    <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade"
-                        data-aos-delay="100">
-                        <div class="row gy-4">
-
-                            <div class="col-md-6">
-                                <input type="text" name="name" class="form-control" placeholder="Your Name"
-                                    required="">
-                            </div>
-
-                            <div class="col-md-6 ">
-                                <input type="email" class="form-control" name="email" placeholder="Your Email"
-                                    required="">
-                            </div>
-
-                            <div class="col-md-12">
-                                <input type="text" class="form-control" name="subject" placeholder="Subject"
-                                    required="">
-                            </div>
-
-                            <div class="col-md-12">
-                                <textarea class="form-control" name="message" rows="8" placeholder="Message" required=""></textarea>
-                            </div>
-
-                            <div class="col-md-12 text-center">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                                <button type="submit">Send Message</button>
-                            </div>
-
-                        </div>
-                    </form>
-                </div><!-- End Contact Form -->
-
-            </div>
-
-        </div>
-
-    </section><!-- /Contact Section -->
 @endsection

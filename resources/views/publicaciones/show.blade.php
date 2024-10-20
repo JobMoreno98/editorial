@@ -23,7 +23,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="m-3 text-center text-md-start">
+                    <div class="m-3 text-center text-md-start" data-aos="fade-up" data-aos-delay="100">
                         <p>
                             <span class="fs-5  text-uppercase"><b>Autor - {{ $publicacion->autor }}</b></span>
                         </p>
@@ -35,10 +35,10 @@
                             <span><b>Corrdinadores: {{ $publicacion->coordinadores }}</b></span>
                         </p>
                         <p>
-                            <span><b>Año de publicación: {{ $publicacion->año_publicacion }}</b></span>
+                            <span><b>Año de publicación: {{ $publicacion->anio_publicacion }}</b></span>
 
                         </p>
-                        <p style="text-align: justify"><span><b>Descripción: {{ $publicacion->descripcion }}</b></span></p>
+                        <p><span><b>Descripción: {!! str($publicacion->descripcion)->markdown()->sanitizeHtml() !!}</b></span></p>
                         <p class="text-end">
                             <a target="_blank" href="{{ route('ver-archivo', $publicacion) }}"
                                 class="btn btn-primary btn-sm">Descargar archivo</a>
