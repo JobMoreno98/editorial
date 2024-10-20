@@ -36,7 +36,7 @@
                         ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut
                         omnis beatae neque deleniti repellendus.</p>
                 </div>
-                <div class="col-lg-6" style="text-align: justify" data-aos="fade-up" data-aos-delay="250">
+                <div class="col-lg-6" style="text-align: justify" data-aos="zoom-in" data-aos-delay="50">
                     <div class="content ps-0 ps-lg-5">
                         <p class="fst-italic">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

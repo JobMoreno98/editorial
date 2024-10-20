@@ -18,7 +18,7 @@ class PublicacionesController extends Controller
             $categoria = Categoria::where('name', $name)->first();
             $categoria->name = 'Publicaciones de la categoria - ' . $categoria->name;
 
-            $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active')->whereBelongsTo($categoria)->where('active', true)->orderBy('anio_publicacion','desc')->get();
+            $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active')->whereBelongsTo($categoria)->where('active', true)->orderBy('anio_publicacion', 'desc')->get();
 
             $url = route('publicaciones.show', $name);
             $publicaciones_items = Publicaciones::whereBelongsTo($categoria)
@@ -31,7 +31,7 @@ class PublicacionesController extends Controller
             $categoria = new Categoria();
             $categoria->name = 'Todas las publicaciones';
 
-            $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active')->where('active', true)->where('tipo', 'publicación')->orderBy('anio_publicacion','desc')->get();
+            $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active')->where('active', true)->where('tipo', 'publicación')->orderBy('anio_publicacion', 'desc')->get();
 
             $publicaciones_items = Publicaciones::when($anio, function (Builder $query, string $anio) {
                 $query->where('anio_publicacion', $anio);
@@ -50,11 +50,12 @@ class PublicacionesController extends Controller
         $publicacion = Publicaciones::where('slug', $slug)->first();
         return view('publicaciones.show', compact('publicacion'));
     }
-    public function getFile(Publicaciones $file)
+    public function getFile($slug)
     {
-        $file->download = $file->download + 1;
-        $file->update();
-        return response()->file(Storage::disk('public')->path($file->archivo));
+        $publicacion = Publicaciones::where('slug', $slug)->first();
+        $publicacion->download = $publicacion->download + 1;
+        $publicacion->update();
+        return response()->file(Storage::disk('public')->path($publicacion->archivo));
     }
 
     public function colecciones($name, $anio = null)
@@ -63,8 +64,8 @@ class PublicacionesController extends Controller
             $categoria = Categoria::where('name', $name)->first();
             $categoria->name = 'Colección - ' . $categoria->name;
 
-            $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active')->whereBelongsTo($categoria)->where('active', true)->orderBy('anio_publicacion','desc')->get();
-            
+            $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active')->whereBelongsTo($categoria)->where('active', true)->orderBy('anio_publicacion', 'desc')->get();
+
 
             $publicaciones_items = Publicaciones::whereBelongsTo($categoria)
                 ->when($anio, function (Builder $query, string $anio) {
@@ -77,7 +78,7 @@ class PublicacionesController extends Controller
             return view('publicaciones.index', compact('publicaciones_items', 'categoria', 'anios', 'url'));
         }
 
-        $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active', 'tipo', 'anio_publicacion')->where('active', true)->where('tipo', 'colección')->orderBy('anio_publicacion','desc')->get();
+        $anios = Publicaciones::select(DB::raw('distinct(anio_publicacion) as anio'), 'active', 'tipo', 'anio_publicacion')->where('active', true)->where('tipo', 'colección')->orderBy('anio_publicacion', 'desc')->get();
 
         $categoria = new Categoria();
         $categoria->name = 'Todas las colecciones';
