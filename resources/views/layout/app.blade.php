@@ -77,7 +77,7 @@
 
     <header id="header" class="header sticky-top">
         <div class="topbar d-flex align-items-center py-1" style="height: 50px;">
-            <div class="container d-flex justify-content-center justify-content-md-between">
+            <div class="container-fluid  mx-md-5 d-flex justify-content-center justify-content-md-between">
                 <div class="contact-info d-flex align-items-center">
                     <i class="bi bi-envelope d-flex align-items-center"><a
                             href="mailto:{{ $site->email }}">{{ $site->email }}</a></i>
@@ -108,7 +108,7 @@
                 <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 class="sitename">{{ $site->nombre }}</h1>
+                    <h1 class="sitename text-uppercase">{{ $site->nombre }}</h1>
                     <span>.</span>
                 </a>
                 <nav id="navmenu" class="navmenu">
@@ -189,7 +189,7 @@
                     style="align-items: center !important;">
                     <div class="mx-2 px-2  m-auto">
                         <a href="{{ route('home') }}" class=" logo m-auto">
-                            <span class="sitename">{{ config('app.name', 'Laravel') }}</span>
+                            <span class="sitename text-uppercase">{{ $site->nombre }}</span>
                         </a>
                     </div>
 
