@@ -334,7 +334,7 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Desktop Navigation */
-@media (min-width: 1200px) {
+@media (min-width: 1350px) {
   .navmenu {
     padding: 0;
   }
@@ -466,7 +466,7 @@ h6 {
 }
 
 /* Mobile Navigation */
-@media (max-width: 1199px) {
+@media (max-width: 1349px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
     font-size: 28px;
@@ -474,6 +474,7 @@ h6 {
     margin-right: 10px;
     cursor: pointer;
     transition: color 0.3s;
+    display: block !important;
   }
 
   .navmenu {
@@ -854,7 +855,7 @@ section,
   overflow: clip;
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 1349px) {
 
   section,
   .section {
@@ -981,7 +982,7 @@ section,
   z-index: 4;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1350px) {
   .hero .icon-boxes:before {
     content: "";
     position: absolute;

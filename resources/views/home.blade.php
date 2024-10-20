@@ -2,7 +2,7 @@
 @section('title', 'Inicio')
 @section('content')
     <section id="hero" class="hero section accent-background">
-        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="50">
             <div class="row gy-5 justify-content-between">
                 <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center"
                     style="padding-bottom:30px;margin-top: 30px;">
@@ -16,7 +16,7 @@
     <section id="about" class="about section">
 
         <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
+        <div class="container section-title" data-aos="zoom-in">
             <h2>{{ __('About Us') }}<br></h2>
             <p style="text-align: justify">{!! $site->about !!}</p>
         </div><!-- End Section Title -->
@@ -25,7 +25,7 @@
         <div class="container">
 
             <div class="row gy-4">
-                <div class="col-lg-6" style="text-align: justify" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-6" style="text-align: justify" data-aos="zoom-in" data-aos-delay="50">
                     <h3>Voluptatem dignissimos provident laboris nisi ut aliquip ex ea commodo</h3>
                     <img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
                     <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat
@@ -143,7 +143,7 @@
     <section id="call-to-action" class="call-to-action section dark-background m-2">
         <div class="container">
             <img src="https://picsum.photos/1250/500" alt="">
-            <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+            <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                 <div class="col-xl-10">
                     <div class="text-center">
                         <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox play-btn"></a>
@@ -166,7 +166,7 @@
         </div>
         <div class="container">
             <div class="row gy-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="50">
                     <div class="service-item  position-relative">
                         <div class="icon">
                             <i class="bi bi-activity"></i>
@@ -253,7 +253,7 @@
     <section id="faq" class="faq section">
         <div class="container">
             <div class="row gy-4">
-                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="50">
                     <div class="content px-xl-5">
                         <h3><span>Preguntas</span><strong><br>frecuentes</strong></h3>
                         <p style="text-align: justify">

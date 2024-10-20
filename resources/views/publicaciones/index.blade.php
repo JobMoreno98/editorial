@@ -23,8 +23,8 @@
             </div>
             <div class="col-md-11 d-flex justify-content-evenly flex-wrap">
                 @foreach ($publicaciones_items as $item)
-                    <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center m-1" data-aos="fade-up"
-                        data-aos-delay="100">
+                    <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center m-1" data-aos="zoom-in"
+                        data-aos-delay="50">
                         <div class="member text-center w-100">
                             <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                 src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid" alt="">
