@@ -4,7 +4,7 @@
     <section id="hero" class="hero section accent-background">
         <div class="container position-relative" id="contenedor-banner"  data-aos="zoom-in" data-aos-delay="50">
             <div class="row gy-5 justify-content-between">
-                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center banner">
+                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center banner p-0 pb-sm-3">
                     <img src="{{ asset('storage/' . $site->image_banner) }}" class="h-100 img-banner" alt="" >
                 </div>
             </div>
