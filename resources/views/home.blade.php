@@ -2,11 +2,10 @@
 @section('title', 'Inicio')
 @section('content')
     <section id="hero" class="hero section accent-background">
-        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="50">
+        <div class="container position-relative" id="contenedor-banner"  data-aos="zoom-in" data-aos-delay="50">
             <div class="row gy-5 justify-content-between">
-                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center"
-                    style="padding-bottom:30px;margin-top: 30px;">
-                    <img src="{{ asset('storage/' . $site->image_banner) }}" class="h-100" alt="">
+                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center banner">
+                    <img src="{{ asset('storage/' . $site->image_banner) }}" class="h-100 img-banner" alt="" >
                 </div>
             </div>
         </div>

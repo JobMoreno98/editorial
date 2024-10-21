@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/glightbox.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
     <style>
         :root {
             --accent-color: {{ $site->accent_color }};
