@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
@@ -39,47 +40,52 @@ class PublicacionesResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            TextInput::make('nombre')->required()->maxLength(255)->live(onBlur: true)
+            TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
             TextInput::make('slug'),
             //TextInput::make('autor')->required()->maxLength(255),
             TagsInput::make('autor')->reorderable()->separator(','),
             TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
+            TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
+            TextInput::make('paginas')->label('Páginas')->required()->numeric(),
             TinyEditor::make('descripcion')->required()->columnSpanFull(),
 
-            TextInput::make('paginas')->label('Páginas')->required()->numeric(),
-            TagsInput::make('coordinadores')->reorderable()->separator(','),
-            TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
+            //TagsInput::make('coordinadores')->reorderable()->separator(','),
+            Repeater::make('coordinadores')->simple(
+                TextInput::make('coordinadores')->required()
+            ),
+
 
             Select::make('tipo')->options(['publicación' => 'Publicación', 'colección' => 'Colección'])->required(),
             Select::make('categoria_id')->label('Categoria')->required()->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name', 'id'))->searchable()->preload(),
 
             Section::make()->schema([
-                Toggle::make('novedad')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
-                Toggle::make('active')->onColor('success')->offColor('danger')->inline()->default(true)->required(),
-            ])->columnSpan(1)->columns(2),
+                Section::make('Acciones')->schema([
+                    Toggle::make('novedad')->onColor('success')->offColor('danger')->default(true)->required(),
+                    Toggle::make('active')->onColor('success')->offColor('danger')->default(true)->required()->label('Activo'),
+                ])->columnSpan(1)->columns(1),
 
-            Section::make('Archvios')->schema([
-                FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor()
-                    ->removeUploadedFileButtonPosition('right')
-                    ->imagePreviewHeight('150')
-                    ->uploadButtonPosition('left')->imageEditorAspectRatios([
-                        '9:16',
-                        '16:9',
-                        '4:3',
-                        '1:1',
-                    ]),
-                FileUpload::make('archivo')
-                    ->required()
-                    ->acceptedFileTypes(['application/pdf'])
-                    ->openable()
-                    ->directory('files')
-                    ->preserveFilenames()
-                    ->moveFiles()->removeUploadedFileButtonPosition('right'),
+                Section::make('Archivos')->schema([
+                    FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor()
+                        ->removeUploadedFileButtonPosition('right')
+                        ->imagePreviewHeight('150')
+                        ->uploadButtonPosition('left')->imageEditorAspectRatios([
+                            '9:16',
+                            '16:9',
+                            '4:3',
+                            '1:1',
+                        ]),
+                    FileUpload::make('archivo')
+                        ->required()
+                        ->acceptedFileTypes(['application/pdf'])
+                        ->openable()
+                        ->directory('files')
+                        ->preserveFilenames()
+                        ->moveFiles()->removeUploadedFileButtonPosition('right'),
+                ])->columnSpan(1)->columns(1),
             ])->columns(2),
 
-
-        ])->columns(2);
+        ])->columns(3);
     }
 
     public static function table(Table $table): Table

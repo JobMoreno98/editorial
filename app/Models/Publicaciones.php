@@ -6,20 +6,43 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Scout\Searchable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Casts\AsCollection;
 
 class Publicaciones extends Model
 {
     use HasFactory;
     use Searchable;
     protected $guarded = [];
+
+
     protected $casts = [
         'autor' => 'array',
-        'coordinadores' => 'array',
+        'coordinadores' => AsCollection::class,
     ];
+
+
     public function categoria(): BelongsTo
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    protected function nombre(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucwords($value),
+            set: fn (string $value) => ucwords($value),
+        );
+    }
+/*
+    protected function coordinadores(): Attribute
+    {
+        return Attribute::make(
+            get: fn (string $value) => ucfirst($value),
+            set: fn (string $value) => ucfirst($value),
+        );
+    }
+*/
     public function toSearchableArray(): array
     {
         return [

@@ -25,14 +25,14 @@
                     </div>
                     <div class="m-3 text-center text-md-start" data-aos="fade-up" data-aos-delay="50">
                         <p>
-                            <span class="fs-5  text-uppercase"><b>Autor - {{ $publicacion->autor }}</b></span>
+                            <span class="fs-5  text-uppercase"><b>Autor {{ $publicacion->autor }}</b></span>
                         </p>
 
                         <p>
                             <span><b>ISBN: {{ $publicacion->isbn }}</b></span>
                         </p>
                         <p>
-                            <span><b>Corrdinadores: {{ $publicacion->coordinadores }}</b></span>
+                            <span><b>Corrdinadores: <br> {!! implode('<br/>', $publicacion->coordinadores->toArray()) !!}</b></span>
                         </p>
                         <p>
                             <span><b>Año de publicación: {{ $publicacion->anio_publicacion }}</b></span>

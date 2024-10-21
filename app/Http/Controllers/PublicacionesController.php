@@ -48,9 +48,12 @@ class PublicacionesController extends Controller
     public function ver_publicacion($slug)
     {
         $publicacion = Publicaciones::where('slug', $slug)->first();
+        if (!isset($publicacion->nombre)) {
+            return abort(404);
+        }
         return view('publicaciones.show', compact('publicacion'));
     }
-    
+
     public function getFile($slug)
     {
         $publicacion = Publicaciones::where('slug', $slug)->first();
