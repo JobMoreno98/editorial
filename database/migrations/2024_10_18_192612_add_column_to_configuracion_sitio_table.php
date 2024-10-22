@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('configuracion_sitio', function (Blueprint $table) {
-            $table->string('archivo');
+            $table->string('archivo')->nullable();
         });
     }
 

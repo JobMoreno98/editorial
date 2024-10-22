@@ -42,14 +42,15 @@ class DatabaseSeeder extends Seeder
             'direccion' => 'direccion de prueba',
             'accent_color' => 'rgb(59, 13, 13)',
             'nav_color' => '#fff',
-            'nav_hover_color' => 'rgb(59, 13, 13)',
+            'nav_hover_color' => '#fff',
             'nav_dropdown_color' => 'rgb(59, 13, 13)',
             'nav_dropdown_hover_color' => 'rgb(59, 13, 13)',
             'background_color' => 'rgb(59, 13, 13)',
             'heading_color' => 'rgb(59, 13, 13)',
             'about' => 'Prueba',
             'email' => 'email@example.com',
-            'image_banner' => null
+            'image_banner' => null,
+            'archivo' => null
         ]);
     }
 }
