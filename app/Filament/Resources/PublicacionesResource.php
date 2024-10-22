@@ -7,12 +7,8 @@ use App\Models\Categoria;
 use App\Models\Publicaciones;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
-
-use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\MarkdownEditor;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
@@ -30,12 +26,14 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class PublicacionesResource extends Resource
 {
     protected static ?string $model = Publicaciones::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
+    protected string $nombre;
 
     public static function form(Form $form): Form
     {
@@ -44,7 +42,12 @@ class PublicacionesResource extends Resource
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
             TextInput::make('slug'),
             //TextInput::make('autor')->required()->maxLength(255),
-            TagsInput::make('autor')->reorderable()->separator(','),
+            //TagsInput::make('autor')->reorderable()->separator(','),
+
+            Repeater::make('autor')->simple(
+                TextInput::make('autor')->required()
+            ),
+
             TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
             TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
             TextInput::make('paginas')->label('Páginas')->required()->numeric(),
@@ -80,7 +83,12 @@ class PublicacionesResource extends Resource
                         ->acceptedFileTypes(['application/pdf'])
                         ->openable()
                         ->directory('files')
-                        ->preserveFilenames()
+                        ->getUploadedFileNameForStorageUsing(
+                            fn(TemporaryUploadedFile $file): string => (string) str($this->nombre)
+                                ->prepend('libros-'),
+                        )
+
+
                         ->moveFiles()->removeUploadedFileButtonPosition('right'),
                 ])->columnSpan(1)->columns(1),
             ])->columns(2),

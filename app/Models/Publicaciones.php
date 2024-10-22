@@ -17,7 +17,7 @@ class Publicaciones extends Model
 
 
     protected $casts = [
-        'autor' => 'array',
+        'autor' =>  AsCollection::class,
         'coordinadores' => AsCollection::class,
     ];
 

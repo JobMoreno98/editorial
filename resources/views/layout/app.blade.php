@@ -64,7 +64,7 @@
             --bs-btn-bg: {{ $site->accent_color }};
             --bs-btn-border-color: {{ $site->accent_color }};
             --bs-btn-hover-bg: {{ $site->background_color }};
-            --bs-btn-ho ver-border-color: {{ $site->background_color }};
+            --bs-btn-hover-border-color: {{ $site->background_color }};
         }
 
         .sticky-bottom {

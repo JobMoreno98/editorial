@@ -24,15 +24,20 @@
                         </div>
                     </div>
                     <div class="m-3 text-center text-md-start" data-aos="fade-up" data-aos-delay="50">
-                        <p>
-                            <span class="fs-5  text-uppercase"><b>Autor {{ $publicacion->autor }}</b></span>
-                        </p>
-
+                        @if (isset($publicacion->autor))
+                            <p>
+                                <span class="fs-5  text-uppercase"><b>Autores -
+                                        {{ implode(', ', $publicacion->autor->toArray()) }}</b></span>
+                            </p>
+                        @endif
+                        @if (isset($publicacion->coordinadores))
+                            <p>
+                                <span class="fs-5  text-uppercase"><b>Corrdinadores:
+                                        {{ implode(', ', $publicacion->coordinadores->toArray()) }}</b></span>
+                            </p>
+                        @endif
                         <p>
                             <span><b>ISBN: {{ $publicacion->isbn }}</b></span>
-                        </p>
-                        <p>
-                            <span><b>Corrdinadores: <br> {!! implode('<br/>', $publicacion->coordinadores->toArray()) !!}</b></span>
                         </p>
                         <p>
                             <span><b>Año de publicación: {{ $publicacion->anio_publicacion }}</b></span>
