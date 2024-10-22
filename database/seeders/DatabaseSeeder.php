@@ -36,5 +36,20 @@ class DatabaseSeeder extends Seeder
             'model_type' => 'App\Models\User',
             'model_id' => 1
         ]);
+        DB::table('configuracion_sitio')->insert([
+            'nombre' => 'Nombre de la página',
+            'contacto' => '33-33-33-33-33',
+            'direccion' => 'direccion de prueba',
+            'accent_color' => 'rgb(59, 13, 13)',
+            'nav_color' => '#fff',
+            'nav_hover_color' => 'rgb(59, 13, 13)',
+            'nav_dropdown_color' => 'rgb(59, 13, 13)',
+            'nav_dropdown_hover_color' => 'rgb(59, 13, 13)',
+            'background_color' => 'rgb(59, 13, 13)',
+            'heading_color' => 'rgb(59, 13, 13)',
+            'about' => 'Prueba',
+            'email' => 'email@example.com',
+            'image_banner' => null
+        ]);
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('contacto');
             $table->string('direccion');
-            $table->string('image_banner');
+            $table->string('image_banner')->nullable();
             $table->timestamps();
         });
     }

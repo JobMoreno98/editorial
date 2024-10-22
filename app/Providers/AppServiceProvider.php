@@ -62,7 +62,7 @@ class AppServiceProvider extends ServiceProvider
             DatabaseCheck::new(),
             SecurityAdvisoriesCheck::new(),
             DatabaseSizeCheck::new()
-            ->failWhenSizeAboveGb(errorThresholdGb: 5.0),
+                ->failWhenSizeAboveGb(errorThresholdGb: 5.0),
         ]);
         Gate::policy(FilamentSpatieLaravelBackup::class, BackupsPolicy::class);
         Gate::policy(Activity::class, ActivityPolicy::class);
