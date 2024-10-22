@@ -2,10 +2,11 @@
 @section('title', 'Inicio')
 @section('content')
     <section id="hero" class="hero section accent-background">
-        <div class="container position-relative" id="contenedor-banner"  data-aos="zoom-in" data-aos-delay="50">
+        <div class="container position-relative" id="contenedor-banner" data-aos="zoom-in" data-aos-delay="50">
             <div class="row gy-5 justify-content-between">
                 <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center banner p-0 pb-xl-3">
-                    <img src="{{ asset('storage/' . $site->image_banner) }}" class="h-100 img-banner" alt="" >
+                    <img src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
+                        class="h-100 img-banner" alt="">
                 </div>
             </div>
         </div>
@@ -17,7 +18,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="zoom-in">
             <h2>{{ __('About Us') }}<br></h2>
-            <p style="text-align: justify">{!! $site->about !!}</p>
+            <p style="text-align: justify">{!! isset($site->about) ? $site->about : 'Aquí va la descripción de la página' !!}</p>
         </div><!-- End Section Title -->
 
 
@@ -64,80 +65,83 @@
         </div>
 
     </section><!-- /About Section -->
+    @if (!$novedades->isEmpty())
+        <section id="novedades" class="novedades section">
 
-    <section id="novedades" class="novedades section">
-
-        <div class="container">
-            <div class="swiper init-swiper">
-                <h3 class="text-center border-bottom my-2 py-2">Novedades</h3>
-                <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 15
-                },
-                "480": {
-                  "slidesPerView":2,
-                  "spaceBetween": 20
-                },
-                "640": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 50
-                },
-                "1400": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 50
-                },
-                "1450": {
-                    "slidesPerView": 4,
-                    "spaceBetween": 50
-                  }
+            <div class="container">
+                <div class="swiper init-swiper">
+                    <h3 class="text-center border-bottom my-2 py-2">Novedades</h3>
+                    <script type="application/json" class="swiper-config">
+        {
+          "loop": true,
+          "speed": 600,
+          "autoplay": {
+            "delay": 5000
+          },
+          "slidesPerView": "auto",
+          "pagination": {
+            "el": ".swiper-pagination",
+            "type": "bullets",
+            "clickable": true
+          },
+          "breakpoints": {
+            "320": {
+              "slidesPerView": 1,
+              "spaceBetween": 15
+            },
+            "480": {
+              "slidesPerView":2,
+              "spaceBetween": 20
+            },
+            "640": {
+              "slidesPerView": 3,
+              "spaceBetween": 50
+            },
+            "1400": {
+              "slidesPerView": 3,
+              "spaceBetween": 50
+            },
+            "1450": {
+                "slidesPerView": 4,
+                "spaceBetween": 50
               }
-            }
-          </script>
-                <div class="swiper-wrapper align-items-center">
-                    @foreach ($novedades as $item)
-                        <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-around"
-                            style="min-width:250px;min-height:500px;">
-                            <div class="member text-center w-100">
-                                <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
-                                    src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded" alt="">
-                                <div class="fs-6">
-                                    <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 80) }}</h6>
-                                    <hr>
-                                    <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
+          }
+        }
+      </script>
+                    <div class="swiper-wrapper align-items-center">
+                        @foreach ($novedades as $item)
+                            <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-around"
+                                style="min-width:250px;min-height:500px;">
+                                <div class="member text-center w-100">
+                                    <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
+                                        src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded"
+                                        alt="">
+                                    <div class="fs-6">
+                                        <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 80) }}</h6>
+                                        <hr>
+                                        <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <a href="{{ route('ver-publicacion', $item->slug) }}"
+                                        class="btn-sm btn btn-primary mt-1">Ver más</a>
                                 </div>
                             </div>
-                            <div class="text-end">
-                                <a href="{{ route('ver-publicacion', $item->slug) }}"
-                                    class="btn-sm btn btn-primary mt-1">Ver más</a>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
-                </div>
-                <div class="mt-2">
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
+                    </div>
+                    <div class="mt-2">
+                        <!-- If we need pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
+        </section>
+    @endif
 
-    </section>
 
     <section id="call-to-action" class="call-to-action section dark-background m-2">
         <div class="container">

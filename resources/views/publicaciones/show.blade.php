@@ -5,13 +5,10 @@
 @section('content')
     <section id="team" class="team section ">
         @if (isset($publicacion))
-            <!-- Section Title -->
             <div class="container section-title pb-0" data-aos="fade-up">
                 <h2>{{ $publicacion->nombre }}</h2>
-
                 <p>Categoria: {{ $publicacion->categoria->name }}</p>
-            </div><!-- End Section Title -->
-
+            </div>
             <div class="container">
                 <div class="d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start">
                     <div class="col-sm-12 col-md-3" data-aos="fade-up" data-aos-delay="50">
@@ -54,5 +51,5 @@
         @else
             <h2>No se encontro la publicación que buscas ...</h2>
         @endif
-    </section><!-- /Team Section -->
+    </section>
 @endsection

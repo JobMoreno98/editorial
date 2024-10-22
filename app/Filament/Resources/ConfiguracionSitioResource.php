@@ -41,7 +41,7 @@ class ConfiguracionSitioResource extends Resource
                 Section::make('Información del sitio')->schema([
                     FileUpload::make('image_banner')
                         ->image()
-                        ->required()->imageEditor()
+                        ->imageEditor()
                         ->imageCropAspectRatio('16:3')->columnSpanFull(),
                     TextInput::make('nombre')
                         ->required()

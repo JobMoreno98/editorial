@@ -2,13 +2,10 @@
 @section('title', 'Consejo Editorial')
 @section('content')
     <section id="team" class="team section ">
-
-        <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
             <h2>Consejo Editorial</h2>
             <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
-
+        </div>
         <div class="container">
             <div class="row d-flex justify-content-center">
                 @foreach ($comite as $item)
@@ -25,9 +22,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- End Team Member -->
                 @endforeach
             </div>
         </div>
-    </section><!-- /Team Section -->
+    </section>
 @endsection
