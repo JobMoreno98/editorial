@@ -1,6 +1,6 @@
 @media(max-width:1100px) {
     .img-banner {
-        height: 150px !important;
+        height: 110px !important;
         object-fit: fill;
         width: 100%;
     }
