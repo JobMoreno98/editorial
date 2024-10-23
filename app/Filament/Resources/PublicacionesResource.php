@@ -33,7 +33,10 @@ class PublicacionesResource extends Resource
     protected static ?string $model = Publicaciones::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
-    protected string $nombre;
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
 
     public static function form(Form $form): Form
     {

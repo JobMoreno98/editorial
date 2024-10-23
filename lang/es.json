@@ -224,7 +224,8 @@
     "Directory": "Directorio",
     "Phone": "Teléfono",
     "Email": "Correo Electrónico",
-    "About Us" : "Acerca de Nosotros",
-    "Call Us":"Llamanos",
-    "Address":"Dirección"
+    "About Us": "Acerca de Nosotros",
+    "Call Us": "Llamanos",
+    "Address": "Dirección",
+    "Content" : "Contenido"
 }

@@ -4,6 +4,7 @@ namespace App\Providers\Filament;
 
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Filament\Resources\CategoriaResource\Widgets\CategoriasOverview;
+use App\Filament\Resources\PublicacionesResource\Widgets\PublicacionesChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -45,6 +46,7 @@ class AdminPanelProvider extends PanelProvider
                 //Widgets\AccountWidget::class,
                 //Widgets\FilamentInfoWidget::class,
                 CategoriasOverview::class,
+                PublicacionesChart::class
                 //Widgets\AccountWidget::class,
             ])
             ->middleware([

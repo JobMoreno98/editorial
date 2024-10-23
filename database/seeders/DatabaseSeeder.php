@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'nombre' => 'Nombre de la página',
             'contacto' => '33-33-33-33-33',
             'direccion' => 'direccion de prueba',
-            'accent_color' => 'rgb(59, 13, 13)',
+            'accent_color' => 'rgb(46, 2, 2)',
             'nav_color' => '#fff',
             'nav_hover_color' => '#fff',
             'nav_dropdown_color' => 'rgb(59, 13, 13)',

@@ -15,7 +15,7 @@
                     <div class="col-sm-12 col-md-6 d-flex  justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                         <div
                             class="member d-flex w-100 flex-column flex-md-row  align-items-center justify-content-md-start">
-                            <div style="max-width: 250px">
+                            <div style="width: 250px !important">
                                 <img src="{{ asset('storage/' . $item->image) }}" class="w-100 m-1" alt="">
                             </div>
                             <div class="mx-3">
