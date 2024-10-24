@@ -22,17 +22,6 @@ class Dashboard extends \Filament\Pages\Dashboard
     protected static bool $isLazy = false;
 
 
-    public function filtersForm(Form $form): Form
-    {
-        return $form
-            ->schema([
-                Section::make()
-                    ->schema([
-                        Select::make('roles')->options(fn(Get $get): Collection => Roles::query()->pluck('name', 'id'))->searchable()->preload(),
-                    ])->hidden(! auth()->user()->hasRole('Super Admin')),
-
-            ]);
-    }
 
     public function getColumns(): int | string | array
     {

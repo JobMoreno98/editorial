@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Descargas;
 use App\Models\Publicaciones;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request as HttpRequest;
@@ -57,8 +58,14 @@ class PublicacionesController extends Controller
     public function getFile($slug)
     {
         $publicacion = Publicaciones::where('slug', $slug)->first();
-        $publicacion->download = $publicacion->download + 1;
-        $publicacion->update();
+
+        if (!isset($publicacion->nombre)) {
+            return abort(404);
+        }
+        $descarga = Descargas::create([
+            'publicaciones_id' => $publicacion->id
+        ]);
+
         return response()->file(Storage::disk('public')->path($publicacion->archivo));
     }
 

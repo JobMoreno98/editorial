@@ -44,9 +44,7 @@ class PublicacionesResource extends Resource
             TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
             TextInput::make('slug'),
-            //TextInput::make('autor')->required()->maxLength(255),
-            //TagsInput::make('autor')->reorderable()->separator(','),
-
+            
             Repeater::make('autor')->simple(
                 TextInput::make('autor')->required()
             ),
@@ -85,13 +83,7 @@ class PublicacionesResource extends Resource
                         ->required()
                         ->acceptedFileTypes(['application/pdf'])
                         ->openable()
-                        ->directory('files')
-                        ->getUploadedFileNameForStorageUsing(
-                            fn(TemporaryUploadedFile $file): string => (string) str($this->nombre)
-                                ->prepend('libros-'),
-                        )
-
-
+                        ->directory('files')->preserveFilenames()
                         ->moveFiles()->removeUploadedFileButtonPosition('right'),
                 ])->columnSpan(1)->columns(1),
             ])->columns(2),
