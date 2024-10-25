@@ -12,7 +12,9 @@ class Dashboard extends \Filament\Pages\Dashboard
     use HasFiltersForm;
 
     protected static string $routePath = '/';
+    
     protected static bool $isLazy = false;
+
     protected int | string | array $columnSpan = [
         'md' => 2,
         'xl' => 3,
@@ -21,8 +23,8 @@ class Dashboard extends \Filament\Pages\Dashboard
     public function getWidgets(): array
     {
         return [
-            PublicacionesChart::class,
             CategoriasOverview::class,
+            PublicacionesChart::class,
         ];
     }
     public function getColumns(): int | string | array
