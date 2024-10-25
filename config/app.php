@@ -170,6 +170,7 @@ return [
             App\Providers\Filament\EditorPanelProvider::class,
             App\Providers\RouteServiceProvider::class,
             RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+            App\Providers\VisitorServiceProvider::class,
         ])
         ->toArray(),
 

@@ -3,7 +3,11 @@
 namespace App\Filament\Pages;
 
 use App\Filament\Resources\CategoriaResource\Widgets\CategoriasOverview;
+use App\Filament\Resources\PublicacionesResource\Widgets\DescargasOverview;
+use App\Filament\Resources\PublicacionesResource\Widgets\DescargasWidget;
 use App\Filament\Resources\PublicacionesResource\Widgets\PublicacionesChart;
+use App\Filament\Resources\PublicacionesResource\Widgets\PublicacionesWidget;
+use App\Models\Descargas;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 
 
@@ -12,18 +16,14 @@ class Dashboard extends \Filament\Pages\Dashboard
     use HasFiltersForm;
 
     protected static string $routePath = '/';
-    
+
     protected static bool $isLazy = false;
 
-    protected int | string | array $columnSpan = [
-        'md' => 2,
-        'xl' => 3,
-    ];
 
     public function getWidgets(): array
     {
         return [
-            CategoriasOverview::class,
+            PublicacionesWidget::class,
             PublicacionesChart::class,
         ];
     }

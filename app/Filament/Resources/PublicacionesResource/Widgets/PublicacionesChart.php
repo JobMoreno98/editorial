@@ -38,11 +38,21 @@ class PublicacionesChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'bar';
+        return 'line';
     }
 
     public function getDescription(): ?string
     {
         return 'Número de descargas.';
+    }
+    protected function getOptions(): array
+    {
+        return [
+            'plugins' => [
+                'legend' => [
+                    'display' => false,
+                ],
+            ],
+        ];
     }
 }
