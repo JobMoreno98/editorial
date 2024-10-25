@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::get('/directorio', [HomeController::class, 'directorio'])->name('directorio');
 
 Route::get('/consejo-editorial', [HomeController::class, 'comite'])->name('consejo.editorial');
@@ -34,3 +35,7 @@ Route::get('/revistas-cientificas', [RevistasController::class, 'index'])->name(
 Route::get('/download/{file}', [PublicacionesController::class, 'getFile'])->name('ver-archivo');
 
 Route::get('/buscador', [PublicacionesController::class, 'buscador'])->name('buscador');
+
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/editorial/public/livewire/update', $handle);
+});

@@ -166,8 +166,7 @@
                                 class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas Cientificas</a>
                         </li>
                         @if (isset($site->archivo))
-                            <li><a href="{{ asset('storage/' . $site->archivo) }}">Lineamientos y normas
-                                    editoriales</a>
+                            <li><a href="{{ asset('storage/' . $site->archivo) }}" target="_blank">Lineamientos y normas editoriales</a>
                             </li>
                         @endif
 
