@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Filament\Resources\PublicacionesResource\Widgets;
+namespace App\Filament\Widgets;
 
-use App\Models\Descargas;
-use App\Models\Publicaciones;
+use App\Models\Visitor;
 use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 
-class PublicacionesChart extends ChartWidget
+class VisitantesChart extends ChartWidget
 {
-    protected static ?string $heading = 'Publicaciones';
-
+    protected static ?string $heading = 'Visitantes';
 
     protected function getData(): array
     {
-        $data = Trend::model(Descargas::class)
+        $data = Trend::model(Visitor::class)
             ->dateColumn('created_at')
             ->between(
                 start: now()->startOfWeek(),
@@ -28,7 +26,7 @@ class PublicacionesChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Descargas',
+                    'label' => 'Visitantes',
                     'data' => $data->map(fn(TrendValue $value) => $value->aggregate),
                 ],
             ],
@@ -40,9 +38,8 @@ class PublicacionesChart extends ChartWidget
     {
         return 'bar';
     }
-
     public function getDescription(): ?string
     {
-        return 'Número de descargas última semana.';
+        return 'Número de visitantes en la última semana.';
     }
 }

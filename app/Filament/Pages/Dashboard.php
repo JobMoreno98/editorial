@@ -7,6 +7,7 @@ use App\Filament\Resources\PublicacionesResource\Widgets\DescargasOverview;
 use App\Filament\Resources\PublicacionesResource\Widgets\DescargasWidget;
 use App\Filament\Resources\PublicacionesResource\Widgets\PublicacionesChart;
 use App\Filament\Resources\PublicacionesResource\Widgets\PublicacionesWidget;
+use App\Filament\Widgets\VisitantesChart;
 use App\Models\Descargas;
 use Filament\Pages\Dashboard\Concerns\HasFiltersForm;
 
@@ -25,6 +26,7 @@ class Dashboard extends \Filament\Pages\Dashboard
         return [
             PublicacionesWidget::class,
             PublicacionesChart::class,
+            VisitantesChart::class,
         ];
     }
     public function getColumns(): int | string | array
