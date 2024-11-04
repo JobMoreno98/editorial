@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('configuracion_sitio')->insert([
             'nombre' => 'Nombre de la página',
-            'contacto' => '33-33-33-33-33',
+            'contacto' => '(33) 3819-3300',
             'direccion' => 'direccion de prueba',
             'accent_color' => 'rgb(46, 2, 2)',
             'nav_color' => '#fff',
@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
             'background_color' => 'rgb(59, 13, 13)',
             'heading_color' => 'rgb(59, 13, 13)',
             'about' => 'Prueba',
-            'email' => 'email@example.com',
+            'email' => 'apoyo.editorial@administrativos.udg.mx',
             'image_banner' => null,
             'archivo' => null
         ]);

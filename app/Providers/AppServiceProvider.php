@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Activity::class => ActivityPolicy::class,
         FilamentSpatieLaravelBackup::class => BackupsPolicy::class,
     ];
+    protected $site;
 
     /**
      * Register any application services.
@@ -45,14 +46,18 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         LanguageSwitch::configureUsing(function (LanguageSwitch $switch) {
-            $switch->locales(['es', 'en']);
+            $switch->locales(['es']);
         });
 
+        config(['app.timezone' => 'America/Mexico_City']);
+        $this->site = ConfiguracionSitio::latest()->first();
+
+        config(['app.name' => $this->site->nombre]);
         view()->composer('layout.app', function ($view) {
-            $site = ConfiguracionSitio::latest()->first();
+
             $publicaciones = Categoria::select('name')->where('tipo', 'publicación')->get();
             $colecciones = Categoria::select('name')->where('tipo', 'colección')->get();
-            $view->with('colecciones', $colecciones)->with('publicaciones', $publicaciones)->with('site', $site);
+            $view->with('colecciones', $colecciones)->with('publicaciones', $publicaciones)->with('site', $this->site);
         });
 
         Health::checks([

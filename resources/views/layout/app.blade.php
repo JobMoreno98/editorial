@@ -78,9 +78,10 @@
 
     <header id="header" class="header sticky-top">
         <div class="topbar d-flex align-items-center py-1" style="height: 50px;">
-            <div class="container-fluid  mx-md-5 d-flex justify-content-center justify-content-md-between">
-                <div class="contact-info d-flex align-items-center">
-                    <i class="bi bi-envelope d-flex align-items-center"><a
+            <div class="container-fluid  mx-md-5 d-flex justify-content-center justify-content-md-between "
+                >
+                <div class="contact-info d-flex justify-content-center align-items-center flex-wrap">
+                    <i class="bi bi-envelope d-flex align-items-center my-1"><a
                             href="mailto:{{ $site->email }}">{{ $site->email }}</a></i>
                     <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{ $site->contacto }}</span></i>
                 </div>
@@ -166,7 +167,8 @@
                                 class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas Cientificas</a>
                         </li>
                         @if (isset($site->archivo))
-                            <li><a href="{{ asset('storage/' . $site->archivo) }}" target="_blank">Lineamientos y normas editoriales</a>
+                            <li><a href="{{ asset('storage/' . $site->archivo) }}" target="_blank">Lineamientos y
+                                    normas editoriales</a>
                             </li>
                         @endif
 

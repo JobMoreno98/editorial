@@ -46,7 +46,7 @@ class PublicacionesResource extends Resource
             TextInput::make('slug'),
             
             Repeater::make('autor')->simple(
-                TextInput::make('autor')->required()
+                TextInput::make('autor')
             ),
 
             TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
@@ -84,7 +84,7 @@ class PublicacionesResource extends Resource
                         ->acceptedFileTypes(['application/pdf'])
                         ->openable()
                         ->directory('files')->preserveFilenames()
-                        ->moveFiles()->removeUploadedFileButtonPosition('right'),
+                        ->moveFiles()->removeUploadedFileButtonPosition('left')->maxSize(15000),
                 ])->columnSpan(1)->columns(1),
             ])->columns(2),
 
