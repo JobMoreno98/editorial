@@ -44,7 +44,7 @@ class PublicacionesResource extends Resource
             TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
             TextInput::make('slug'),
-            
+
             Repeater::make('autor')->simple(
                 TextInput::make('autor')
             ),
@@ -56,7 +56,7 @@ class PublicacionesResource extends Resource
 
             //TagsInput::make('coordinadores')->reorderable()->separator(','),
             Repeater::make('coordinadores')->simple(
-                TextInput::make('coordinadores')->required()
+                TextInput::make('coordinadores')
             ),
 
 
@@ -70,7 +70,10 @@ class PublicacionesResource extends Resource
                 ])->columnSpan(1)->columns(1),
 
                 Section::make('Archivos')->schema([
-                    FileUpload::make('imagen')->required()->image()->directory('images')->moveFiles()->imageEditor()
+                    FileUpload::make('imagen')
+                        //->required()
+                        ->image()
+                        ->directory('images')->moveFiles()->imageEditor()
                         ->removeUploadedFileButtonPosition('right')
                         ->imagePreviewHeight('150')
                         ->uploadButtonPosition('left')->imageEditorAspectRatios([
@@ -78,9 +81,9 @@ class PublicacionesResource extends Resource
                             '16:9',
                             '4:3',
                             '1:1',
-                        ]),
+                        ])->preserveFilenames(),
                     FileUpload::make('archivo')
-                        ->required()
+                        //->required()
                         ->acceptedFileTypes(['application/pdf'])
                         ->openable()
                         ->directory('files')->preserveFilenames()
@@ -96,9 +99,9 @@ class PublicacionesResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nombre')->searchable()->words(100)->wrap()->sortable(),
-                TextColumn::make('autor')->searchable()->sortable()->wrap()->badge()->separator(','),
+                TextColumn::make('autor')->searchable()->sortable()->wrap()->toggleable(isToggledHiddenByDefault: true)->badge()->separator(','),
                 TextColumn::make('isbn')->searchable()->sortable()->label('ISBN'),
-                TextColumn::make('coordinadores')->searchable()->toggleable(isToggledHiddenByDefault: true)->badge()->separator(','),
+                TextColumn::make('coordinadores')->searchable()->wrap()->toggleable(isToggledHiddenByDefault: true)->badge()->separator(','),
                 TextColumn::make('anio_publicacion')->sortable()->searchable()->label('Año de Publicación'),
                 TextColumn::make('download')->sortable()->label('Descargas'),
                 ToggleColumn::make('novedad')->onColor('success')->offColor('danger')->toggleable(isToggledHiddenByDefault: false),
@@ -106,6 +109,7 @@ class PublicacionesResource extends Resource
                 TextColumn::make('tipo')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Creado'),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Actualizado'),
+                TextColumn::make('slug')->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Slug'),
             ])
             ->filters([
                 Filter::make('novedad')

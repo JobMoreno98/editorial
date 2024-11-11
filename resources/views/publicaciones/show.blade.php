@@ -20,6 +20,7 @@
                             </a>
                         </div>
                     </div>
+
                     <div class="m-3 text-center text-md-start" data-aos="fade-up" data-aos-delay="50">
                         @if (isset($publicacion->autor))
                             <p>

@@ -24,15 +24,30 @@
                 </div>
                 <div class="col-md-11 d-flex justify-content-evenly flex-wrap">
                     @foreach ($publicaciones_items as $item)
-                        <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center m-1" data-aos="zoom-in"
+                        <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center my-2 mx-1" data-aos="zoom-in"
                             data-aos-delay="50">
                             <div class="member text-center w-100">
                                 <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                     src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid" alt="">
                                 <h6 class="mt-2">{{ Str::limit($item->nombre, 80) }}</h6>
                                 <hr>
-                                <span class="fs-6 text-uppercase"><b>{{ $item->autor }}</b></span>
-                                <p>
+
+                                @php
+                                    if (($key = array_search('', $item->autor->toArray())) !== false) {
+                                        unset($item->autor[$key]);
+                                    }
+
+                                @endphp
+
+                                @if (count($item->autor))
+                                    <span
+                                        class="fs-6 text-uppercase"><b>{{ implode(', ', $item->autor->toArray()) }}</b></span>
+                                @else
+                                    <span
+                                        class="fs-6 text-uppercase"><b>{{ implode(', ', $item->coordinadores->toArray()) }}</b></span>
+                                @endif
+
+                                <p class="text-end">
                                     {{--
                                 <span class="my-1  text-uppercase"><b>ISBN: {{ $item->isbn }}</b></span>
                                 <span class="my-1 text-capitalize"><b>Corrdinadores: {{ $item->coordinadores }}</b></span>
@@ -45,12 +60,15 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="col-sm-12 mt-2" data-aos="zoom-in" data-aos-delay="50">
+                        {{ $publicaciones_items->links() }}
+                    </div>
                 </div>
+
+
             @endif
 
-            <div>
-                {{ $publicaciones_items->links() }}
-            </div>
+
             @if ($publicaciones_items->isEmpty())
                 <div data-aos="fade-up" data-aos-delay="50">
                     <h2>Aun no se han añadido publicaciones a esta categoria, próximamente se añadiran ...</h2>

@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Validator;
 
 class PublicacionesController extends Controller
 {
+
+    public function index(){
+        return redirect()->route('publicaciones.show','todas');
+    }
     public function show($name, $anio = null)
     {
         if (strcmp('todas', $name) != 0) {
@@ -27,7 +31,7 @@ class PublicacionesController extends Controller
                 ->when($anio, function (Builder $query, string $anio) {
                     $query->where('anio_publicacion', $anio);
                 })
-                ->paginate(10);
+                ->paginate(12);
         } else {
             $categoria = new Categoria();
             $categoria->name = 'Todas las publicaciones';
@@ -39,7 +43,7 @@ class PublicacionesController extends Controller
             })
                 ->where('active', true)
                 ->where('tipo', 'publicación')
-                ->paginate(10);
+                ->paginate(12);
             $url = route('publicaciones.show', 'todas');
         }
 
