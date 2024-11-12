@@ -109,7 +109,7 @@ class PublicacionesResource extends Resource
                 TextColumn::make('tipo')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Creado'),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Actualizado'),
-                TextColumn::make('slug')->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Slug'),
+                TextColumn::make('slug')->sortable()->toggleable(isToggledHiddenByDefault: true)->label('Slug')->words(100)->wrap(),
             ])
             ->filters([
                 Filter::make('novedad')
