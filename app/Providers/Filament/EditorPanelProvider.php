@@ -39,13 +39,16 @@ class EditorPanelProvider extends PanelProvider
                 //Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
-                EncryptCookies::class, 
-            AddQueuedCookiesToResponse::class, 
-            StartSession::class, AuthenticateSession::class, 
-            ShareErrorsFromSession::class, VerifyCsrfToken::class, 
-            SubstituteBindings::class, DisableBladeIconComponents::class, 
-            DispatchServingFilamentEvent::class,
-            SetTheme::class
+                EncryptCookies::class,
+                AddQueuedCookiesToResponse::class,
+                StartSession::class,
+                AuthenticateSession::class,
+                ShareErrorsFromSession::class,
+                VerifyCsrfToken::class,
+                SubstituteBindings::class,
+                DisableBladeIconComponents::class,
+                DispatchServingFilamentEvent::class,
+                SetTheme::class
             ])
             ->plugin(
                 BreezyCore::make()

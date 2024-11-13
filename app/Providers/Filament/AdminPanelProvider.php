@@ -3,8 +3,8 @@
 namespace App\Providers\Filament;
 
 use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
-use App\Filament\Resources\CategoriaResource\Widgets\CategoriasOverview;
-use App\Filament\Resources\PublicacionesResource\Widgets\PublicacionesChart;
+use App\Filament\Pages\Backups;
+use App\Filament\Pages\HealthCheckResults as PagesHealthCheckResults;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -22,7 +22,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Jeffgreco13\FilamentBreezy\BreezyCore;
 use ShuvroRoy\FilamentSpatieLaravelBackup\FilamentSpatieLaravelBackupPlugin;
 use ShuvroRoy\FilamentSpatieLaravelHealth\FilamentSpatieLaravelHealthPlugin;
-use ShuvroRoy\FilamentSpatieLaravelHealth\Pages\HealthCheckResults;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -69,9 +69,9 @@ class AdminPanelProvider extends PanelProvider
                     )->enableTwoFactorAuthentication()
             )->spa()
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
-            ->plugin(FilamentSpatieLaravelBackupPlugin::make()->noTimeout())
+            ->plugin(FilamentSpatieLaravelBackupPlugin::make()->noTimeout()->usingPage(Backups::class))
             ->plugin(\Hasnayeen\Themes\ThemesPlugin::make())
-            ->plugin(FilamentSpatieLaravelHealthPlugin::make(HealthCheckResults::class))
+            ->plugin(FilamentSpatieLaravelHealthPlugin::make()->usingPage(PagesHealthCheckResults::class))
             ->unsavedChangesAlerts()->sidebarCollapsibleOnDesktop()
             ->resources([
                 config('filament-logger.activity_resource')
