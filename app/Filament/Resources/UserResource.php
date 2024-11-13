@@ -50,7 +50,7 @@ class UserResource extends Resource
                     Forms\Components\DateTimePicker::make('email_verified_at')->hiddenOn(['create', 'edit']),
                     Forms\Components\TextInput::make('password')
                         ->password()
-                        ->required()->hiddenOn(['edit', 'view'])
+                        ->required(fn (string $context): bool => $context === 'create')->hiddenOn(['view'])
                         ->maxLength(255),
                     Select::make('roles')->relationship('roles', 'name')->hidden(! auth()->user()->hasRole('Super Admin')),
                 ])->columns(2),
