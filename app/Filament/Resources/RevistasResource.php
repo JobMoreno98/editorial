@@ -7,6 +7,7 @@ use App\Filament\Resources\RevistasResource\RelationManagers;
 use App\Models\Revistas;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,6 +20,10 @@ class RevistasResource extends Resource
     protected static ?string $model = Revistas::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+
+    protected static ?string $title = 'Difusión';
+    protected static ?string $navigationLabel = 'Difusión';
+
     public static function getNavigationGroup(): ?string
     {
         return __('Content');
@@ -30,13 +35,17 @@ class RevistasResource extends Resource
                 Forms\Components\TextInput::make('nombre')
                     ->required()
                     ->maxLength(255),
+                Select::make('tipo')->options([
+                    'Revista' => 'Revista',
+                    'Catedra' => 'Catedra'
+                ])->required(),
                 Forms\Components\TextInput::make('url')
                     ->required()
                     ->maxLength(255)->url(),
                 Forms\Components\Textarea::make('descripcion')
                     ->required()
                     ->autosize(),
-                FileUpload::make('image')->directory('revistas')->required()->imageEditor()->imageCropAspectRatio('1:1'),
+                FileUpload::make('image')->label('Imagen')->directory('revistas')->required()->imageEditor()->imageCropAspectRatio('1:1'),
             ]);
     }
 

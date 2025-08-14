@@ -27,7 +27,7 @@
             <div class="row gy-4">
                 <div class="col-lg-6" style="text-align: justify" data-aos="zoom-in" data-aos-delay="50">
                     <h3>Voluptatem dignissimos provident laboris nisi ut aliquip ex ea commodo</h3>
-                    <img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">
+                    <!--<img src="assets/img/about.jpg" class="img-fluid rounded-4 mb-4" alt="">-->
                     <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat
                         debitis quia recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur
                         fugiat voluptas ea.</p>
@@ -141,11 +141,9 @@
 
         </section>
     @endif
-
-
     <section id="call-to-action" class="call-to-action section dark-background m-2">
         <div class="container">
-            <img src="https://picsum.photos/1250/500" alt="">
+            <img src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}" alt="">
             <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                 <div class="col-xl-10">
                     <div class="text-center">

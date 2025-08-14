@@ -77,6 +77,7 @@
 <body class="index-page">
 
     <header id="header" class="header sticky-top">
+        {{--  
         <div class="topbar d-flex align-items-center py-1" style="height: 50px;">
             <div class="container-fluid  mx-md-5 d-flex justify-content-center justify-content-md-between "
                 >
@@ -94,24 +95,24 @@
                                 type="submit"><i class="bi bi-search"></i></button>
                         </div>
                     </form>
-                    {{--
+                    
                     <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
                     <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                     <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                    --}}
+                  
                 </div>
             </div>
-        </div><!-- End Top Bar -->
-
+        </div>
+--}}
         <div class="branding d-flex align-items-cente">
 
-            <div class="container-fluid mx-md-5 position-relative d-flex align-items-center justify-content-between">
-                <a href="{{ route('home') }}" class="logo d-flex align-items-center">
+            <div
+                class="container-fluid mx-md-5 position-relative d-flex flex-column align-items-center justify-content-between">
+                <a href="{{ route('home') }}" class="logo d-flex align-items-center ">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 class="sitename text-uppercase">{{ $site->nombre }}</h1>
-                    <span>.</span>
+                    <h1 class="sitename text-uppercase text-center">{{ $site->nombre }}</h1>
                 </a>
                 <nav id="navmenu" class="navmenu">
                     <ul>
@@ -131,8 +132,10 @@
                         <li><a href="{{ route('directorio') }}"
                                 class="{{ Route::is('directorio') ? 'active' : '' }}">{{ __('Directory') }}</a></li>
 
+                        {{--  
                         <li><a href="{{ route('consejo.editorial') }}"
                                 class="{{ Route::is('consejo.editorial') ? 'active' : '' }}">Consejo Editorial</a></li>
+                        --}}
 
                         @if (!$publicaciones->isEmpty())
                             <li class="dropdown">
@@ -171,6 +174,18 @@
                                     normas editoriales</a>
                             </li>
                         @endif
+                        <li>
+                            <form action="{{ route('buscador') }}" class="fs-6" method="get">
+                                @method('GET')
+                                @csrf
+                                <div class="d-flex p-2">
+                                    <input type="text" name="buscar" class="m-1 p-1 form-control"
+                                        placeholder="Buscar" required>
+                                    <button class="btn btn-sm btn-secoundary border-white my-1 py-1 text-white"
+                                        type="submit"><i class="bi bi-search"></i></button>
+                                </div>
+                            </form>
+                        </li>
 
                     </ul>
                     <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

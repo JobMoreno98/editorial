@@ -30,11 +30,11 @@ class CategoriaResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('name')->label('Nombre')
                     ->required()
                     ->maxLength(255),
                 Select::make('tipo')->options(['publicación' => 'Publicación', 'colección' => 'Colección'])->required(),
-                Textarea::make('descripcion')
+                Textarea::make('descripcion')->label('Descripción')
                     ->maxLength(255)->columnSpanFull()->autosize(),
             ])->columns(2);
     }
@@ -43,9 +43,9 @@ class CategoriaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('name')->label('Nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('descripcion')
+                Tables\Columns\TextColumn::make('descripcion')->wrap()->label('Descripción')
                     ->searchable(),
                 TextColumn::make('tipo')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('created_at')

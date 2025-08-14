@@ -16,7 +16,7 @@ class ListConfiguracionSitios extends ListRecords
         $site = ConfiguracionSitio::count();
         if($site==0){
             return [
-                Actions\CreateAction::make(),
+                Actions\CreateAction::make()->label('Agregar'),
             ];
         }
         return [];

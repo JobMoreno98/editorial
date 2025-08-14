@@ -5,6 +5,7 @@ namespace App\Filament\Resources\RevistasResource\Pages;
 use App\Filament\Resources\RevistasResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Contracts\Support\Htmlable;
 
 class EditRevistas extends EditRecord
 {
@@ -15,5 +16,11 @@ class EditRevistas extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    public function getTitle(): string|Htmlable
+    {
+        $nombre = $this->record->nombre ?? 'Registro';
+        return "Editar {$nombre}";
     }
 }

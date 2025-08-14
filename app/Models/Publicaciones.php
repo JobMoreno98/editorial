@@ -30,15 +30,13 @@ class Publicaciones extends Model
     protected function nombre(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => ucwords($value),
             set: fn (string $value) => ucwords($value),
         );
     }
 /*
     protected function coordinadores(): Attribute
     {
-        return Attribute::make(
-            get: fn (string $value) => ucfirst($value),
+        return Attribute::make(          
             set: fn (string $value) => ucfirst($value),
         );
     }
@@ -48,9 +46,30 @@ class Publicaciones extends Model
         return [
             'nombre' => $this->nombre,
             'autor' => $this->autor,
-            'coordinadores' => $this->coordinadores,
+            'coordinadores' => $this->normalizeArray($this->coordinadores),
             'descripcion' => $this->descripcion,
             'anio_publicacion' => $this->anio_publicacion,
         ];
     }
+private function normalize($value)
+{
+    if (is_string($value)) {
+        return iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $value);
+    }
+
+    return $value;
+}
+private function normalizeArray($json)
+{
+    $decoded = json_decode($json, true); // decodifica el array JSON
+    if (!is_array($decoded)) {
+        return $this->normalize($json); // si no es array, intenta normalizar como string
+    }
+
+    $normalized = array_map(function ($item) {
+        return $this->normalize($item);
+    }, $decoded);
+
+    return implode(', ', $normalized); // unir en un string para búsqueda
+}
 }

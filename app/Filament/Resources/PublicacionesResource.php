@@ -87,7 +87,7 @@ class PublicacionesResource extends Resource
                         ->acceptedFileTypes(['application/pdf'])
                         ->openable()
                         ->directory('files')->preserveFilenames()
-                        ->moveFiles()->removeUploadedFileButtonPosition('left')->maxSize(15000),
+                        ->moveFiles()->removeUploadedFileButtonPosition('left')->maxSize(128000),
                 ])->columnSpan(1)->columns(1),
             ])->columns(2),
 

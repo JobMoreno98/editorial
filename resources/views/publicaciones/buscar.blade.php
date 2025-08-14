@@ -18,10 +18,24 @@
                         <div class="text-start w-100 mx-3">
                             <p>
                                 <span class="fs-5 text-uppercase">{{ $item->nombre }}</span> <br>
-                                <span class="fs-5 text-uppercase"><b>{{ $item->autor }}</b></span><br>
+                                @if (count($item->autor) > 0)
+                                    <span class="fs-5 text-uppercase"><b>{{ $item->autor }}</b></span><br>
+                                @endif
+
                                 <span class="my-1  text-uppercase"><b>ISBN: {{ $item->isbn }}</b></span><br>
-                                <span class="my-1 text-capitalize"><b>Corrdinadores:
-                                        {{ $item->coordinadores }}</b></span><br>
+
+                                @php
+                                    $coordinadores = json_decode($item->coordinadores, true);
+                                @endphp
+
+                                <span class="my-1 text-capitalize"><b>
+
+                                        @if (is_array($coordinadores))
+                                            Coordinadores: {{ implode(', ', $coordinadores) }}
+                                        @else
+                                            Coordinadores: {{ $item->coordinadores }}
+                                        @endif
+                                    </b></span><br>
                                 <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
                             </p>
                             <p class="text-end">
