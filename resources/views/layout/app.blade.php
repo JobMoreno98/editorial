@@ -148,6 +148,10 @@
                                                 href="{{ route('publicaciones.show', $item->name) }}">{{ $item->name }}</a>
                                         </li>
                                     @endforeach
+                                    <li><a href="{{ route('revistas.index') }}"
+                                            class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas
+                                            Cientificas</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif
@@ -166,15 +170,13 @@
                             </li>
                         @endif
 
-                        <li><a href="{{ route('revistas.index') }}"
-                                class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas Cientificas</a>
-                        </li>
+
                         @if (isset($site->archivo))
                             <li><a href="{{ asset('storage/' . $site->archivo) }}" target="_blank">Lineamientos y
                                     normas editoriales</a>
                             </li>
                         @endif
-                        <li>
+                        <li class="d-none d-md-block">
                             <form action="{{ route('buscador') }}" class="fs-6" method="get">
                                 @method('GET')
                                 @csrf

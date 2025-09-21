@@ -19,23 +19,26 @@
                             <p>
                                 <span class="fs-5 text-uppercase">{{ $item->nombre }}</span> <br>
                                 @if (count($item->autor) > 0)
-                                    <span class="fs-5 text-uppercase"><b>{{ $item->autor }}</b></span><br>
+                                    <span class="fs-5  text-uppercase"><b>Autores -
+                                            {{ implode(', ', $item->autor->toArray()) }}</b></span>
                                 @endif
+                                @if (count($item->coordinadores) > 0)
+                                    <span class="my-1  text-uppercase"><b>ISBN: {{ $item->isbn }}</b></span><br>
 
-                                <span class="my-1  text-uppercase"><b>ISBN: {{ $item->isbn }}</b></span><br>
+                                    @php
+                                        $coordinadores = json_decode($item->coordinadores, true);
+                                    @endphp
 
-                                @php
-                                    $coordinadores = json_decode($item->coordinadores, true);
-                                @endphp
+                                    <span class="my-1 text-capitalize"><b>
 
-                                <span class="my-1 text-capitalize"><b>
-
-                                        @if (is_array($coordinadores))
-                                            Coordinadores: {{ implode(', ', $coordinadores) }}
-                                        @else
-                                            Coordinadores: {{ $item->coordinadores }}
-                                        @endif
-                                    </b></span><br>
+                                            @if (is_array($coordinadores))
+                                                Coordinadores: {{ implode(', ', $coordinadores) }}
+                                            @else
+                                                Coordinadores: {{ $item->coordinadores }}
+                                            @endif
+                                        </b></span>
+                                @endif
+                                <br>
                                 <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
                             </p>
                             <p class="text-end">

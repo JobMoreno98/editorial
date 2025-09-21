@@ -22,13 +22,13 @@
                     </div>
 
                     <div class="m-3 text-center text-md-start" data-aos="fade-up" data-aos-delay="50">
-                        @if (count($publicacion->autor)>0)
+                        @if (count($publicacion->autor) > 0)
                             <p>
                                 <span class="fs-5  text-uppercase"><b>Autores -
                                         {{ implode(', ', $publicacion->autor->toArray()) }}</b></span>
                             </p>
                         @endif
-                        @if (isset($publicacion->coordinadores))
+                        @if (count($publicacion->coordinadores) > 0)
                             <p>
                                 <span class="fs-5  text-uppercase"><b>Corrdinadores:
                                         {{ implode(', ', $publicacion->coordinadores->toArray()) }}</b></span>
