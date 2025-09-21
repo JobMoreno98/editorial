@@ -70,6 +70,6 @@ class Publicaciones extends Model
             return $this->normalize($item);
         }, $decoded);
 
-        return implode(', ', $normalized); // unir en un string para b�squeda
+        return implode(', ', $normalized); // unir en un string para busqueda
     }
 }

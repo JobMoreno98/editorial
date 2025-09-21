@@ -8,7 +8,7 @@
         <div class="container section-title " data-aos="fade-up">
             <h2 class="text-uppercase">{{ $tipo . 's' }}</h2>
         </div><!-- End Section Title -->
-        <div class="container d-flex flex-column flex-xl-row justify-content-center">
+        <div class=" d-flex flex-wrap justify-content-center">
             @foreach ($revistas as $item)
                 <div class="col-sm-12 col-md-4 d-flex m-1 justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                     <div class="member d-flex w-100 flex-column flex-xl-row  align-items-center justify-content-md-start">

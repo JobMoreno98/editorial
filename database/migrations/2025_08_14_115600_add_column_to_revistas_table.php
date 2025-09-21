@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::table('revistas', function (Blueprint $table) {
             $table->enum('tipo',['Revista','Catedra']);
-            $table->boolean('active')->default(true);
         });
     }
 
