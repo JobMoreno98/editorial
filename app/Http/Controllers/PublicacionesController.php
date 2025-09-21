@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actividades;
 use App\Models\Categoria;
+use App\Models\Contenidos;
 use App\Models\Descargas;
 use App\Models\Publicaciones;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -14,8 +16,9 @@ use Illuminate\Support\Facades\Validator;
 class PublicacionesController extends Controller
 {
 
-    public function index(){
-        return redirect()->route('publicaciones.show','todas');
+    public function index()
+    {
+        return redirect()->route('publicaciones.show', 'todas');
     }
     public function show($name, $anio = null)
     {
@@ -107,18 +110,24 @@ class PublicacionesController extends Controller
         $url = route('publicaciones.colecciones', 'todas');
         return view('publicaciones.index', compact('publicaciones_items', 'categoria', 'anios', 'url'));
     }
+
     public function buscador(HttpRequest $request)
     {
         $validator = Validator::make($request->all(), [
             'buscar' => 'required|min:3',
         ]);
+
         if ($validator->fails()) {
             return back()
                 ->with('errors', $validator->messages()->all()[0])
                 ->withInput();
         }
-        $result = Publicaciones::search($request->buscar)->paginate(10);
+
         $buscado = $request->buscar;
-        return view('publicaciones.buscar', compact('result', 'buscado'));
+
+        // Búsqueda en el modelo unificado
+        $resultados = Contenidos::search($buscado)->paginate(10);
+
+        return view('publicaciones.buscar', compact('resultados', 'buscado'));
     }
 }

@@ -13,12 +13,21 @@ class ActividadesController extends Controller
     public function index($tipo = 'Noticias')
     {
         $actividades = Actividades::where('tipo', $tipo)->where('active', true)->paginate(10);
-        return view('actividades.index', compact('actividades','tipo'));
+        return view('actividades.index', compact('actividades', 'tipo'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
+
+    public function ver_actividad($tipo, $slug = '')
+    {
+        $actividad = Actividades::where('slug', $slug)->where('tipo', $tipo)->first();
+        if (!isset($actividad->nombre)) {
+            return abort(404);
+        }
+        return view('actividades.show', compact('actividad'));
+    }
     public function create()
     {
         //

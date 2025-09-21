@@ -73,8 +73,8 @@
 
         .fecha {
             background-color: {{ $site->background_color }} !important;
-            color: {{ $site->nav_color }}  !important;
-            padding:5px;
+            color: {{ $site->nav_color }} !important;
+            padding: 5px;
         }
     </style>
 

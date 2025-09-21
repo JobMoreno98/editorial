@@ -9,4 +9,6 @@ class Revistas extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+
 }

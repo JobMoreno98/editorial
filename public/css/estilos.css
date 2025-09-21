@@ -1,3 +1,4 @@
+
 @media(max-width:1100px) {
     .img-banner {
         height: 110px !important;
@@ -15,6 +16,7 @@
         margin: 0px;
     }
 }
+
 
 @media(min-width:1101px) {
     .banner {

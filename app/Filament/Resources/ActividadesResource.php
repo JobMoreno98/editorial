@@ -8,6 +8,7 @@ use App\Models\Actividades;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
@@ -16,6 +17,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Set;
+use Illuminate\Support\Str;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class ActividadesResource extends Resource
 {
@@ -39,19 +43,23 @@ class ActividadesResource extends Resource
                     ->directory('noticias')
                     ->alignCenter()->imageResizeMode('cover')
                     ->columnSpanFull(),
-                TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
-                DatePicker::make('fecha')
-                    ->required(),
-                TextInput::make('lugar')
-                    ->required()
-                    ->maxLength(255),
+                TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
+                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
+                TextInput::make('slug'),
 
-                Select::make('tipo')->options([
-                    'Evento' => 'Evento',
-                    'Noticia' => 'Noticia'
-                ])->required(),
+                Section::make()->schema([
+                    DatePicker::make('fecha')
+                        ->required(),
+                    TextInput::make('lugar')
+                        ->required()
+                        ->maxLength(255),
+
+                    Select::make('tipo')->options([
+                        'Evento' => 'Evento',
+                        'Noticia' => 'Noticia'
+                    ])->required(),
+                ])->columns(3),
+                TinyEditor::make('descripcion')->required()->columnSpanFull()->language('es_MX'),
             ]);
     }
 

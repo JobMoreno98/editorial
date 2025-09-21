@@ -21,7 +21,7 @@
             <p style="text-align: justify">{!! isset($site->about) ? $site->about : 'Aquí va la descripción de la página' !!}</p>
         </div><!-- End Section Title -->
 
-
+        {{--  
         <div class="container">
 
             <div class="row gy-4">
@@ -63,7 +63,7 @@
             </div>
 
         </div>
-
+--}}
     </section><!-- /About Section -->
     @if (!$novedades->isEmpty())
         <section id="novedades" class="novedades section">
@@ -141,9 +141,11 @@
 
         </section>
     @endif
+
     <section id="call-to-action" class="call-to-action section dark-background m-2">
         <div class="container">
-            <img src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
+            <img class="w-100" style="object-fit: contain;"
+                src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
                 alt="">
             <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                 <div class="col-xl-10">
@@ -153,14 +155,13 @@
                         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                             nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
                             officia deserunt mollit anim id est laborum.</p>
-                        <a class="cta-btn" href="#">Call To Action</a>
                     </div>
                 </div>
             </div>
         </div>
 
     </section>
-
+    {{--  
     <section id="services" class="services section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Our Services</h2>
@@ -250,7 +251,7 @@
         </div>
 
     </section><!-- /Services Section -->
-
+--}}
     <!-- Faq Section -->
     <section id="faq" class="faq section">
         <div class="container">

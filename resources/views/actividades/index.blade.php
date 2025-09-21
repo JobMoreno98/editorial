@@ -23,9 +23,9 @@
                             </div>
                             <div class="mx-3 text-center text-md-start">
                                 <h4>{{ $item->nombre }}</h4>
-                            <span><a href="{{ route('ver-publicacion', $item->slug) }}"
-                                            class="btn btn-sm btn-primary mt-1">Ver
-                                            más</a></span>
+                                <span><a href="{{ route('ver-actividad', ['tipo' => $tipo, 'slug' => $item->slug]) }}"
+                                        class="btn btn-sm btn-primary mt-1">Ver
+                                        más</a></span>
                             </div>
 
                         </div>

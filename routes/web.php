@@ -41,6 +41,8 @@ Route::middleware([TrackVisitors::class])->group(function () {
 
     Route::get('/actividades/{tipo}', [ActividadesController::class, 'index'])->name('actividades.index');
 
+    Route::get('/actividades/{tipo}/{slug}', [ActividadesController::class, 'ver_actividad'])->name('ver-actividad');
+
 });
 
 Livewire::setUpdateRoute(function ($handle) {

@@ -8,12 +8,15 @@ use App\Models\Revistas;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Set;
+use Illuminate\Support\Str;
 
 class RevistasResource extends Resource
 {
@@ -32,9 +35,13 @@ class RevistasResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nombre')
-                    ->required()
-                    ->maxLength(255),
+                FileUpload::make('image')->label('Imagen')
+                ->directory('revistas')->required()
+                ->imageEditor()->avatar()->columnSpanFull()->alignCenter()
+                ->imageCropAspectRatio('1:1'),
+                TextInput::make('nombre')->required()
+                ->maxLength(255)
+                ->autocapitalize('words'),
                 Select::make('tipo')->options([
                     'Revista' => 'Revista',
                     'Catedra' => 'Catedra'
@@ -45,7 +52,7 @@ class RevistasResource extends Resource
                 Forms\Components\Textarea::make('descripcion')
                     ->required()
                     ->autosize(),
-                FileUpload::make('image')->label('Imagen')->directory('revistas')->required()->imageEditor()->imageCropAspectRatio('1:1'),
+
             ]);
     }
 
