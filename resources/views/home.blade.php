@@ -143,7 +143,8 @@
     @endif
     <section id="call-to-action" class="call-to-action section dark-background m-2">
         <div class="container">
-            <img src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}" alt="">
+            <img src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
+                alt="">
             <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                 <div class="col-xl-10">
                     <div class="text-center">
@@ -267,55 +268,21 @@
                 <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
 
                     <div class="faq-container">
-                        <div class="faq-item ">
-                            <h3><span class="num">1.</span> <span>Pregunta 1 ?</span></h3>
-                            <div class="faq-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit.</p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3><span class="num">2.</span> <span>Pregunta 2 ?</span></h3>
-                            <div class="faq-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit.</p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3><span class="num">3.</span> <span>Pregunta 3 ?</span></h3>
-                            <div class="faq-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                </p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3><span class="num">4.</span> <span>Pregunta 4 ?</span></h3>
-                            <div class="faq-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit.</p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
-                        <div class="faq-item">
-                            <h3><span class="num">5.</span> <span>Pregunta 5 ?</span></h3>
-                            <div class="faq-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                                </p>
-                            </div>
-                            <i class="faq-toggle bi bi-chevron-right"></i>
-                        </div><!-- End Faq item-->
-
+                        @if (isset($preguntas))
+                            @foreach ($preguntas as $item)
+                                <div class="faq-item ">
+                                    <h3><span class="num">1.</span> <span>{{ $item->pregunta }}</span></h3>
+                                    <div class="faq-content">
+                                        <p>{{ $item->respuesta }}
+                                        </p>
+                                    </div>
+                                    <i class="faq-toggle bi bi-chevron-right"></i>
+                                </div><!-- End Faq item-->
+                            @endforeach
+                        @else
+                            <p>Aun no se registran preguntas</p>
+                        @endif
                     </div>
-
                 </div>
             </div>
 

@@ -19,7 +19,7 @@ class TrackVisitors
         $ip = $request->ip();
         $userAgent = $request->userAgent();
 
-        // Verificar si ya hay un registro reciente de esta IP (últimos 5 minutos)
+        // Verificar si ya hay un registro reciente de esta IP (Ultimos 5 minutos)
         $exists = Visitor::where('ip_address', $ip)
             ->where('user_agent', $userAgent)
             ->where('created_at', '>=', Carbon::now()->subMinutes(5))

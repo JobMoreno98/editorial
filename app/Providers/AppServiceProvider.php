@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Actividades;
 use App\Models\Categoria;
 use App\Models\ConfiguracionSitio;
 use BezhanSalleh\FilamentLanguageSwitch\LanguageSwitch;
@@ -54,21 +55,18 @@ class AppServiceProvider extends ServiceProvider
 
         config(['app.name' => $this->site->nombre]);
         view()->composer('layout.app', function ($view) {
-
             $publicaciones = Categoria::select('name')->where('tipo', 'publicación')->get();
             $colecciones = Categoria::select('name')->where('tipo', 'colección')->get();
-            $view->with('colecciones', $colecciones)->with('publicaciones', $publicaciones)->with('site', $this->site);
+            $noticias = Actividades::where('tipo', 'Noticia')->where('active', true)->count();
+            $eventos = Actividades::where('tipo', 'Evento')->where('active', true)->count();
+            $view->with('colecciones', $colecciones)
+            ->with('publicaciones', $publicaciones)
+            ->with('site', $this->site)
+            ->with('noticias', $noticias)
+            ->with('eventos',$eventos);
         });
 
-        Health::checks([
-            OptimizedAppCheck::new(),
-            DebugModeCheck::new(),
-            EnvironmentCheck::new(),
-            DatabaseCheck::new(),
-            SecurityAdvisoriesCheck::new(),
-            DatabaseSizeCheck::new()
-                ->failWhenSizeAboveGb(errorThresholdGb: 5.0),
-        ]);
+        Health::checks([OptimizedAppCheck::new(), DebugModeCheck::new(), EnvironmentCheck::new(), DatabaseCheck::new(), SecurityAdvisoriesCheck::new(), DatabaseSizeCheck::new()->failWhenSizeAboveGb(errorThresholdGb: 5.0)]);
         Gate::policy(FilamentSpatieLaravelBackup::class, BackupsPolicy::class);
         Gate::policy(Activity::class, ActivityPolicy::class);
     }

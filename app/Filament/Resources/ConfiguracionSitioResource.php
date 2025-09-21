@@ -72,7 +72,7 @@ class ConfiguracionSitioResource extends Resource
                         ->rgb()->default("#e2e2e2"),
                 ])->columns(3),
                 Section::make('Lineamientos Editoriales')->schema([
-                    FileUpload::make('archivo')->required()
+                    FileUpload::make('archivo')
                         ->acceptedFileTypes(['application/pdf'])
                         ->openable()
                         ->directory('files')

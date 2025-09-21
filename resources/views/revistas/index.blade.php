@@ -6,11 +6,10 @@
     <section id="team" class="team section ">
         <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
-            <h2>Revistas Cientificas</h2>
+            <h2 class="text-uppercase">{{ $tipo."s" }}</h2>
         </div><!-- End Section Title -->
 
-        <div class="container">
-            <div class="row gy-4 d-flex justify-content-center">
+k            <div class="row gy-4 d-flex justify-content-center">
                 @foreach ($revistas as $item)
                     <div class="col-sm-12 col-md-6 d-flex  justify-content-center" data-aos="zoom-in" data-aos-delay="50">
                         <div
@@ -25,7 +24,7 @@
                                     <b>Reseña</b> <br> {{ $item->descripcion }}
                                 </p>
                                 <p class="text-end">
-                                    <a href="{{ $item->url }}" class="btn btn-sm btn-primary">Visitar</a>
+                                    <a target="_blank" href="{{ $item->url }}" class="btn btn-sm btn-primary">Visitar</a>
                                 </p>
                             </div>
                         </div>

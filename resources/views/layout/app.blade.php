@@ -70,6 +70,12 @@
         .sticky-bottom {
             z-index: 900 !important;
         }
+
+        .fecha {
+            background-color: {{ $site->background_color }} !important;
+            color: {{ $site->nav_color }}  !important;
+            padding:5px;
+        }
     </style>
 
 </head>
@@ -132,29 +138,45 @@
                         <li><a href="{{ route('directorio') }}"
                                 class="{{ Route::is('directorio') ? 'active' : '' }}">{{ __('Directory') }}</a></li>
 
+                        @if ($noticias > 0)
+                            <li><a href="{{ route('actividades.index', 'Noticia') }}"
+                                    class="{{ request()->route('tipo') === 'Noticia' ? 'active' : '' }}"">Noticias</a>
+                            </li>
+                        @endif
+                        @if ($eventos > 0)
+                            <li><a href="{{ route('actividades.index', 'Evento') }}"
+                                    class="{{ request()->route('tipo') === 'Evento' ? 'active' : '' }}">Eventos</a>
+                            </li>
+                        @endif
+
                         {{--  
                         <li><a href="{{ route('consejo.editorial') }}"
                                 class="{{ Route::is('consejo.editorial') ? 'active' : '' }}">Consejo Editorial</a></li>
                         --}}
 
-                        @if (!$publicaciones->isEmpty())
-                            <li class="dropdown">
-                                <a href="{{ route('publicaciones.show', 'todas') }}"
-                                    class="{{ Route::is('publicaciones.show') ? 'active' : '' }}"><span>Publicaciones</span>
-                                    <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                                <ul>
+
+                        <li class="dropdown">
+                            <a href="{{ route('publicaciones.show', 'todas') }}"
+                                class="{{ Route::is('publicaciones.show') ? 'active' : '' }}"><span>Publicaciones</span>
+                                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                @if (!$publicaciones->isEmpty())
                                     @foreach ($publicaciones as $item)
                                         <li><a
                                                 href="{{ route('publicaciones.show', $item->name) }}">{{ $item->name }}</a>
                                         </li>
                                     @endforeach
-                                    <li><a href="{{ route('revistas.index') }}"
-                                            class="{{ Route::is('revistas.index') ? 'active' : '' }}">Revistas
-                                            Cientificas</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
+                                @endif
+                                <li><a href="{{ route('difucion.index', 'Revista') }}"
+                                        class="{{ Route::is('difucion.index') ? 'active' : '' }}">Revistas
+                                        Cientificas</a>
+                                </li>
+                                <li><a href="{{ route('difucion.index', 'Catedra') }}"
+                                        class="{{ Route::is('difucion.index') ? 'active' : '' }}">Catedras</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         @if (!$colecciones->isEmpty())
                             <li class="dropdown">
                                 <a href="{{ route('publicaciones.colecciones', 'todas') }}"

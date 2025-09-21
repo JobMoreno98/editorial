@@ -5,6 +5,7 @@ namespace App\Filament\Resources\ComiteResource\Pages;
 use App\Filament\Resources\ComiteResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Contracts\Support\Htmlable;
 
 class EditComite extends EditRecord
 {
@@ -15,5 +16,10 @@ class EditComite extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+        public function getTitle(): string|Htmlable
+    {
+        $nombre = $this->record->nombre ?? 'Registro';
+        return "Editar {$nombre}";
     }
 }

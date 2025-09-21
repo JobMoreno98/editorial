@@ -23,10 +23,22 @@ class ActividadesResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                FileUpload::make('imagen')->image()
+                    ->required()
+                    ->imageEditor()
+                    ->directory('noticias')
+                    ->alignCenter()->imageResizeMode('cover')
+                    ->columnSpanFull(),
                 TextInput::make('nombre')
                     ->required()
                     ->maxLength(255),
@@ -35,7 +47,7 @@ class ActividadesResource extends Resource
                 TextInput::make('lugar')
                     ->required()
                     ->maxLength(255),
-                FileUpload::make('imagen')->image(),
+
                 Select::make('tipo')->options([
                     'Evento' => 'Evento',
                     'Noticia' => 'Noticia'
@@ -53,8 +65,6 @@ class ActividadesResource extends Resource
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lugar')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('imagen')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tipo'),
                 Tables\Columns\TextColumn::make('created_at')

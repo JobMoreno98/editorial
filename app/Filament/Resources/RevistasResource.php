@@ -41,7 +41,7 @@ class RevistasResource extends Resource
                 ])->required(),
                 Forms\Components\TextInput::make('url')
                     ->required()
-                    ->maxLength(255)->url(),
+                    ->maxLength(255)->url()->label('URL'),
                 Forms\Components\Textarea::make('descripcion')
                     ->required()
                     ->autosize(),

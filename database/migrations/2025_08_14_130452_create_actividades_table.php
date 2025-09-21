@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('lugar');
             $table->string('imagen');
             $table->enum('tipo', ['Noticia', 'Evento']);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

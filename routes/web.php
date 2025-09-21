@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PublicacionesController;
 use App\Http\Controllers\RevistasController;
@@ -32,12 +33,16 @@ Route::middleware([TrackVisitors::class])->group(function () {
 
     Route::get('/colecciones/{colecciones}/{anio?}', [PublicacionesController::class, 'colecciones'])->name('publicaciones.colecciones');
 
-    Route::get('/revistas-cientificas', [RevistasController::class, 'index'])->name('revistas.index');
+    Route::get('/difucion/{tipo}', [RevistasController::class, 'index'])->name('difucion.index');
 
     Route::get('/download/{file}', [PublicacionesController::class, 'getFile'])->name('ver-archivo');
 
     Route::get('/buscador', [PublicacionesController::class, 'buscador'])->name('buscador');
+
+    Route::get('/actividades/{tipo}', [ActividadesController::class, 'index'])->name('actividades.index');
+
 });
+
 Livewire::setUpdateRoute(function ($handle) {
     return Route::post('/editorial/public/livewire/update', $handle);
 });

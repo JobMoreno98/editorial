@@ -6,6 +6,8 @@ use App\Filament\Resources\PreguntasResource\Pages;
 use App\Filament\Resources\PreguntasResource\RelationManagers;
 use App\Models\Preguntas;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -19,47 +21,33 @@ class PreguntasResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Content');
+    }
+
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('pregunta')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('respuesta')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        return $form->schema([
+            TextInput::make('pregunta')->required()->maxLength(255),
+            Textarea::make('respuesta')->required()->autosize()
+        ])->columns(1);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('pregunta')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('respuesta')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('pregunta')->searchable()->wrap(),
+                Tables\Columns\TextColumn::make('respuesta')->searchable()->wrap()->words(50),
+                Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->actions([Tables\Actions\EditAction::make()])
+            ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
     }
 
     public static function getRelations(): array
