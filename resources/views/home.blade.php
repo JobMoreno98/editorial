@@ -110,7 +110,7 @@
                             <div class=" swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-between"
                                 style="min-width:250px;min-height:500px;">
                                 <div class=" h-100 text-center w-100">
-                                    <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
+                                    <img style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                         src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded"
                                         alt="">
                                     <div class="fs-6">
