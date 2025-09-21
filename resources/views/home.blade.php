@@ -75,9 +75,6 @@
         {
           "loop": true,
           "speed": 600,
-          "autoplay": {
-            "delay": 5000
-          },
           "slidesPerView": "auto",
           "pagination": {
             "el": ".swiper-pagination",
@@ -110,14 +107,14 @@
       </script>
                     <div class="swiper-wrapper align-items-center">
                         @foreach ($novedades as $item)
-                            <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-around"
+                            <div class=" swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-between"
                                 style="min-width:250px;min-height:500px;">
-                                <div class="member text-center w-100">
+                                <div class=" h-100 text-center w-100">
                                     <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                         src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded"
                                         alt="">
                                     <div class="fs-6">
-                                        <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 80) }}</h6>
+                                        <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 50) }}</h6>
                                         <hr>
                                         <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
                                     </div>
@@ -144,7 +141,7 @@
 
     <section id="call-to-action" class="call-to-action section dark-background m-2">
         <div class="container">
-            <img class="w-100" style="object-fit: contain;"
+            <img class="w-100" style="object-fit: unset;"
                 src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
                 alt="">
             <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="50">
@@ -259,10 +256,12 @@
                 <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="50">
                     <div class="content px-xl-5">
                         <h3><span>Preguntas</span><strong><br>frecuentes</strong></h3>
+                        {{--  
                         <p style="text-align: justify">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
                         </p>
+                        --}}
                     </div>
                 </div>
 
@@ -272,10 +271,9 @@
                         @if (isset($preguntas))
                             @foreach ($preguntas as $item)
                                 <div class="faq-item ">
-                                    <h3><span class="num">1.</span> <span>{{ $item->pregunta }}</span></h3>
+                                    <h3><span class="num"></span> <span>{{ $item->pregunta }}</span></h3>
                                     <div class="faq-content">
-                                        <p>{{ $item->respuesta }}
-                                        </p>
+                                        {!! str($item->respuesta)->markdown()->sanitizeHtml() !!}
                                     </div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div><!-- End Faq item-->

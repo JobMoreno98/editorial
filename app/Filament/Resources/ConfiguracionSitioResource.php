@@ -13,6 +13,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class ConfiguracionSitioResource extends Resource
@@ -42,7 +43,10 @@ class ConfiguracionSitioResource extends Resource
                     FileUpload::make('image_banner')
                         ->image()
                         ->imageEditor()
-                        ->imageCropAspectRatio('16:3')->columnSpanFull(),
+                        ->imageCropAspectRatio('16:3')->columnSpanFull()->getUploadedFileNameForStorageUsing(
+                            fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                                ->prepend('banner-'),
+                        ),
                     TextInput::make('nombre')
                         ->required()
                         ->maxLength(255),

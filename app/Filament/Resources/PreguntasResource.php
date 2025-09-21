@@ -14,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class PreguntasResource extends Resource
 {
@@ -30,7 +31,7 @@ class PreguntasResource extends Resource
     {
         return $form->schema([
             TextInput::make('pregunta')->required()->maxLength(255),
-            Textarea::make('respuesta')->required()->autosize()
+            TinyEditor::make('respuesta')->required()
         ])->columns(1);
     }
 
@@ -39,7 +40,7 @@ class PreguntasResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('pregunta')->searchable()->wrap(),
-                Tables\Columns\TextColumn::make('respuesta')->searchable()->wrap()->words(50),
+                Tables\Columns\TextColumn::make('respuesta')->searchable()->wrap()->words(50)->markdown(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
