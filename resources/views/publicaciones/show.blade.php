@@ -13,9 +13,9 @@
                 <div class="d-flex flex-column flex-md-row justify-content-start align-items-center align-items-md-start">
                     <div class="col-sm-12 col-md-3" data-aos="fade-up" data-aos-delay="50">
                         <div class="member text-center">
-                            <a href="{{ asset('storage/' . $publicacion->imagen) }}" data-gallery="portfolio-gallery-app"
+                            <a href="{{  $publicacion->portada }}" data-gallery="portfolio-gallery-app"
                                 class="glightbox">
-                                <img src="{{ asset('storage/' . $publicacion->imagen) }}" class="img-fluid"
+                                <img src="{{ $publicacion->portada }}" class="img-fluid"
                                     style="aspect-ratio: 9 / 16; object-fit: cover;" alt="">
                             </a>
                         </div>

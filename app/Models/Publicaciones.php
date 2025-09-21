@@ -72,4 +72,13 @@ class Publicaciones extends Model
 
         return implode(', ', $normalized); // unir en un string para busqueda
     }
+
+    protected function portada(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => file_exists(public_path("storage/{$this->imagen}"))
+                ? asset("storage/{$this->imagen}")
+                : asset('img/not-image.jpg')
+        );
+    }
 }

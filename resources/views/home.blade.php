@@ -75,6 +75,9 @@
         {
           "loop": true,
           "speed": 600,
+          "autoplay": {
+            "delay": 5000
+          },
           "slidesPerView": "auto",
           "pagination": {
             "el": ".swiper-pagination",
@@ -111,8 +114,7 @@
                                 style="min-width:250px;min-height:500px;">
                                 <div class=" h-100 text-center w-100">
                                     <img style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
-                                        src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded"
-                                        alt="">
+                                        src="{{ $item->portada }}" class="img-fluid rounded" alt="">
                                     <div class="fs-6">
                                         <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 50) }}</h6>
                                         <hr>
