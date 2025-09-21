@@ -8,15 +8,13 @@ use App\Models\Revistas;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Set;
-use Illuminate\Support\Str;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class RevistasResource extends Resource
 {
@@ -36,20 +34,23 @@ class RevistasResource extends Resource
         return $form
             ->schema([
                 FileUpload::make('image')->label('Imagen')
-                ->directory('revistas')->required()
-                ->imageEditor()->avatar()->columnSpanFull()->alignCenter()
-                ->imageCropAspectRatio('1:1'),
+                    ->directory('revistas')->required()
+                    ->imageEditor()->columnSpanFull()->alignCenter()
+                    ->imageCropAspectRatio('9:16')->getUploadedFileNameForStorageUsing(
+                        fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+                            ->prepend('revistas-'),
+                    ),
                 TextInput::make('nombre')->required()
-                ->maxLength(255)
-                ->autocapitalize('words'),
+                    ->maxLength(255)
+                    ->autocapitalize('words'),
                 Select::make('tipo')->options([
                     'Revista' => 'Revista',
                     'Catedra' => 'Catedra'
                 ])->required(),
-                Forms\Components\TextInput::make('url')
+                TextInput::make('url')
                     ->required()
                     ->maxLength(255)->url()->label('URL'),
-                Forms\Components\Textarea::make('descripcion')
+                Textarea::make('descripcion')
                     ->required()
                     ->autosize(),
 
