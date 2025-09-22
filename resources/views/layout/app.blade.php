@@ -204,8 +204,6 @@
                         @endif
                         <li class="d-none d-md-block">
                             <form action="{{ route('buscador') }}" class="fs-6" method="get">
-                                @method('GET')
-                                @csrf
                                 <div class="d-flex p-2">
                                     <input type="text" name="buscar" class="m-1 p-1 form-control"
                                         placeholder="Buscar" required>

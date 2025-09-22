@@ -7,13 +7,13 @@
         <div class="container section-title " data-aos="fade-up">
             <h2>Busqueda - {{ $buscado }}</h2>
         </div><!-- End Section Title -->
-        <div class="container d-flex flex-column flex-lg-row">
-            <div class=" col-md-11 d-flex justify-content-evenly flex-wrap">
+        <div class="container d-flex flex-column">
+            <div class=" col-md-12 d-flex justify-content-evenly flex-wrap">
                 @foreach ($resultados as $item)
                     <div class=" member col-sm-12 d-flex justify-content-center m-1" data-aos="fade-up" data-aos-delay="50">
                         <div class="">
-                            <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
-                                src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid rounded" alt="">
+                            <img style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
+                                src="{{ $item->portada }}" class="img-fluid rounded" alt="">
                         </div>
                         <div class="d-flex flex-column justify-content-between ext-start w-100 mx-3">
                             <p>
@@ -27,7 +27,7 @@
                     </div><!-- End Team Member -->
                 @endforeach
             </div>
-            <div>
+            <div class="my-2">
                 {{ $resultados->links() }}
             </div>
 
