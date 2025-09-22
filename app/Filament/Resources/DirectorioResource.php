@@ -35,7 +35,7 @@ class DirectorioResource extends Resource
     public static function form(Form $form): Form
     {
         return $form->schema([
-            FileUpload::make('image')
+            FileUpload::make('image')->label('Imagen')
                 ->image()
                 ->required()
                 ->imageEditor()
@@ -66,7 +66,7 @@ class DirectorioResource extends Resource
                 ->maxValue(10)->default(5),
             Toggle::make('active')
                 ->onColor('success')
-                ->offColor('danger')->inline(),
+                ->offColor('danger')->inline()->default(true)->label('Activo'),
         ]);
     }
 

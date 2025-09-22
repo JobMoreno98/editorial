@@ -76,7 +76,7 @@ class Publicaciones extends Model
     protected function portada(): Attribute
     {
         return Attribute::make(
-            get: fn() => file_exists(public_path("storage/{$this->imagen}"))
+            get: fn() => $this->imagen && file_exists(public_path("storage/{$this->imagen}"))
                 ? asset("storage/{$this->imagen}")
                 : asset('img/not-image.jpg')
         );

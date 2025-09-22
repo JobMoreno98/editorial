@@ -76,6 +76,10 @@
             color: {{ $site->nav_color }} !important;
             padding: 5px;
         }
+
+        .borde {
+            border-bottom: 4px solid color-mix(in srgb, var(--heading-color), transparent 90%);
+        }
     </style>
 
 </head>
@@ -227,9 +231,9 @@
     <footer id="footer" class="footer sticky-bottom accent-background">
         <div class="container footer-top">
             <div class="row">
-                <div class="col-sm-12 footer-about d-flex flex-column flex-md-row"
+                <div class="col-sm-12 footer-about d-flex flex-column flex-md-row flex-wrap"
                     style="align-items: center !important;">
-                    <div class="mx-2 px-2  m-auto">
+                    <div class="text-center text-md-right">
                         <a href="{{ route('home') }}" class=" logo m-auto">
                             <span class="sitename text-uppercase">{{ $site->nombre }}</span>
                         </a>

@@ -850,7 +850,7 @@ section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
+  padding: 30px 0;
   scroll-margin-top: 112px;
   overflow: clip;
 }
@@ -1285,8 +1285,7 @@ section,
 --------------------------------------------------------------*/
 .services .service-item {
   background-color: var(--surface-color);
-  padding: 40px;
-  box-shadow: 0px 0 30px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   height: 100%;
 }
 
@@ -1294,7 +1293,7 @@ section,
   width: 48px;
   height: 48px;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 .services .service-item .icon i {
@@ -1554,7 +1553,7 @@ section,
 --------------------------------------------------------------*/
 .member {
   background-color: var(--surface-color);
-  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   padding: 15px;
   overflow: hidden;
@@ -1726,7 +1725,7 @@ section,
   position: relative;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 

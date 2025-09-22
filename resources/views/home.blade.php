@@ -160,7 +160,7 @@
         </div>
 
     </section>
-    {{--  
+    {{-- 
     <section id="services" class="services section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Our Services</h2>
@@ -249,33 +249,65 @@
 
         </div>
 
-    </section><!-- /Services Section -->
---}}
+    </section>
+ --}}
     <!-- Faq Section -->
     <section id="faq" class="faq section">
         <div class="container">
-            <div class="row gy-4">
-                <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="50">
-                    <div class="content px-xl-5">
-                        <h3><span>Preguntas</span><strong><br>frecuentes</strong></h3>
-                        {{--  
+            <div class="d-flex flex-column flex-md-row">
+                <div class="col-lg-4 member " data-aos="zoom-in" data-aos-delay="50">
+                    <section id="services" class="services section p-0">
+                        <div class="container section-title service-item  d-flex" data-aos="fade-up">
+
+                            <div class="icon me-3">
+                                <i class="bi bi-chat-square-text"></i>
+                            </div>
+                            <h3>Contacto</h3>
+                        </div>
+                        <div class="container">
+                            <div class="row gy-4">
+                                <div class="w-100" data-aos="fade-up" data-aos-delay="600">
+                                    <div class="service-item position-relative d-flex flex-wrap p-0">
+                                        <p class="fs-5" style="text-align: justify">
+                                            Si deseas adquirir un libro, escríbenos un correo a: <br>
+                                        <ul>
+                                            <li><a href="mailto:kiosko.editorial@csh.udg.mx ">kiosko.editorial@csh.udg.mx
+                                                </a></li>
+                                            <li><a
+                                                    href="mailto:apoyo.editorial@administrativos.udg.mx">apoyo.editorial@administrativos.udg.mx</a>
+                                            </li>
+                                        </ul>
+
+                                        o visítanos en nuestro
+                                        Kiosko: Edificio E piso 2 del CUCSH.
+
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-8 ms-md-5 mt-3 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+
+                    <div class="faq-container">
+                        <div class="content px-xl-5">
+                            <h3 class="text-end"> <i><span>Preguntas</span><strong><br>frecuentes</strong></i></h3>
+                            {{--  
                         <p style="text-align: justify">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                             incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
                         </p>
                         --}}
-                    </div>
-                </div>
-
-                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="faq-container">
+                        </div>
                         @if (isset($preguntas))
-                            @foreach ($preguntas as $item)
+                            @foreach ($preguntas as $key => $value)
                                 <div class="faq-item ">
-                                    <h3><span class="num"></span> <span>{{ $item->pregunta }}</span></h3>
-                                    <div class="faq-content">
-                                        {!! str($item->respuesta)->markdown()->sanitizeHtml() !!}
+                                    <h3><span class="num">{{ $key + 1 }}.- </span>
+                                        <span>{{ $value->pregunta }}</span>
+                                    </h3>
+                                    <div class="faq-content" style="text-align: justify">
+                                        {!! str($value->respuesta)->markdown()->sanitizeHtml() !!}
                                     </div>
                                     <i class="faq-toggle bi bi-chevron-right"></i>
                                 </div><!-- End Faq item-->
