@@ -24,7 +24,7 @@ class ComiteResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationLabel = 'Consejo Editorial';
-    
+
     protected static ?string $pluralModelLabel = 'Consejo Editorial';
 
     public static function getNavigationGroup(): ?string
@@ -36,7 +36,8 @@ class ComiteResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('image')
-                    ->image()->avatar()
+                    ->acceptedFileTypes(['image/*'])
+                    ->avatar()
                     ->required()->imageEditor()
                     ->imageCropAspectRatio('1:1')
                     ->alignCenter()

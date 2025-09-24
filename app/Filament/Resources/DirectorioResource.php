@@ -36,7 +36,7 @@ class DirectorioResource extends Resource
     {
         return $form->schema([
             FileUpload::make('image')->label('Imagen')
-                ->image()
+                ->acceptedFileTypes(['image/*'])
                 ->required()
                 ->imageEditor()
                 ->imageCropAspectRatio('1:1')

@@ -8,7 +8,7 @@ use App\Models\Contenidos;
 use App\Models\Descargas;
 use App\Models\Publicaciones;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -111,7 +111,7 @@ class PublicacionesController extends Controller
         return view('publicaciones.index', compact('publicaciones_items', 'categoria', 'anios', 'url'));
     }
 
-    public function buscador(HttpRequest $request)
+    public function buscador(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'buscar' => 'required|min:3',
@@ -123,10 +123,12 @@ class PublicacionesController extends Controller
                 ->withInput();
         }
 
+
         $buscado = $request->buscar;
 
         // Búsqueda en el modelo unificado
         $resultados = Contenidos::search($buscado)->paginate(10);
+        $request->query->remove('query');
 
         return view('publicaciones.buscar', compact('resultados', 'buscado'));
     }
