@@ -23,11 +23,14 @@ class HomeController extends Controller
         $directorio = Directorio::whereNull('id_padre')->where('active', true)
             ->with('hijos')
             ->get();
-        return view('directorio', compact('directorio'));
+
+        return view('directorio.index', compact('directorio'));
     }
     public function comite()
     {
+
         $comite = Comite::where('active', true)->get();
         return view('comite', compact('comite'));
+
     }
 }
