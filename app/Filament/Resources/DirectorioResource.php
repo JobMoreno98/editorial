@@ -45,28 +45,20 @@ class DirectorioResource extends Resource
                 ->avatar()
                 ->alignCenter(),
             TextInput::make('nombre')->required()->maxLength(255),
-            Select::make('puesto')->options([
-                'Rector' => 'Rector',
-                'Rectora' => 'Rectora',
-                'Secretaria Académica' => 'Secretaria Académica',
-                'Secretario Académico' => 'Secretario Académico',
-                'Secretaria Administrativa' => 'Secretaria Administrativa',
-                'Secretario Administrativo' => 'Secretario Administrativo',
-                'Coordinador' => 'Coordinador',
-                'Coordinadora' => 'Coordinadora',
-                'Jefa' => 'Jefa',
-                'Jefe' => 'Jefe',
-
-            ])->required(),
+            TextInput::make('puesto')->required(),
             TextInput::make('correo')->required()->maxLength(255),
             TextInput::make('telefono')->maxLength(40)->required(),
             TextInput::make('direccion')->maxLength(255)->required(),
-            TextInput::make('orden')->integer()->required()
-                ->minValue(1)
-                ->maxValue(10)->default(5),
             Toggle::make('active')
                 ->onColor('success')
                 ->offColor('danger')->inline()->default(true)->label('Activo'),
+
+            Select::make('id_padre')
+                ->label('Padre')
+                ->relationship('padre', 'nombre') // Asumiendo que tienes una relación en el modelo
+                ->searchable()
+                ->preload()
+                ->nullable()
         ]);
     }
 

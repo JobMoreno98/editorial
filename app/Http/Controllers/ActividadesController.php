@@ -12,7 +12,7 @@ class ActividadesController extends Controller
      */
     public function index($tipo = 'Noticias')
     {
-        $actividades = Actividades::where('tipo', $tipo)->where('active', true)->paginate(10);
+        $actividades = Actividades::where('tipo', $tipo)->where('active', true)->orderBy('fecha', 'desc')->paginate(10);
         return view('actividades.index', compact('actividades', 'tipo'));
     }
 

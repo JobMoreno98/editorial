@@ -19,4 +19,8 @@ class Directorio extends Model
                 : asset('img/not-image.jpg')
         );
     }
+    public function padre()
+{
+    return $this->belongsTo(Directorio::class, 'id_padre');
+}
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\PublicacionesController;
 use App\Http\Controllers\RevistasController;
 use App\Http\Middleware\TrackVisitors;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrganigramaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
 
 Route::middleware([TrackVisitors::class])->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -43,6 +46,7 @@ Route::middleware([TrackVisitors::class])->group(function () {
 
     Route::get('/actividades/{tipo}/{slug}', [ActividadesController::class, 'ver_actividad'])->name('ver-actividad');
 
+    Route::post('/organigrama/update-padre', [OrganigramaController::class, 'updatePadre'])->name('organigrama.update-padre');
 });
 
 Livewire::setUpdateRoute(function ($handle) {
