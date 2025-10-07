@@ -16,11 +16,13 @@ class HomeController extends Controller
         $site = ConfiguracionSitio::latest()->first();
         $novedades = Publicaciones::where('novedad', true)->orderBy('id', 'desc')->get();
         $preguntas = Preguntas::where('active', true)->get();
-        return view('home', compact('site', 'novedades','preguntas'));
+        return view('home', compact('site', 'novedades', 'preguntas'));
     }
     public function directorio()
     {
-        $directorio = Directorio::where('active', true)->orderBy('id_padre')->get();
+        $directorio = Directorio::whereNull('id_padre')->where('active', true)
+            ->with('hijos')
+            ->get();
         return view('directorio', compact('directorio'));
     }
     public function comite()

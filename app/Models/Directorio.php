@@ -11,7 +11,7 @@ class Directorio extends Model
     use HasFactory;
     protected $guarded = [];
 
-    protected function foto(): Attribute 
+    protected function foto(): Attribute
     {
         return Attribute::make(
             get: fn() => $this->image && file_exists(public_path("storage/{$this->image}"))
@@ -20,7 +20,11 @@ class Directorio extends Model
         );
     }
     public function padre()
-{
-    return $this->belongsTo(Directorio::class, 'id_padre');
-}
+    {
+        return $this->belongsTo(Directorio::class, 'id_padre');
+    }
+    public function hijos()
+    {
+        return $this->hasMany(Directorio::class, 'id_padre');
+    }
 }

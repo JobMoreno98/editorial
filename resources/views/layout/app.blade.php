@@ -205,7 +205,8 @@
                         <li class="d-none d-md-block">
                             <form action="{{ route('buscador') }}" class="fs-6" method="get">
                                 <div class="d-flex p-2">
-                                    <input type="text" name="buscar" class="m-1 p-1 form-control" placeholder="Buscar" required>
+                                    <input type="text" name="buscar" class="m-1 p-1 form-control"
+                                        placeholder="Buscar" required>
                                     <button class="btn btn-sm btn-secoundary border-white my-1 py-1 text-white"
                                         type="submit"><i class="bi bi-search"></i></button>
                                 </div>
@@ -331,6 +332,8 @@
     <script src="{{ asset('js/main.js') }}"></script>
 
     @include('sweetalert::alert')
+
+    @stack('js')
 
 </body>
 
