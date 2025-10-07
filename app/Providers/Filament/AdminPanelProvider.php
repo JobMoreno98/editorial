@@ -42,9 +42,7 @@ class AdminPanelProvider extends PanelProvider
                 //Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
-
-            ])
+            ->widgets([])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -67,7 +65,9 @@ class AdminPanelProvider extends PanelProvider
                         hasAvatars: true, // Enables the avatar upload form component (default = false)
                         slug: 'my-profile' // Sets the slug for the profile page (default = 'my-profile')
                     )->enableTwoFactorAuthentication()
-            )->spa()
+            )->spa()->spaUrlExceptions(fn(): array => [
+                url('/admin/organigrama'),
+            ])
             ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             ->plugin(FilamentSpatieLaravelBackupPlugin::make()->noTimeout()->usingPage(Backups::class))
             ->plugin(\Hasnayeen\Themes\ThemesPlugin::make())
