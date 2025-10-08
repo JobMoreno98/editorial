@@ -37,7 +37,6 @@ class DirectorioResource extends Resource
         return $form->schema([
             FileUpload::make('image')->label('Imagen')
                 ->acceptedFileTypes(['image/*'])
-                ->required()
                 ->imageEditor()
                 ->imageCropAspectRatio('1:1')
                 ->directory('directorio')
@@ -46,9 +45,9 @@ class DirectorioResource extends Resource
                 ->alignCenter(),
             TextInput::make('nombre')->required()->maxLength(255),
             TextInput::make('puesto')->required(),
-            TextInput::make('correo')->required()->maxLength(255),
-            TextInput::make('telefono')->maxLength(40)->required(),
-            TextInput::make('direccion')->maxLength(255)->required(),
+            TextInput::make('correo')->maxLength(255),
+            TextInput::make('telefono')->maxLength(40),
+            TextInput::make('direccion')->maxLength(255),
             Toggle::make('active')
                 ->onColor('success')
                 ->offColor('danger')->inline()->default(true)->label('Activo'),
