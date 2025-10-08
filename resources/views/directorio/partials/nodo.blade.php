@@ -10,9 +10,15 @@
                     <h4 class="borde"><b>{{ $item->nombre }}</b></h4>
                     <span class="fs-5"><b>{{ $item->puesto }}</b></span>
                     <p>
-                        <span class="my-1"><b>Correo: {{ $item->correo }}</b></span><br>
-                        <span class="my-1"><b>Teléfono: {{ $item->telefono }}</b></span><br>
-                        <span class="my-1"><b>Dirección: {{ $item->direccion }}</b></span>
+                        @if (isset($item->correo))
+                            <span class="my-1"><b>Correo: {{ $item->correo }}</b></span><br>
+                        @endif
+                        @if (isset($item->telefono))
+                            <span class="my-1"><b>Teléfono: {{ $item->telefono }}</b></span><br>
+                        @endif
+                        @if (isset($item->direccion))
+                            <span class="my-1"><b>Dirección: {{ $item->direccion }}</b></span><br>
+                        @endif
                     </p>
                 </div>
             </div>
