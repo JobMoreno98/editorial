@@ -46,8 +46,9 @@ Route::middleware([TrackVisitors::class])->group(function () {
 
     Route::get('/actividades/{tipo}/{slug}', [ActividadesController::class, 'ver_actividad'])->name('ver-actividad');
 
-    Route::post('/organigrama/update-padre', [OrganigramaController::class, 'updatePadre'])->name('organigrama.update-padre');
 });
+
+Route::post('/organigrama/update-padre', [OrganigramaController::class, 'updatePadre'])->name('organigrama.update-padre')->middleware('auth');
 
 Livewire::setUpdateRoute(function ($handle) {
     return Route::post('/editorial/public/livewire/update', $handle);

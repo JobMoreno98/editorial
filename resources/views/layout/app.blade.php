@@ -171,12 +171,12 @@
                                         </li>
                                     @endforeach
                                 @endif
-                                <li><a href="{{ route('difucion.index', 'Revista') }}"
-                                        class="{{ Route::is('difucion.index') ? 'active' : '' }}">Revistas
+                                <li><a href="{{ route('difucion.index',  ['tipo' => 'Revista']) }}"
+                                        class="{{ request()->route('tipo') === 'Revista' ? 'active' : '' }}">Revistas
                                         Cientificas</a>
                                 </li>
-                                <li><a href="{{ route('difucion.index', 'Catedra') }}"
-                                        class="{{ Route::is('difucion.index') ? 'active' : '' }}">Catedras</a>
+                                <li><a href="{{ route('difucion.index', ['tipo' => 'Catedra']) }}"
+                                        class="{{  request()->route('tipo') === 'Catedra' ? 'active' : '' }}">Catedras</a>
                                 </li>
                             </ul>
                         </li>

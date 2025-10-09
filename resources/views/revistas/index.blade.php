@@ -31,6 +31,8 @@
                 </div>
             @endforeach
         </div>
+        <div class="col-sm-12 mt-2" data-aos="zoom-in" data-aos-delay="50">
+            {{ $revistas->links() }}
         </div>
     </section>
 @endsection

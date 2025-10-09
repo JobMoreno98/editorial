@@ -33,7 +33,7 @@ class PublicacionesController extends Controller
                 ->where('active', true)
                 ->when($anio, function (Builder $query, string $anio) {
                     $query->where('anio_publicacion', $anio);
-                })
+                })->orderBy('anio_publicacion','desc')
                 ->paginate(12);
         } else {
             $categoria = new Categoria();
@@ -45,7 +45,7 @@ class PublicacionesController extends Controller
                 $query->where('anio_publicacion', $anio);
             })
                 ->where('active', true)
-                ->where('tipo', 'publicación')
+                ->where('tipo', 'publicación')->orderBy('anio_publicacion','desc')
                 ->paginate(12);
             $url = route('publicaciones.show', 'todas');
         }

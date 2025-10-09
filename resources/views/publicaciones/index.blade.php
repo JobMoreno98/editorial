@@ -27,7 +27,7 @@
                         <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center my-2 mx-1" data-aos="zoom-in"
                             data-aos-delay="50">
                             <div class="member  w-100" style="text-align: justify;">
-                                <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
+                                <img style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                     src="{{ $item->portada }}" class="img-fluid" alt="">
                                 <h6 class="mt-2">{{ Str::limit($item->nombre, 80) }}</h6>
                                 <hr>

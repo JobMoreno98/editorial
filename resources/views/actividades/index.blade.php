@@ -17,7 +17,7 @@
                             class="member d-flex w-100 flex-column flex-md-row  align-items-center justify-content-md-start">
                             <div style="max-width: 200px">
                                 <img src="{{ asset('storage/' . $item->imagen) }}"
-                                    style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; border-radius:15px 15px 0px 0px; "class="w-100 x-heroicon-m-x-circle-1"
+                                    style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; border-radius:15px 15px 0px 0px; "class="w-100 x-heroicon-m-x-circle-1"
                                     alt="">
                                 <h5 class="fecha text-center">{{ $item->fecha }}</h5>
                             </div>
