@@ -30,7 +30,11 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/glightbox.min.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
+
+
+
     <style>
         :root {
             --accent-color: {{ $site->accent_color }};
@@ -79,6 +83,11 @@
 
         .borde {
             border-bottom: 4px solid color-mix(in srgb, var(--heading-color), transparent 90%);
+        }
+
+        h3 {
+            border-bottom: 4px solid color-mix(in srgb, var(--heading-color), transparent 90%);
+            display: inline-block;
         }
     </style>
 
@@ -147,11 +156,6 @@
                                     class="{{ request()->route('tipo') === 'Noticia' ? 'active' : '' }}"">Noticias</a>
                             </li>
                         @endif
-                        @if ($eventos > 0)
-                            <li><a href="{{ route('actividades.index', 'Evento') }}"
-                                    class="{{ request()->route('tipo') === 'Evento' ? 'active' : '' }}">Eventos</a>
-                            </li>
-                        @endif
 
                         {{--  
                         <li><a href="{{ route('consejo.editorial') }}"
@@ -171,12 +175,12 @@
                                         </li>
                                     @endforeach
                                 @endif
-                                <li><a href="{{ route('difucion.index',  ['tipo' => 'Revista']) }}"
+                                <li><a href="{{ route('difucion.index', ['tipo' => 'Revista']) }}"
                                         class="{{ request()->route('tipo') === 'Revista' ? 'active' : '' }}">Revistas
                                         Cientificas</a>
                                 </li>
                                 <li><a href="{{ route('difucion.index', ['tipo' => 'Catedra']) }}"
-                                        class="{{  request()->route('tipo') === 'Catedra' ? 'active' : '' }}">Catedras</a>
+                                        class="{{ request()->route('tipo') === 'Catedra' ? 'active' : '' }}">Catedras</a>
                                 </li>
                             </ul>
                         </li>
@@ -330,7 +334,6 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>
-
     @include('sweetalert::alert')
 
     @stack('js')

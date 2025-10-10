@@ -10,8 +10,11 @@ class ActividadesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($tipo = 'Noticias')
+    public function index($tipo = 'Noticia')
     {
+        if (strcmp($tipo, 'Noticia') != 0) {
+            return abort(404);
+        }
         $actividades = Actividades::where('tipo', $tipo)->where('active', true)->orderBy('fecha', 'desc')->paginate(10);
         return view('actividades.index', compact('actividades', 'tipo'));
     }
@@ -22,6 +25,9 @@ class ActividadesController extends Controller
 
     public function ver_actividad($tipo, $slug = '')
     {
+        if (strcmp($tipo, 'Noticia') != 0) {
+            return abort(404);
+        }
         $actividad = Actividades::where('slug', $slug)->where('tipo', $tipo)->first();
         if (!isset($actividad->nombre)) {
             return abort(404);

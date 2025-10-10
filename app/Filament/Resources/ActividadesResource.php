@@ -11,6 +11,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -61,7 +62,11 @@ class ActividadesResource extends Resource
                         'Evento' => 'Evento',
                         'Noticia' => 'Noticia'
                     ])->required(),
-                ])->columns(3),
+                    ToggleButtons::make('active')
+                        ->label('Activo')
+                        ->boolean()
+                        ->inline()
+                ])->columns(4),
                 TinyEditor::make('descripcion')->required()->columnSpanFull()->language('es_MX'),
             ]);
     }

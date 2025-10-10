@@ -65,60 +65,24 @@
         </div>
 --}}
     </section><!-- /About Section -->
-    @if (!$novedades->isEmpty())
-        <section id="novedades" class="novedades section">
 
-            <div class="container">
-                <div class="swiper init-swiper">
-                    <h3 class="text-center border-bottom my-2 py-2">Novedades</h3>
-                    <script type="application/json" class="swiper-config">
-        {
-          "loop": true,
-          "speed": 600,
-          "autoplay": {
-            "delay": 5000
-          },
-          "slidesPerView": "auto",
-          "pagination": {
-            "el": ".swiper-pagination",
-            "type": "bullets",
-            "clickable": true
-          },
-          "breakpoints": {
-            "320": {
-              "slidesPerView": 1,
-              "spaceBetween": 15
-            },
-            "480": {
-              "slidesPerView":2,
-              "spaceBetween": 20
-            },
-            "640": {
-              "slidesPerView": 3,
-              "spaceBetween": 50
-            },
-            "1400": {
-              "slidesPerView": 3,
-              "spaceBetween": 50
-            },
-            "1450": {
-                "slidesPerView": 4,
-                "spaceBetween": 50
-              }
-          }
-        }
-      </script>
-                    <div class="swiper-wrapper align-items-center">
+    @if (!$novedades->isEmpty())
+        <section id="novedades" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+            <div class="container text-center">
+                <h3 class="my-2 py-2 "> Novedades</h3>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
                         @foreach ($novedades as $item)
-                            <div class=" swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-between"
-                                style="min-width:250px;min-height:500px;">
+                            <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-start"
+                                style="min-width:250px;min-height:300px;">
                                 <div class=" h-100 text-center w-100">
                                     <img style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
                                         src="{{ $item->portada }}" class="img-fluid rounded" alt="">
                                     <div class="fs-6">
                                         <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 50) }}</h6>
                                         <hr>
-                                        <span class="my-1"><b>Año de publicación: {{ $item->anio_publicacion }}</b></span>
+                                        <span class="my-1"><b>
+                                                {{ \Carbon\Carbon::parse($item->fecha)->translatedFormat('  j \\d\\e F \\d\\e  Y') }}</b></span>
                                     </div>
                                 </div>
                                 <div class="text-end">
@@ -127,39 +91,48 @@
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
-                    <div class="mt-2">
-                        <!-- If we need pagination -->
-                        <div class="swiper-pagination"></div>
-                    </div>
-
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
-
             </div>
-
         </section>
     @endif
 
-    <section id="call-to-action" class="call-to-action section dark-background m-2">
-        <div class="container">
-            <img class="w-100" style="object-fit: unset;"
-                src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
-                alt="">
-            <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="50">
-                <div class="col-xl-10">
-                    <div class="text-center">
-                        <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox play-btn"></a>
-                        <h3>Call To Action</h3>
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                            officia deserunt mollit anim id est laborum.</p>
+    @if (!$noticias->isEmpty())
+        <section id="noticias" data-aos="fade-up"  data-aos-anchor-placement="center-bottom">
+            <div class="container text-center">
+                <h3 class="my-2 py-2 "> Noticias</h3>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($noticias as $item)
+                            <div class="swiper-slide h-100 p-3 rounded border shadow-sm d-flex flex-column justify-content-start"
+                                style="min-width:250px;min-height:300px;">
+                                <div class=" h-100 text-center w-100">
+                                    <img style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
+                                        src="{{ $item->portada }}" class="img-fluid rounded" alt="">
+                                    <div class="fs-6">
+                                        <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 50) }}</h6>
+                                        <hr>
+                                        <span class="my-1"><b>
+                                                {{ \Carbon\Carbon::parse($item->fecha)->translatedFormat('  j \\d\\e F \\d\\e  Y') }}</b></span>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <a href="{{ route('ver-actividad', ['tipo' => $item->tipo, 'slug' => $item->slug]) }}"
+                                        class="btn-sm btn btn-primary mt-1">Ver más</a>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
-        </div>
-
-    </section>
+        </section>
+    @endif
     {{-- 
     <section id="services" class="services section">
         <div class="container section-title" data-aos="fade-up">
@@ -266,7 +239,7 @@
                         </div>
                         <div class="container">
                             <div class="row gy-4">
-                                <div class="w-100" data-aos="fade-up" data-aos-delay="600">
+                                <div class="w-100" data-aos="fade-up" data-aos-delay="300">
                                     <div class="service-item position-relative d-flex flex-wrap p-0">
                                         <p class="fs-5" style="text-align: justify">
                                             Si deseas adquirir un libro, escríbenos un correo a: <br>
@@ -277,7 +250,6 @@
                                                     href="mailto:apoyo.editorial@administrativos.udg.mx">apoyo.editorial@administrativos.udg.mx</a>
                                             </li>
                                         </ul>
-
                                         o visítanos en nuestro
                                         Kiosko: Edificio E piso 2 del CUCSH.
 
@@ -292,7 +264,7 @@
 
                     <div class="faq-container">
                         <div class="content px-xl-5">
-                            <h3 class="text-end"> <i><span>Preguntas</span><strong><br>frecuentes</strong></i></h3>
+                            <h3 class="text-end d-block" style="border: none;"> <i><span>Preguntas</span><strong><br>frecuentes</strong></i></h3>
                             {{--  
                         <p style="text-align: justify">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -303,7 +275,7 @@
                         @if (isset($preguntas))
                             @foreach ($preguntas as $key => $value)
                                 <div class="faq-item ">
-                                    <h3><span class="num">{{ $key + 1 }}.- </span>
+                                    <h3 style="border: none;"><span class="num">{{ $key + 1 }}.- </span>
                                         <span>{{ $value->pregunta }}</span>
                                     </h3>
                                     <div class="faq-content" style="text-align: justify">
