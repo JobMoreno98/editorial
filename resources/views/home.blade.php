@@ -82,7 +82,7 @@
                                         <h6 class="mt-2 pt-2">{{ Str::limit($item->nombre, 50) }}</h6>
                                         <hr>
                                         <span class="my-1"><b>
-                                                {{ \Carbon\Carbon::parse($item->fecha)->translatedFormat('  j \\d\\e F \\d\\e  Y') }}</b></span>
+                                                {{ $item->anio_publicacion }}</b></span>
                                     </div>
                                 </div>
                                 <div class="text-end">
@@ -101,7 +101,7 @@
     @endif
 
     @if (!$noticias->isEmpty())
-        <section id="noticias" data-aos="fade-up"  data-aos-anchor-placement="center-bottom">
+        <section id="noticias" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
             <div class="container text-center">
                 <h3 class="my-2 py-2 "> Noticias</h3>
                 <div class="swiper">
@@ -264,7 +264,8 @@
 
                     <div class="faq-container">
                         <div class="content px-xl-5">
-                            <h3 class="text-end d-block" style="border: none;"> <i><span>Preguntas</span><strong><br>frecuentes</strong></i></h3>
+                            <h3 class="text-end d-block" style="border: none;">
+                                <i><span>Preguntas</span><strong><br>frecuentes</strong></i></h3>
                             {{--  
                         <p style="text-align: justify">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
