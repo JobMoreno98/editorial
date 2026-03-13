@@ -7,8 +7,8 @@
         <div class="container section-title " data-aos="fade-up">
             <h2>Busqueda - {{ $buscado }}</h2>
         </div><!-- End Section Title -->
-        <div class="container d-flex flex-column flex-lg-row">
-            <div class=" col-md-11 d-flex justify-content-evenly flex-wrap">
+        <div class="container d-flex flex-column">
+            <div class=" col-md-12 d-flex justify-content-evenly flex-wrap">
                 @foreach ($resultados as $item)
                     <div class=" member col-sm-12 d-flex justify-content-center m-1" data-aos="fade-up" data-aos-delay="50">
                         <div class="">
@@ -27,7 +27,7 @@
                     </div><!-- End Team Member -->
                 @endforeach
             </div>
-            <div>
+            <div class=" col-12 mt-2">
                 {{ $resultados->links() }}
             </div>
 

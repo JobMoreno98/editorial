@@ -14,6 +14,9 @@ class Contenidos extends Model
     protected $table = 'contenidos';
     public $timestamps = false;
 
+
+
+
     protected function enlace(): Attribute
     {
         return Attribute::make(
@@ -24,5 +27,15 @@ class Contenidos extends Model
             }
 
         );
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'titulo' => $this->titulo,
+            'descripcion' => $this->descripcion,
+        ];
+
+        return $array;
     }
 }

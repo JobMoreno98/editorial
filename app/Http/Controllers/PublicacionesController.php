@@ -125,7 +125,6 @@ class PublicacionesController extends Controller
 
         $buscado = $request->buscar;
 
-        // Búsqueda en el modelo unificado
         $resultados = Contenidos::search($buscado)->paginate(10);
 
         return view('publicaciones.buscar', compact('resultados', 'buscado'));
