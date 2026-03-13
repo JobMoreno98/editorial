@@ -11,6 +11,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -37,15 +38,18 @@ class ActividadesResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('imagen')->image()
+                FileUpload::make('imagen')->acceptedFileTypes(['image/*'])
                     ->required()
                     ->imageEditor()
                     ->directory('noticias')
                     ->alignCenter()->imageResizeMode('cover')
                     ->columnSpanFull(),
+
                 TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
-                TextInput::make('slug'),
+                TextInput::make('slug')->required()
+                    ->unique(ignoreRecord: true)
+                    ->maxLength(255),
 
                 Section::make()->schema([
                     DatePicker::make('fecha')
@@ -58,7 +62,11 @@ class ActividadesResource extends Resource
                         'Evento' => 'Evento',
                         'Noticia' => 'Noticia'
                     ])->required(),
-                ])->columns(3),
+                    ToggleButtons::make('active')
+                        ->label('Activo')
+                        ->boolean()
+                        ->inline()
+                ])->columns(4),
                 TinyEditor::make('descripcion')->required()->columnSpanFull()->language('es_MX'),
             ]);
     }

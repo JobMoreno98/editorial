@@ -41,7 +41,7 @@ class ConfiguracionSitioResource extends Resource
             ->schema([
                 Section::make('Información del sitio')->schema([
                     FileUpload::make('image_banner')
-                        ->image()
+                        ->acceptedFileTypes(['image/*'])
                         ->imageEditor()
                         ->imageCropAspectRatio('16:3')->columnSpanFull()->getUploadedFileNameForStorageUsing(
                             fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())

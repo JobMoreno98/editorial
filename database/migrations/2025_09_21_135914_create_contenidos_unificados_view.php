@@ -9,10 +9,10 @@ class CreateContenidosUnificadosView  extends Migration
     public function up()
     {
         DB::statement("
-            CREATE VIEW contenidos AS
-            SELECT id,  nombre AS titulo, descripcion, slug, tipo, 'publicacion' AS tipo_contenido FROM publicaciones
+            CREATE OR REPLACE VIEW  contenidos AS
+            SELECT id,  nombre AS titulo, descripcion, slug, tipo, 'publicacion' AS tipo_contenido, imagen   FROM publicaciones
             UNION ALL
-            SELECT id, nombre AS titulo, descripcion, slug, tipo, 'actividad' AS tipo_contenido FROM actividades
+            SELECT id, nombre AS titulo, descripcion, slug, tipo, 'actividad' AS tipo_contenido, imagen  FROM actividades
         ");
     }
 

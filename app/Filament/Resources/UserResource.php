@@ -24,18 +24,19 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
-    
+
     public static function getNavigationGroup(): ?string
     {
         return __(config('filament-spatie-roles-permissions.navigation_section_group', 'filament-spatie-roles-permissions::filament-spatie.section.roles_and_permissions'));
     }
-    
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('avatar_url')->name('Avatar')
-                    ->image()->avatar()
+                    ->acceptedFileTypes(['image/*'])
+                    ->avatar()
                     ->imageEditor()
                     ->circleCropper()->alignCenter()->columnSpanFull()->directory('users'),
 
@@ -50,7 +51,7 @@ class UserResource extends Resource
                     Forms\Components\DateTimePicker::make('email_verified_at')->hiddenOn(['create', 'edit']),
                     Forms\Components\TextInput::make('password')
                         ->password()
-                        ->required(fn (string $context): bool => $context === 'create')->hiddenOn(['view'])
+                        ->required(fn(string $context): bool => $context === 'create')->hiddenOn(['view'])
                         ->maxLength(255),
                     Select::make('roles')->relationship('roles', 'name')->hidden(! auth()->user()->hasRole('Super Admin')),
                 ])->columns(2),

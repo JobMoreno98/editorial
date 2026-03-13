@@ -72,7 +72,7 @@ class PublicacionesResource extends Resource
                 Section::make('Archivos')->schema([
                     FileUpload::make('imagen')
                         //->required()
-                        ->image()
+                        ->acceptedFileTypes(['image/*'])
                         ->directory('images')->moveFiles()->imageEditor()
                         ->removeUploadedFileButtonPosition('right')
                         ->imagePreviewHeight('150')

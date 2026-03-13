@@ -26,10 +26,10 @@
                     @foreach ($publicaciones_items as $item)
                         <div class="col-xl-3 col-md-5 col-sm-12 d-flex justify-content-center my-2 mx-1" data-aos="zoom-in"
                             data-aos-delay="50">
-                            <div class="member text-center w-100">
-                                <img style="max-height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
-                                    src="{{ asset('storage/' . $item->imagen) }}" class="img-fluid" alt="">
-                                <h6 class="mt-2">{{ Str::limit($item->nombre, 80) }}</h6>
+                            <div class="member w-100 text-center">
+                                <img style="height: 250px;aspect-ratio: 1 / 1  ;object-fit: cover; "
+                                    src="{{ $item->portada }}" class="img-fluid" alt="">
+                                <h6 class="mt-2" style="text-align: justify;">{{ Str::limit($item->nombre, 80) }}</h6>
                                 <hr>
 
                                 @php

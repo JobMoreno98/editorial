@@ -58,12 +58,10 @@ class AppServiceProvider extends ServiceProvider
             $publicaciones = Categoria::select('name')->where('tipo', 'publicación')->get();
             $colecciones = Categoria::select('name')->where('tipo', 'colección')->get();
             $noticias = Actividades::where('tipo', 'Noticia')->where('active', true)->count();
-            $eventos = Actividades::where('tipo', 'Evento')->where('active', true)->count();
             $view->with('colecciones', $colecciones)
             ->with('publicaciones', $publicaciones)
             ->with('site', $this->site)
-            ->with('noticias', $noticias)
-            ->with('eventos',$eventos);
+            ->with('noticias', $noticias);
         });
 
         Health::checks([OptimizedAppCheck::new(), DebugModeCheck::new(), EnvironmentCheck::new(), DatabaseCheck::new(), SecurityAdvisoriesCheck::new(), DatabaseSizeCheck::new()->failWhenSizeAboveGb(errorThresholdGb: 5.0)]);

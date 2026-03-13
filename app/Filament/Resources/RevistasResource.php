@@ -33,7 +33,7 @@ class RevistasResource extends Resource
     {
         return $form
             ->schema([
-                FileUpload::make('image')->label('Imagen')
+                FileUpload::make('image')->label('Imagen')->acceptedFileTypes(['image/*'])
                     ->directory('revistas')->required()
                     ->imageEditor()->columnSpanFull()->alignCenter()
                     ->imageCropAspectRatio('9:16')->getUploadedFileNameForStorageUsing(

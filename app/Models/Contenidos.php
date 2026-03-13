@@ -38,4 +38,12 @@ class Contenidos extends Model
 
         return $array;
     }
+    protected function portada(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->imagen && file_exists(public_path("storage/{$this->imagen}"))
+                ? asset("storage/{$this->imagen}")
+                : asset('img/not-image.jpg')
+        );
+    }
 }
