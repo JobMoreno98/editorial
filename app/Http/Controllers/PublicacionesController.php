@@ -33,7 +33,7 @@ class PublicacionesController extends Controller
                 ->where('active', true)
                 ->when($anio, function (Builder $query, string $anio) {
                     $query->where('anio_publicacion', $anio);
-                })->orderBy('anio_publicacion','desc')
+                })->orderBy('anio_publicacion', 'desc')
                 ->paginate(12);
         } else {
             $categoria = new Categoria();
@@ -45,7 +45,7 @@ class PublicacionesController extends Controller
                 $query->where('anio_publicacion', $anio);
             })
                 ->where('active', true)
-                ->where('tipo', 'publicación')->orderBy('anio_publicacion','desc')
+                ->where('tipo', 'publicación')->orderBy('anio_publicacion', 'desc')
                 ->paginate(12);
             $url = route('publicaciones.show', 'todas');
         }
@@ -130,5 +130,23 @@ class PublicacionesController extends Controller
         $request->query->remove('query');
 
         return view('publicaciones.buscar', compact('resultados', 'buscado'));
+    }
+
+    public function api_novedades()
+    {
+
+        $novedades = Publicaciones::select('nombre','autor','imagen','archivo')->where('novedad', true)
+        ->orderBy('id', 'desc')
+        ->limit(10)
+        ->get()
+        ->map(function ($item) {
+            $item->imagen = asset($item->imagen);
+            $item->archivo = asset($item->archivo);
+            return $item;
+        });
+        return response()->json([
+            'success' => true,
+            'data' => $novedades,
+        ]);
     }
 }

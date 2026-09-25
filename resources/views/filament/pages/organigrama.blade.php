@@ -5,7 +5,7 @@
 
     <!-- Librería OrgChartJS -->
     <link href="https://cdn.jsdelivr.net/npm/@balkangraph/orgchart.js@3.9.0/orgchart.css" rel="stylesheet" />
-    <script src="https://cdn.balkan.app/orgchart.js"></script>
+    <script src="{{ asset('js/orgchart.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const chart = new OrgChart(document.getElementById("orgchart"), {
