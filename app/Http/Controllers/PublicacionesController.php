@@ -135,13 +135,14 @@ class PublicacionesController extends Controller
     public function api_novedades()
     {
 
-        $novedades = Publicaciones::select('nombre', 'autor', 'imagen', 'archivo')->where('novedad', true)
+        $novedades = Publicaciones::select('nombre', 'autor', 'imagen', 'archivo', 'slug')->where('novedad', true)
             ->orderBy('id', 'desc')
             ->limit(10)
             ->get()
             ->map(function ($item) {
                 $item->imagen = asset("storage/" . $this->encodePath($item->imagen));
                 $item->archivo = asset("storage/" . $this->encodePath($item->archivo));
+                $item->url =  route('ver-publicacion', $item->slug);
                 return $item;
             });
 
