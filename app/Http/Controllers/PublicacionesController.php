@@ -135,18 +135,23 @@ class PublicacionesController extends Controller
     public function api_novedades()
     {
 
-        $novedades = Publicaciones::select('nombre','autor','imagen','archivo')->where('novedad', true)
-        ->orderBy('id', 'desc')
-        ->limit(10)
-        ->get()
-        ->map(function ($item) {
-            $item->imagen = asset($item->imagen);
-            $item->archivo = asset($item->archivo);
-            return $item;
-        });
+        $novedades = Publicaciones::select('nombre', 'autor', 'imagen', 'archivo')->where('novedad', true)
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get()
+            ->map(function ($item) {
+                $item->imagen = asset("storage/" . $this->encodePath($item->imagen));
+                $item->archivo = asset("storage/" . $this->encodePath($item->archivo));
+                return $item;
+            });
+
         return response()->json([
             'success' => true,
             'data' => $novedades,
         ]);
+    }
+    private   function encodePath(string $path): string
+    {
+        return implode('/', array_map('rawurlencode', explode('/', $path)));
     }
 }
