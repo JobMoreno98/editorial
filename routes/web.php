@@ -51,5 +51,5 @@ Route::middleware([TrackVisitors::class])->group(function () {
 Route::post('/organigrama/update-padre', [OrganigramaController::class, 'updatePadre'])->name('organigrama.update-padre')->middleware('auth');
 
 Livewire::setUpdateRoute(function ($handle) {
-    return Route::post('/editorial/public/livewire/update', $handle);
+    return Route::post('/editorial/livewire/update', $handle);
 });

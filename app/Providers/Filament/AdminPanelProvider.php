@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use Althinect\FilamentSpatieRolesPermissions\FilamentSpatieRolesPermissionsPlugin;
 use App\Filament\Pages\Backups;
 use App\Filament\Pages\HealthCheckResults as PagesHealthCheckResults;
 use Filament\Http\Middleware\Authenticate;
@@ -68,13 +67,11 @@ class AdminPanelProvider extends PanelProvider
             )->spa()->spaUrlExceptions(fn(): array => [
                 url('/admin/organigrama'),
             ])
-            ->plugin(FilamentSpatieRolesPermissionsPlugin::make())
             ->plugin(FilamentSpatieLaravelBackupPlugin::make()->noTimeout()->usingPage(Backups::class))
             ->plugin(\Hasnayeen\Themes\ThemesPlugin::make())
             ->plugin(FilamentSpatieLaravelHealthPlugin::make()->usingPage(PagesHealthCheckResults::class))
             ->unsavedChangesAlerts()->sidebarCollapsibleOnDesktop()
             ->resources([
-                config('filament-logger.activity_resource')
             ])
             ->authMiddleware([
                 Authenticate::class,

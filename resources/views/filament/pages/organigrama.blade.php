@@ -1,6 +1,6 @@
 <x-filament::page>
     <div class="w-full bg-white dark:bg-gray-900 p-4 rounded-xl shadow border border-gray-200 dark:border-gray-800">
-        <div id="mountNode" style="width: 100%; height: 650px;"></div>
+        <div id="mountNode" class="w-full" style="height: 650px; min-height: 500px;"></div>
     </div>
 
     <!-- CDN fijado a la versión 4.8.24 -->
@@ -36,7 +36,7 @@
 
                     // Imagen de perfil / Avatar
                     // Si el registro no tiene foto, genera un avatar con las iniciales del nombre
-                    const avatarUrl = cfg.img || cfg.foto || 
+                    const avatarUrl = cfg.img || cfg.foto ||
                         `https://ui-avatars.com/api/?name=${encodeURIComponent(cfg.nombre)}&background=6366f1&color=fff`;
 
                     group.addShape('image', {
@@ -51,9 +51,9 @@
                     });
 
                     // Nombre del Empleado (Texto en Negrita)
-                    const nombreTexto = cfg.nombre.length > 22 
-                        ? cfg.nombre.substring(0, 22) + '...' 
-                        : cfg.nombre;
+                    const nombreTexto = cfg.nombre.length > 22 ?
+                        cfg.nombre.substring(0, 22) + '...' :
+                        cfg.nombre;
 
                     group.addShape('text', {
                         attrs: {
@@ -69,9 +69,9 @@
                     });
 
                     // Puesto del Empleado
-                    const puestoTexto = cfg.puesto.length > 28 
-                        ? cfg.puesto.substring(0, 28) + '...' 
-                        : cfg.puesto;
+                    const puestoTexto = cfg.puesto.length > 28 ?
+                        cfg.puesto.substring(0, 28) + '...' :
+                        cfg.puesto;
 
                     group.addShape('text', {
                         attrs: {
@@ -97,20 +97,20 @@
                 const roots = [];
 
                 items.forEach(item => {
-                    map[String(item.id)] = { 
-                        id: String(item.id), 
-                        nombre: item.nombre || '', 
+                    map[String(item.id)] = {
+                        id: String(item.id),
+                        nombre: item.nombre || '',
                         puesto: item.puesto || '',
                         img: item.img || item.foto || null, // Captura la URL de la foto
-                        children: [] 
+                        children: []
                     };
                 });
 
                 items.forEach(item => {
                     const pid = item.padre_id ?? item.id_padre ?? item.pid ?? item.parent_id;
-                    const parentKey = (pid !== null && pid !== undefined && pid !== 0 && pid !== "0") 
-                        ? String(pid) 
-                        : null;
+                    const parentKey = (pid !== null && pid !== undefined && pid !== 0 && pid !== "0") ?
+                        String(pid) :
+                        null;
 
                     if (parentKey && map[parentKey]) {
                         map[parentKey].children.push(map[String(item.id)]);
@@ -138,10 +138,14 @@
             const container = document.getElementById('mountNode');
 
             // 3. INICIALIZAR EL GRAFO USANDO EL NODO PERSONALIZADO
+            // 1. Obtener dimensiones dinámicas iniciales
+            const width = container.clientWidth || 800;
+            const height = container.clientHeight || 650;
+
             const graph = new G6.TreeGraph({
                 container: 'mountNode',
-                width: container.clientWidth || 800,
-                height: 650,
+                width: width,
+                height: height,
                 modes: {
                     default: [
                         'drag-canvas',
@@ -163,8 +167,8 @@
                     type: 'compactBox',
                     direction: 'TB',
                     getId: d => d.id,
-                    getHeight: () => 80,  // Alto de la tarjeta
-                    getWidth: () => 270,  // Ancho de la tarjeta
+                    getHeight: () => 80, // Alto de la tarjeta
+                    getWidth: () => 270, // Ancho de la tarjeta
                     getVGap: () => 40,
                     getHGap: () => 20,
                 },
@@ -192,26 +196,59 @@
                 updateParent(draggedNodeId, newParentId);
             });
 
-            function updateParent(childId, newParentId) {
-                fetch("{{ route('organigrama.update-padre') }}", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                    },
-                    body: JSON.stringify({
-                        child_id: childId,
-                        new_parent_id: newParentId
-                    })
-                })
-                .then(async (res) => {
-                    if (res.ok) {
-                        location.reload();
-                    } else {
-                        const data = await res.json();
-                        alert(data.error || "Error al actualizar");
+
+            graph.data(treeData);
+            graph.render();
+            graph.fitView(); // Centra el árbol en el canvas inicial
+
+            // 2. Hacer que el canvas se redimensione automáticamente al cambiar el contenedor
+            // (Útil al abrir/cerrar el menú lateral de Filament o redimensionar la ventana)
+            if (typeof ResizeObserver !== 'undefined') {
+                const resizeObserver = new ResizeObserver((entries) => {
+                    for (let entry of entries) {
+                        const {
+                            width: newWidth,
+                            height: newHeight
+                        } = entry.contentRect;
+
+                        // Solo redimensiona si el contenedor tiene dimensiones válidas
+                        if (newWidth > 0 && newHeight > 0) {
+                            graph.changeSize(newWidth, newHeight);
+                            graph.fitView(); // Centra y reajusta el zoom al redimensionar
+                        }
                     }
                 });
+
+                resizeObserver.observe(container);
+            } else {
+                // Fallback para navegadores antiguos
+                window.addEventListener('resize', () => {
+                    if (!graph || graph.get('destroyed')) return;
+                    graph.changeSize(container.clientWidth, container.clientHeight);
+                    graph.fitView();
+                });
+            }
+
+            function updateParent(childId, newParentId) {
+                fetch("{{ route('organigrama.update-padre') }}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                        },
+                        body: JSON.stringify({
+                            child_id: childId,
+                            new_parent_id: newParentId
+                        })
+                    })
+                    .then(async (res) => {
+                        if (res.ok) {
+                            location.reload();
+                        } else {
+                            const data = await res.json();
+                            alert(data.error || "Error al actualizar");
+                        }
+                    });
             }
         });
     </script>
