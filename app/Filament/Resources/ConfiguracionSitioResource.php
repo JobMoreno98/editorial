@@ -2,14 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Section;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\ConfiguracionSitioResource\Pages\ListConfiguracionSitios;
+use App\Filament\Resources\ConfiguracionSitioResource\Pages\CreateConfiguracionSitio;
+use App\Filament\Resources\ConfiguracionSitioResource\Pages\EditConfiguracionSitio;
 use App\Filament\Resources\ConfiguracionSitioResource\Pages;
 use App\Models\ConfiguracionSitio;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -22,7 +30,7 @@ class ConfiguracionSitioResource extends Resource
 
     protected static ?string $pluralModelLabel  = 'Configuración del Sitio';
 
-    protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-cog-6-tooth';
 
     protected static ?int $navigationSort = 1;
 
@@ -35,10 +43,10 @@ class ConfiguracionSitioResource extends Resource
     {
         return __('Settings');
     }
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 Section::make('Información del sitio')->schema([
                     FileUpload::make('image_banner')
                         ->acceptedFileTypes(['image/*'])
@@ -90,18 +98,18 @@ class ConfiguracionSitioResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')
+                TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('contacto')
+                TextColumn::make('contacto')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('direccion')
+                TextColumn::make('direccion')
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image_banner'),
-                Tables\Columns\TextColumn::make('created_at')
+                ImageColumn::make('image_banner'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -109,12 +117,12 @@ class ConfiguracionSitioResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -129,9 +137,9 @@ class ConfiguracionSitioResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListConfiguracionSitios::route('/'),
-            'create' => Pages\CreateConfiguracionSitio::route('/create'),
-            'edit' => Pages\EditConfiguracionSitio::route('/{record}/edit'),
+            'index' => ListConfiguracionSitios::route('/'),
+            'create' => CreateConfiguracionSitio::route('/create'),
+            'edit' => EditConfiguracionSitio::route('/{record}/edit'),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\RevistasResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\RevistasResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -14,7 +15,7 @@ class ListRevistas extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()->label('Agregar'),
+            CreateAction::make()->label('Agregar'),
         ];
     }
         public function getTitle(): string|Htmlable

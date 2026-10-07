@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\PublicacionesResource\Pages;
 
+use Filament\Actions\DeleteAction;
 use App\Filament\Resources\PublicacionesResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
@@ -14,7 +15,7 @@ class EditPublicaciones extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
         public function getTitle(): string|Htmlable

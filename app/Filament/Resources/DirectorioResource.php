@@ -2,6 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\DirectorioResource\Pages\ListDirectorios;
+use App\Filament\Resources\DirectorioResource\Pages\CreateDirectorio;
+use App\Filament\Resources\DirectorioResource\Pages\EditDirectorio;
 use App\Filament\Resources\DirectorioResource\Pages;
 use App\Filament\Resources\DirectorioResource\RelationManagers;
 use App\Models\Directorio;
@@ -10,7 +17,6 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
@@ -25,16 +31,16 @@ class DirectorioResource extends Resource
     protected static ?string $model = Directorio::class;
     protected static ?string $pluralModelLabel = 'Directorio';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?int $navigationSort = 1;
 
     public static function getNavigationGroup(): ?string
     {
         return __('Directory');
     }
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             FileUpload::make('image')->label('Imagen')
                 ->acceptedFileTypes(['image/*'])
                 ->imageEditor()
@@ -80,8 +86,8 @@ class DirectorioResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([Tables\Actions\EditAction::make()])
-            ->bulkActions([Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()])]);
+            ->recordActions([EditAction::make()])
+            ->toolbarActions([BulkActionGroup::make([DeleteBulkAction::make()])]);
     }
 
     public static function getRelations(): array
@@ -94,9 +100,9 @@ class DirectorioResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListDirectorios::route('/'),
-            'create' => Pages\CreateDirectorio::route('/create'),
-            'edit' => Pages\EditDirectorio::route('/{record}/edit'),
+            'index' => ListDirectorios::route('/'),
+            'create' => CreateDirectorio::route('/create'),
+            'edit' => EditDirectorio::route('/{record}/edit'),
         ];
     }
 }

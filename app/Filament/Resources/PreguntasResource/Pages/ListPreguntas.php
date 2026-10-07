@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\PreguntasResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\PreguntasResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -13,7 +14,7 @@ class ListPreguntas extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

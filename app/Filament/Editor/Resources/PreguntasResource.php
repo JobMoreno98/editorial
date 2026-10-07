@@ -2,11 +2,19 @@
 
 namespace App\Filament\Editor\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Editor\Resources\PreguntasResource\Pages\ListPreguntas;
+use App\Filament\Editor\Resources\PreguntasResource\Pages\CreatePreguntas;
+use App\Filament\Editor\Resources\PreguntasResource\Pages\EditPreguntas;
 use App\Filament\Editor\Resources\PreguntasResource\Pages;
 use App\Filament\Editor\Resources\PreguntasResource\RelationManagers;
 use App\Models\Preguntas;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,16 +25,16 @@ class PreguntasResource extends Resource
 {
     protected static ?string $model = Preguntas::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('pregunta')
+        return $schema
+            ->components([
+                TextInput::make('pregunta')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('respuesta')
+                TextInput::make('respuesta')
                     ->required()
                     ->maxLength(255),
             ]);
@@ -36,15 +44,15 @@ class PreguntasResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('pregunta')
+                TextColumn::make('pregunta')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('respuesta')
+                TextColumn::make('respuesta')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -52,12 +60,12 @@ class PreguntasResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -72,9 +80,9 @@ class PreguntasResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPreguntas::route('/'),
-            'create' => Pages\CreatePreguntas::route('/create'),
-            'edit' => Pages\EditPreguntas::route('/{record}/edit'),
+            'index' => ListPreguntas::route('/'),
+            'create' => CreatePreguntas::route('/create'),
+            'edit' => EditPreguntas::route('/{record}/edit'),
         ];
     }
 }

@@ -5,7 +5,7 @@ namespace App\Filament\Resources\PublicacionesResource\Widgets;
 use App\Models\Descargas;
 use App\Models\Publicaciones;
 use App\Models\Visitor;
-use EightyNine\FilamentAdvancedWidget\AdvancedStatsOverviewWidget as BaseWidget;
+use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class PublicacionesWidget extends BaseWidget

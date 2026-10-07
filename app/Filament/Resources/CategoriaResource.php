@@ -2,6 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\CategoriaResource\Pages\ListCategorias;
+use App\Filament\Resources\CategoriaResource\Pages\CreateCategoria;
+use App\Filament\Resources\CategoriaResource\Pages\EditCategoria;
 use App\Filament\Resources\CategoriaResource\Pages;
 use App\Filament\Resources\CategoriaResource\RelationManagers;
 use App\Filament\Resources\CategoriaResource\Widgets\CategoriasOverview;
@@ -9,7 +17,6 @@ use App\Models\Categoria;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -21,16 +28,16 @@ class CategoriaResource extends Resource
 {
     protected static ?string $model = Categoria::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-tag';
     public static function getNavigationGroup(): ?string
     {
         return __('Content');
     }
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')->label('Nombre')
+        return $schema
+            ->components([
+                TextInput::make('name')->label('Nombre')
                     ->required()
                     ->maxLength(255),
                 Select::make('tipo')->options(['publicación' => 'Publicación', 'colección' => 'Colección'])->required(),
@@ -43,16 +50,16 @@ class CategoriaResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Nombre')
+                TextColumn::make('name')->label('Nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('descripcion')->wrap()->label('Descripción')
+                TextColumn::make('descripcion')->wrap()->label('Descripción')
                     ->searchable(),
                 TextColumn::make('tipo')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -60,12 +67,12 @@ class CategoriaResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -80,9 +87,9 @@ class CategoriaResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategorias::route('/'),
-            'create' => Pages\CreateCategoria::route('/create'),
-            'edit' => Pages\EditCategoria::route('/{record}/edit'),
+            'index' => ListCategorias::route('/'),
+            'create' => CreateCategoria::route('/create'),
+            'edit' => EditCategoria::route('/{record}/edit'),
         ];
     }
     public static function getWidgets(): array

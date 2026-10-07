@@ -10,7 +10,7 @@ use Flowframe\Trend\TrendValue;
 
 class PublicacionesChart extends ChartWidget
 {
-    protected static ?string $heading = 'Publicaciones';
+    protected ?string $heading = 'Publicaciones';
 
 
     protected function getData(): array

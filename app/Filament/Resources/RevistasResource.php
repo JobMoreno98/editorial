@@ -2,6 +2,14 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\RevistasResource\Pages\ListRevistas;
+use App\Filament\Resources\RevistasResource\Pages\CreateRevistas;
+use App\Filament\Resources\RevistasResource\Pages\EditRevistas;
 use App\Filament\Resources\RevistasResource\Pages;
 use App\Filament\Resources\RevistasResource\RelationManagers;
 use App\Models\Revistas;
@@ -10,7 +18,6 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -20,7 +27,7 @@ class RevistasResource extends Resource
 {
     protected static ?string $model = Revistas::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-newspaper';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-newspaper';
 
     protected static ?string $title = 'Difusión';
     protected static ?string $navigationLabel = 'Difusión';
@@ -29,10 +36,10 @@ class RevistasResource extends Resource
     {
         return __('Content');
     }
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 FileUpload::make('image')->label('Imagen')->acceptedFileTypes(['image/*'])
                     ->directory('revistas')->required()
                     ->imageEditor()->columnSpanFull()->alignCenter()
@@ -61,15 +68,15 @@ class RevistasResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')
+                TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('url')
+                TextColumn::make('url')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -77,12 +84,12 @@ class RevistasResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -97,9 +104,9 @@ class RevistasResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRevistas::route('/'),
-            'create' => Pages\CreateRevistas::route('/create'),
-            'edit' => Pages\EditRevistas::route('/{record}/edit'),
+            'index' => ListRevistas::route('/'),
+            'create' => CreateRevistas::route('/create'),
+            'edit' => EditRevistas::route('/{record}/edit'),
         ];
     }
 }

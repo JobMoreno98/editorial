@@ -35,12 +35,12 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function (User $user, string $ability) {
-            return $user->isSuperAdmin() ? true : null;
+            return $user->hasRole('Super Admin') ? true : null;
         });
         
         Gate::policy(Role::class, RolesPolicy::class);
         Gate::policy(Permission::class, PermisosPolicy::class);
-        Gate::policy(FilamentSpatieLaravelBackup::class, BackupsPolicy::class);
-        Gate::policy(Activity::class, ActivityPolicy::class);
+        //Gate::policy(FilamentSpatieLaravelBackup::class, BackupsPolicy::class);
+        //Gate::policy(Activity::class, ActivityPolicy::class);
     }
 }

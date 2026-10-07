@@ -2,13 +2,22 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\FileUpload;
+use Filament\Schemas\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\ComiteResource\Pages\ListComites;
+use App\Filament\Resources\ComiteResource\Pages\CreateComite;
+use App\Filament\Resources\ComiteResource\Pages\EditComite;
 use App\Filament\Resources\ComiteResource\Pages;
 use App\Filament\Resources\ComiteResource\RelationManagers;
 use App\Models\Comite;
 use Filament\Forms;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -21,7 +30,7 @@ class ComiteResource extends Resource
 {
     protected static ?string $model = Comite::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?string $navigationLabel = 'Consejo Editorial';
 
@@ -31,11 +40,11 @@ class ComiteResource extends Resource
     {
         return __('Directory');
     }
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\FileUpload::make('image')
+        return $schema
+            ->components([
+                FileUpload::make('image')
                     ->acceptedFileTypes(['image/*'])
                     ->avatar()
                     ->required()->imageEditor()
@@ -44,10 +53,10 @@ class ComiteResource extends Resource
                     ->columnSpanFull()
                     ->directory('comite'),
                 Section::make()->schema([
-                    Forms\Components\TextInput::make('nombre')
+                    TextInput::make('nombre')
                         ->required()
                         ->maxLength(255),
-                    Forms\Components\Textarea::make('reseña')
+                    Textarea::make('reseña')
                         ->required()
                         ->maxLength(500)->autosize(),
                     Toggle::make('active')
@@ -80,12 +89,12 @@ class ComiteResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -100,9 +109,9 @@ class ComiteResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListComites::route('/'),
-            'create' => Pages\CreateComite::route('/create'),
-            'edit' => Pages\EditComite::route('/{record}/edit'),
+            'index' => ListComites::route('/'),
+            'create' => CreateComite::route('/create'),
+            'edit' => EditComite::route('/{record}/edit'),
         ];
     }
 }

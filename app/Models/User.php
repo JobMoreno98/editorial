@@ -4,7 +4,6 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use Althinect\FilamentSpatieRolesPermissions\Concerns\HasSuperAdmin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,12 +12,13 @@ use Laravel\Sanctum\HasApiTokens;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Jeffgreco13\FilamentBreezy\Traits\TwoFactorAuthenticatable;
 use Filament\Panel;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasAvatar
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasSuperAdmin, TwoFactorAuthenticatable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -55,9 +55,9 @@ class User extends Authenticatable implements HasAvatar
     {
         return asset('storage/' . $this->avatar_url);
     }
-    
+
     public function categorias(): BelongsToMany
     {
-        return $this->belongsToMany(Categoria::class,'categorias_to_usuarios');
+        return $this->belongsToMany(Categoria::class, 'categorias_to_usuarios');
     }
 }

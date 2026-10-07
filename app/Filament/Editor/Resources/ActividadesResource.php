@@ -2,11 +2,20 @@
 
 namespace App\Filament\Editor\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Editor\Resources\ActividadesResource\Pages\ListActividades;
+use App\Filament\Editor\Resources\ActividadesResource\Pages\CreateActividades;
+use App\Filament\Editor\Resources\ActividadesResource\Pages\EditActividades;
 use App\Filament\Editor\Resources\ActividadesResource\Pages;
 use App\Filament\Editor\Resources\ActividadesResource\RelationManagers;
 use App\Models\Actividades;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,24 +26,24 @@ class ActividadesResource extends Resource
 {
     protected static ?string $model = Actividades::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('nombre')
+        return $schema
+            ->components([
+                TextInput::make('nombre')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DatePicker::make('fecha')
+                DatePicker::make('fecha')
                     ->required(),
-                Forms\Components\TextInput::make('lugar')
+                TextInput::make('lugar')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('imagen')
+                TextInput::make('imagen')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('tipo')
+                TextInput::make('tipo')
                     ->required(),
             ]);
     }
@@ -43,21 +52,21 @@ class ActividadesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')
+                TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('fecha')
+                TextColumn::make('fecha')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('lugar')
+                TextColumn::make('lugar')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('imagen')
+                TextColumn::make('imagen')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('tipo'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('tipo'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -65,12 +74,12 @@ class ActividadesResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -85,9 +94,9 @@ class ActividadesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListActividades::route('/'),
-            'create' => Pages\CreateActividades::route('/create'),
-            'edit' => Pages\EditActividades::route('/{record}/edit'),
+            'index' => ListActividades::route('/'),
+            'create' => CreateActividades::route('/create'),
+            'edit' => EditActividades::route('/{record}/edit'),
         ];
     }
 }

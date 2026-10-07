@@ -13,7 +13,7 @@ class VisitorServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-       
+
         //View::share('visitorCount', Visitor::count() );
     }
 

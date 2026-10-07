@@ -2,23 +2,30 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Components\Section;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\ActividadesResource\Pages\ListActividades;
+use App\Filament\Resources\ActividadesResource\Pages\CreateActividades;
+use App\Filament\Resources\ActividadesResource\Pages\EditActividades;
 use App\Filament\Resources\ActividadesResource\Pages;
 use App\Filament\Resources\ActividadesResource\RelationManagers;
 use App\Models\Actividades;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Set;
 use Illuminate\Support\Str;
 use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
@@ -26,7 +33,7 @@ class ActividadesResource extends Resource
 {
     protected static ?string $model = Actividades::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function getNavigationGroup(): ?string
     {
@@ -34,10 +41,10 @@ class ActividadesResource extends Resource
     }
 
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
-            ->schema([
+        return $schema
+            ->components([
                 FileUpload::make('imagen')->acceptedFileTypes(['image/*'])
                     ->required()
                     ->imageEditor()
@@ -75,19 +82,19 @@ class ActividadesResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nombre')
+                TextColumn::make('nombre')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('fecha')
+                TextColumn::make('fecha')
                     ->date()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('lugar')
+                TextColumn::make('lugar')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('tipo'),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('tipo'),
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
+                TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -95,12 +102,12 @@ class ActividadesResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
+            ->recordActions([
+                EditAction::make(),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+            ->toolbarActions([
+                BulkActionGroup::make([
+                    DeleteBulkAction::make(),
                 ]),
             ]);
     }
@@ -115,9 +122,9 @@ class ActividadesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListActividades::route('/'),
-            'create' => Pages\CreateActividades::route('/create'),
-            'edit' => Pages\EditActividades::route('/{record}/edit'),
+            'index' => ListActividades::route('/'),
+            'create' => CreateActividades::route('/create'),
+            'edit' => EditActividades::route('/{record}/edit'),
         ];
     }
 }

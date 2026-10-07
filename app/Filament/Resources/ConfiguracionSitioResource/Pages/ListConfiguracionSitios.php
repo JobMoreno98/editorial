@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ConfiguracionSitioResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\ConfiguracionSitioResource;
 use App\Models\ConfiguracionSitio;
 use Filament\Actions;
@@ -16,7 +17,7 @@ class ListConfiguracionSitios extends ListRecords
         $site = ConfiguracionSitio::count();
         if($site==0){
             return [
-                Actions\CreateAction::make()->label('Agregar'),
+                CreateAction::make()->label('Agregar'),
             ];
         }
         return [];

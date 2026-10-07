@@ -7,9 +7,9 @@ use Filament\Pages\Page;
 
 class Organigrama extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document-text';
 
-    protected static string $view = 'filament.pages.organigrama';
+    protected string $view = 'filament.pages.organigrama';
     public $directivos;
 
     public static function getNavigationGroup(): ?string

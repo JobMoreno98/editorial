@@ -2,6 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Schemas\Schema;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Section;
+use Filament\Actions\EditAction;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
+use App\Filament\Resources\PublicacionesResource\Pages\ListPublicaciones;
+use App\Filament\Resources\PublicacionesResource\Pages\CreatePublicaciones;
+use App\Filament\Resources\PublicacionesResource\Pages\EditPublicaciones;
 use App\Filament\Resources\PublicacionesResource\Pages;
 use App\Models\Categoria;
 use App\Models\Publicaciones;
@@ -9,18 +19,14 @@ use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
-use Filament\Forms\Set;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -32,15 +38,15 @@ class PublicacionesResource extends Resource
 {
     protected static ?string $model = Publicaciones::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document';
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-document';
     public static function getNavigationGroup(): ?string
     {
         return __('Content');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
             TextInput::make('slug'),
@@ -118,9 +124,9 @@ class PublicacionesResource extends Resource
                     ->query(fn(Builder $query): Builder => $query->where('active', true))->toggle()->label('Activo'),
 
             ])
-            ->actions([Tables\Actions\EditAction::make()])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([Tables\Actions\DeleteBulkAction::make()]),
+            ->recordActions([EditAction::make()])
+            ->toolbarActions([
+                BulkActionGroup::make([DeleteBulkAction::make()]),
                 ExportBulkAction::make()
             ]);
     }
@@ -135,9 +141,9 @@ class PublicacionesResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPublicaciones::route('/'),
-            'create' => Pages\CreatePublicaciones::route('/create'),
-            'edit' => Pages\EditPublicaciones::route('/{record}/edit'),
+            'index' => ListPublicaciones::route('/'),
+            'create' => CreatePublicaciones::route('/create'),
+            'edit' => EditPublicaciones::route('/{record}/edit'),
         ];
     }
 }

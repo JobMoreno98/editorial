@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ComiteResource\Pages;
 
+use Filament\Actions\CreateAction;
 use App\Filament\Resources\ComiteResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
@@ -13,7 +14,7 @@ class ListComites extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make()->label('Agregar'),
+            CreateAction::make()->label('Agregar'),
         ];
     }
 }
