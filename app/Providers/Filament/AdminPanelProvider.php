@@ -16,7 +16,7 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-
+use Filament\Support\Enums\Width;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -56,7 +56,7 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationSort(10)                                             
                     ->navigationBadgeColor('success')                 
 
-            ])
+            ])->maxContentWidth(Width::Full)
             //->profile(isSimple: false)
             ->unsavedChangesAlerts()->sidebarCollapsibleOnDesktop()
             ->resources([])

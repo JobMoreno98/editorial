@@ -42,13 +42,16 @@ class DirectorioResource extends Resource
     {
         return $schema->components([
             FileUpload::make('image')->label('Imagen')
+                ->image()
                 ->acceptedFileTypes(['image/*'])
+                ->disk('public')
+                ->visibility('public')
+                ->directory('directorio')
                 ->imageEditor()
                 ->imageCropAspectRatio('1:1')
-                ->directory('directorio')
-                ->columnSpanFull()
                 ->avatar()
-                ->alignCenter(),
+                ->alignCenter()
+                ->columnSpanFull(),
             TextInput::make('nombre')->required()->maxLength(255),
             TextInput::make('puesto')->required(),
             TextInput::make('correo')->maxLength(255),
