@@ -38,8 +38,8 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole('Super Admin') ? true : null;
         });
         
-        Gate::policy(Role::class, RolesPolicy::class);
-        Gate::policy(Permission::class, PermisosPolicy::class);
+        //Gate::policy(Role::class, RolesPolicy::class);
+        //Gate::policy(Permission::class, PermisosPolicy::class);
         //Gate::policy(FilamentSpatieLaravelBackup::class, BackupsPolicy::class);
         //Gate::policy(Activity::class, ActivityPolicy::class);
     }
