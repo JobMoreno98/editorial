@@ -55,7 +55,7 @@ class PublicacionesResource extends Resource
             ),
 
             TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
-            TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
+            TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY')->label('Año de publicaión'),
             TextInput::make('paginas')->label('Páginas')->required()->numeric(),
             RichEditor::make('descripcion')->required()->columnSpanFull(),
 
