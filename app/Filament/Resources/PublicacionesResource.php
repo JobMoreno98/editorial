@@ -48,7 +48,6 @@ class PublicacionesResource extends Resource
         return $schema->components([
             TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
-            TextInput::make('slug'),
 
             Repeater::make('autor')->simple(
                 TextInput::make('autor')
@@ -69,11 +68,6 @@ class PublicacionesResource extends Resource
             Select::make('categoria_id')->label('Categoria')->required()->options(fn(Get $get): Collection => Categoria::query()->where('tipo', $get('tipo'))->pluck('name', 'id'))->searchable()->preload(),
 
             Section::make()->schema([
-                Section::make('Acciones')->schema([
-                    Toggle::make('novedad')->onColor('success')->offColor('danger')->default(true)->required(),
-                    Toggle::make('active')->onColor('success')->offColor('danger')->default(true)->required()->label('Activo'),
-                ])->columnSpan(1)->columns(1),
-
                 Section::make('Archivos')->schema([
                     FileUpload::make('imagen')
                         //->required()
@@ -93,8 +87,14 @@ class PublicacionesResource extends Resource
                         ->openable()
                         ->directory('files')->preserveFilenames()
                         ->moveFiles()->removeUploadedFileButtonPosition('left')->maxSize(128000),
-                ])->columnSpan(1)->columns(1),
-            ])->columns(2),
+                ])->columnSpan(2)->columns(2),
+                Section::make('Acciones')->schema([
+                    Toggle::make('novedad')->onColor('success')->offColor('danger')->default(true)->required(),
+                    Toggle::make('active')->onColor('success')->offColor('danger')->default(true)->required()->label('Activo'),
+                ])->columnSpan(1)->columns(2),
+
+
+            ])->columns(3)->columnSpanFull(),
 
         ])->columns(3);
     }
