@@ -64,32 +64,34 @@ class ConfiguracionSitioResource extends Resource
                         ->required()
                         ->maxLength(255),
                     TextInput::make('email')->required()->email(),
-                    RichEditor::make('about')->required()->columnSpanFull()->language('es_MX'),
+                    RichEditor::make('about')->required()->columnSpanFull(),
                 ])->columns(2),
-                Section::make('Colores del sitio')->schema([
-                    ColorPicker::make('background_color')
-                        ->rgb()->default("#e2e2e2"),
-                    ColorPicker::make('accent_color')
-                        ->rgb()->default("#e2e2e2"),
-                    ColorPicker::make('heading_color')
-                        ->rgb()->default("#e2e2e2"),
-                    ColorPicker::make('nav_color')
-                        ->rgb()->default("#e2e2e2"),
-                    ColorPicker::make('nav_hover_color')
-                        ->rgb()->default("#e2e2e2"),
-                    ColorPicker::make('nav_dropdown_color')
-                        ->rgb()->default("#e2e2e2"),
-                    ColorPicker::make('nav_dropdown_hover_color')
-                        ->rgb()->default("#e2e2e2"),
-                ])->columns(3),
-                Section::make('Lineamientos Editoriales')->schema([
-                    FileUpload::make('archivo')
-                        ->acceptedFileTypes(['application/pdf'])
-                        ->openable()
-                        ->directory('files')
-                        ->preserveFilenames()
-                        ->moveFiles()->removeUploadedFileButtonPosition('right'),
-                ])->columnSpan(1),
+                Section::make()->schema([
+                    Section::make('Colores del sitio')->schema([
+                        ColorPicker::make('background_color')
+                            ->rgb()->default("#e2e2e2"),
+                        ColorPicker::make('accent_color')
+                            ->rgb()->default("#e2e2e2"),
+                        ColorPicker::make('heading_color')
+                            ->rgb()->default("#e2e2e2"),
+                        ColorPicker::make('nav_color')
+                            ->rgb()->default("#e2e2e2"),
+                        ColorPicker::make('nav_hover_color')
+                            ->rgb()->default("#e2e2e2"),
+                        ColorPicker::make('nav_dropdown_color')
+                            ->rgb()->default("#e2e2e2"),
+                        ColorPicker::make('nav_dropdown_hover_color')
+                            ->rgb()->default("#e2e2e2"),
+                    ])->columns(3),
+                    Section::make('Lineamientos Editoriales')->schema([
+                        FileUpload::make('archivo')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->openable()
+                            ->directory('files')
+                            ->preserveFilenames()
+                            ->moveFiles()->removeUploadedFileButtonPosition('right'),
+                    ])->columnSpan(1),
+                ])
             ]);
     }
 

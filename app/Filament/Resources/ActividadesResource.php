@@ -68,7 +68,7 @@ class ActividadesResource extends Resource
                         ->boolean()
                         ->inline()
                 ])->columns(4),
-                RichEditor::make('descripcion')->required()->columnSpanFull()->language('es_MX'),
+                RichEditor::make('descripcion')->required()->columnSpanFull(),
             ]);
     }
 
