@@ -15,6 +15,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/scout": "^10.11",
         "laravel/tinker": "^2.8",
+        "pxlrbt/filament-excel": "^4.1",
         "realrashid/sweet-alert": "^7.2",
         "spatie/security-advisories-health-check": "^1.2"
     },
