@@ -70,23 +70,29 @@ class PublicacionesResource extends Resource
             Section::make()->schema([
                 Section::make('Archivos')->schema([
                     FileUpload::make('imagen')
-                        //->required()
-                        ->acceptedFileTypes(['image/*'])
-                        ->directory('images')->moveFiles()->imageEditor()
+                        ->required()
+                        ->acceptedFileTypes(['image/*'])->disk('public')
+                        ->directory('images')
+                        //->moveFiles()
+                        ->imageEditor()
                         ->removeUploadedFileButtonPosition('right')
                         ->imagePreviewHeight('150')
-                        ->uploadButtonPosition('left')->imageEditorAspectRatios([
+                        ->uploadButtonPosition('left')
+                        ->imageEditorAspectRatios([
                             '9:16',
                             '16:9',
                             '4:3',
                             '1:1',
-                        ])->preserveFilenames(),
+                        ]),
+                        //->preserveFilenames(),
                     FileUpload::make('archivo')
-                        //->required()
+                        ->required()->disk('public')
                         ->acceptedFileTypes(['application/pdf'])
                         ->openable()
                         ->directory('files')->preserveFilenames()
-                        ->moveFiles()->removeUploadedFileButtonPosition('left')->maxSize(128000),
+                        //->moveFiles()
+                        ->removeUploadedFileButtonPosition('left')->maxSize(128000),
+
                 ])->columnSpan(2)->columns(2),
                 Section::make('Acciones')->schema([
                     Toggle::make('novedad')->onColor('success')->offColor('danger')->default(true)->required(),
