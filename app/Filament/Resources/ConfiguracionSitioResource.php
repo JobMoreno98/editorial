@@ -22,7 +22,6 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class ConfiguracionSitioResource extends Resource
 {
@@ -65,7 +64,7 @@ class ConfiguracionSitioResource extends Resource
                         ->required()
                         ->maxLength(255),
                     TextInput::make('email')->required()->email(),
-                    TinyEditor::make('about')->required()->columnSpanFull()->language('es_MX'),
+                    RichEditor::make('about')->required()->columnSpanFull()->language('es_MX'),
                 ])->columns(2),
                 Section::make('Colores del sitio')->schema([
                     ColorPicker::make('background_color')

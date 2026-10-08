@@ -14,15 +14,12 @@ use App\Filament\Resources\PreguntasResource\Pages;
 use App\Filament\Resources\PreguntasResource\RelationManagers;
 use App\Models\Preguntas;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
-
 class PreguntasResource extends Resource
 {
     protected static ?string $model = Preguntas::class;
@@ -38,7 +35,7 @@ class PreguntasResource extends Resource
     {
         return $schema->components([
             TextInput::make('pregunta')->required()->maxLength(255),
-            TinyEditor::make('respuesta')->required()
+            RichEditor::make('respuesta')->required()
         ])->columns(1);
     }
 

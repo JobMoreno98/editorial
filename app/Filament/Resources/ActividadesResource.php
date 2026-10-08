@@ -12,23 +12,17 @@ use Filament\Actions\DeleteBulkAction;
 use App\Filament\Resources\ActividadesResource\Pages\ListActividades;
 use App\Filament\Resources\ActividadesResource\Pages\CreateActividades;
 use App\Filament\Resources\ActividadesResource\Pages\EditActividades;
-use App\Filament\Resources\ActividadesResource\Pages;
-use App\Filament\Resources\ActividadesResource\RelationManagers;
 use App\Models\Actividades;
 use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
-
 class ActividadesResource extends Resource
 {
     protected static ?string $model = Actividades::class;
@@ -74,7 +68,7 @@ class ActividadesResource extends Resource
                         ->boolean()
                         ->inline()
                 ])->columns(4),
-                TinyEditor::make('descripcion')->required()->columnSpanFull()->language('es_MX'),
+                RichEditor::make('descripcion')->required()->columnSpanFull()->language('es_MX'),
             ]);
     }
 

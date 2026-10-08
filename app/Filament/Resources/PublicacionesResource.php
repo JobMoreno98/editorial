@@ -19,6 +19,7 @@ use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -30,9 +31,7 @@ use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 use pxlrbt\FilamentExcel\Actions\Tables\ExportBulkAction;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class PublicacionesResource extends Resource
 {
@@ -58,7 +57,7 @@ class PublicacionesResource extends Resource
             TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
             TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY'),
             TextInput::make('paginas')->label('Páginas')->required()->numeric(),
-            TinyEditor::make('descripcion')->required()->columnSpanFull(),
+            RichEditor::make('descripcion')->required()->columnSpanFull(),
 
             //TagsInput::make('coordinadores')->reorderable()->separator(','),
             Repeater::make('coordinadores')->simple(
