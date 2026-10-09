@@ -1310,12 +1310,14 @@ section,
   color: color-mix(in srgb, var(--heading-color), transparent 20%);
   font-weight: 700;
   margin: 0 0 20px 0;
-  padding-bottom: 8px;
+  padding: 0px !important;
+  height: fit-content;
   font-size: 22px;
   position: relative;
   display: inline-block;
   border-bottom: 4px solid color-mix(in srgb, var(--heading-color), transparent 90%);
   transition: 0.3s;
+  border-left: 0px !important;
 }
 
 .services .service-item p {
@@ -1547,6 +1549,7 @@ section,
   padding: 15px;
   overflow: hidden;
 }
+
 /*--------------------------------------------------------------
 # Pricing Section
 --------------------------------------------------------------*/
@@ -2796,6 +2799,4 @@ section,
   font-size: 14px;
 }
 
-.fecha{
-  
-}
+.fecha {}

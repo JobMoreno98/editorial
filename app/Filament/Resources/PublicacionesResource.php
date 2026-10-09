@@ -49,11 +49,12 @@ class PublicacionesResource extends Resource
             TextInput::make('nombre')->required()->maxLength(255)->autocapitalize('words')->live(onBlur: true)
                 ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state)))->unique(ignoreRecord: true),
 
-            Repeater::make('autor')->simple(
-                TextInput::make('autor')
-            ),
+
 
             TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
+                        Repeater::make('autor')->simple(
+                TextInput::make('autor')
+            ),
             TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY')->label('Año de publicaión'),
             TextInput::make('paginas')->label('Páginas')->required()->numeric(),
             RichEditor::make('descripcion')->required()->columnSpanFull(),

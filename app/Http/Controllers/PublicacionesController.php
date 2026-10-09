@@ -113,21 +113,15 @@ class PublicacionesController extends Controller
 
     public function buscador(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'buscar' => 'required|min:3',
         ]);
 
-        if ($validator->fails()) {
-            return back()
-                ->with('errors', $validator->messages()->all()[0])
-                ->withInput();
-        }
-
-
         $buscado = $request->buscar;
 
-        $resultados = Contenidos::search($buscado)->paginate(10);
-        $request->query->remove('query');
+        $resultados = Contenidos::search($buscado)
+            ->paginate(10)
+            ->withQueryString();
 
         return view('publicaciones.buscar', compact('resultados', 'buscado'));
     }

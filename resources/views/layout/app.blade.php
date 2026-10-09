@@ -85,15 +85,26 @@
             border-bottom: 4px solid color-mix(in srgb, var(--heading-color), transparent 90%);
         }
 
+        /*
         h3 {
             border-bottom: 4px solid color-mix(in srgb, var(--heading-color), transparent 90%);
             display: inline-block;
+        }
+*/
+        h1,
+        h2,
+        h3 {
+            text-align: left;
+            display: inline-block;
+            color: #1e293b;
+            border-left: 4px solid #7d1c1c !important;
+            padding-left: 12px !important;
         }
     </style>
 
 </head>
 
-<body class="index-page">
+<body class="index-page font-montserrat">
 
     <header id="header" class="header sticky-top">
         {{--  

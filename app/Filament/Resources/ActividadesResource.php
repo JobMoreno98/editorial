@@ -23,6 +23,8 @@ use Filament\Forms\Components\ToggleButtons;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
+
+
 class ActividadesResource extends Resource
 {
     protected static ?string $model = Actividades::class;

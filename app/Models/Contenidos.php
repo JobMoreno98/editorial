@@ -35,8 +35,6 @@ class Contenidos extends Model
             'titulo' => $this->titulo,
             'descripcion' => $this->descripcion,
         ];
-
-        return $array;
     }
     protected function portada(): Attribute
     {

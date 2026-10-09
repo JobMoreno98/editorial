@@ -2,9 +2,9 @@
 @section('title', 'Inicio')
 @section('content')
     <section id="hero" class="hero section accent-background">
-        <div class="container position-relative" id="contenedor-banner" data-aos="zoom-in" data-aos-delay="50">
+        <div class="container-fluid position-relative" id="contenedor-banner" data-aos="zoom-in" data-aos-delay="50">
             <div class="row gy-5 justify-content-between">
-                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center banner p-0 pb-xl-3">
+                <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center banner p-0 m-0 ">
                     <img src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
                         class="h-100 img-banner" alt="">
                 </div>
@@ -16,10 +16,13 @@
     <section id="about" class="about section">
 
         <!-- Section Title -->
-        <div class="container section-title" data-aos="zoom-in">
-            <h2>{{ __('About Us') }}<br></h2>
-            <p style="text-align: justify">{!! isset($site->about) ? $site->about : 'Aquí va la descripción de la página' !!}</p>
-        </div><!-- End Section Title -->
+        <div class="container" data-aos="zoom-in">
+            <h3>{{ __('About Us') }}<br></h3>
+            <p style="text-align: justify" class="font-montserrat">
+                {!! isset($site->about) ? $site->about : 'Aquí va la descripción de la página' !!}
+            </p>
+        </div>
+        <!-- End Section Title -->
 
         {{--  
         <div class="container">
@@ -68,7 +71,7 @@
 
     @if (!$novedades->isEmpty())
         <section id="novedades" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
-            <div class="container text-center">
+            <div class="container">
                 <h3 class="my-2 py-2 "> Novedades</h3>
                 <div class="swiper">
                     <div class="swiper-wrapper">
@@ -102,8 +105,8 @@
 
     @if (!$noticias->isEmpty())
         <section id="noticias" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
-            <div class="container text-center">
-                <h3 class="my-2 py-2 "> Noticias</h3>
+            <div class="container ">
+                <h3 class="my-3 py-2 "> Noticias</h3>
                 <div class="swiper">
                     <div class="swiper-wrapper">
                         @foreach ($noticias as $item)
@@ -264,8 +267,9 @@
 
                     <div class="faq-container">
                         <div class="content px-xl-5">
-                            <h3 class="text-end d-block" style="border: none;">
-                                <i><span>Preguntas</span><strong><br>frecuentes</strong></i></h3>
+                            <h3 class="text-end d-block" style="border: none;border-left: 0px !important">
+                                <i><span>Preguntas</span><strong><br>frecuentes</strong></i>
+                            </h3>
                             {{--  
                         <p style="text-align: justify">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
