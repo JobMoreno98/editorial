@@ -5,7 +5,7 @@
 @section('content')
     <section id="team" class="team section ">
         <div class="container section-title " data-aos="fade-up">
-            <h2 class="text-uppercase">{{ $tipo . 's' }}</h2>
+            <h2 style="border-left:0px;" class="text-uppercase">{{ $tipo . 's' }}</h2>
         </div>
         <div class=" d-flex flex-wrap justify-content-center">
             @foreach ($revistas as $item)
