@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\RichEditor\ToolbarButtonGroup;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -57,7 +58,13 @@ class PublicacionesResource extends Resource
             ),
             TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY')->label('Año de publicaión'),
             TextInput::make('paginas')->label('Páginas')->required()->numeric(),
-            RichEditor::make('descripcion')->required()->columnSpanFull(),
+            RichEditor::make('descripcion')->required()->columnSpanFull()->toolbarButtons([
+                ['bold', 'italic', 'underline', 'strike'],
+                [ToolbarButtonGroup::make('Paragraph', ['paragraph', 'h1', 'h2', 'h3'])],
+                [ToolbarButtonGroup::make('Alignment', ['alignStart', 'alignCenter', 'alignEnd', 'alignJustify'])],
+                ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                ['undo', 'redo'],
+            ]),
 
             //TagsInput::make('coordinadores')->reorderable()->separator(','),
             Repeater::make('coordinadores')->simple(
