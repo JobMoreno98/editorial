@@ -41,7 +41,7 @@
                             <span><b>Año de publicación: {{ $publicacion->anio_publicacion }}</b></span>
 
                         </p>
-                        <p><span><b>Descripción: {!! str($publicacion->descripcion)->markdown()->sanitizeHtml() !!}</b></span></p>
+                        <p><span><b>Descripción:</b> {!! str($publicacion->descripcion)->markdown()->sanitizeHtml() !!}</span></p>
                         <p class="text-end">
                             <a target="_blank" href="{{ route('ver-archivo', $publicacion->slug) }}"
                                 class="btn btn-primary btn-sm">Descargar archivo</a>
