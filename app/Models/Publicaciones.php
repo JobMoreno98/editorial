@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Casts\AsCollection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
 class Publicaciones extends Model
@@ -22,6 +23,12 @@ class Publicaciones extends Model
         'coordinadores' => AsCollection::class,
     ];
 
+
+
+    public function descargas(): HasMany
+    {
+        return $this->hasMany(Descargas::class);
+    }
 
     public function categoria(): BelongsTo
     {

@@ -30,7 +30,6 @@
                     </div>
                 </div>
             @endforeach
-
         </div>
         <div class="container">
             <div class="col-sm-12 mt-2" data-aos="zoom-in" data-aos-delay="50">

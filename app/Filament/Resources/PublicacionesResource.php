@@ -52,7 +52,7 @@ class PublicacionesResource extends Resource
 
 
             TextInput::make('isbn')->label('ISBN')->required()->maxLength(255),
-                        Repeater::make('autor')->simple(
+            Repeater::make('autor')->simple(
                 TextInput::make('autor')
             ),
             TextInput::make('anio_publicacion')->required()->integer()->mask('9999')->placeholder('YYYY')->label('Año de publicaión'),
@@ -85,7 +85,7 @@ class PublicacionesResource extends Resource
                             '4:3',
                             '1:1',
                         ]),
-                        //->preserveFilenames(),
+                    //->preserveFilenames(),
                     FileUpload::make('archivo')
                         ->required()->disk('public')
                         ->acceptedFileTypes(['application/pdf'])
@@ -115,7 +115,12 @@ class PublicacionesResource extends Resource
                 TextColumn::make('isbn')->searchable()->sortable()->label('ISBN'),
                 TextColumn::make('coordinadores')->searchable()->wrap()->toggleable(isToggledHiddenByDefault: true)->badge()->separator(','),
                 TextColumn::make('anio_publicacion')->sortable()->searchable()->label('Año de Publicación'),
-                TextColumn::make('download')->sortable()->label('Descargas'),
+
+                TextColumn::make('descargas_count')
+                    ->counts('descargas')
+                    ->label('Descargas')
+                    ->sortable(),
+
                 ToggleColumn::make('novedad')->onColor('success')->offColor('danger')->toggleable(isToggledHiddenByDefault: false),
                 ToggleColumn::make('active')->onColor('success')->offColor('danger')->label('Activo')->toggleable(isToggledHiddenByDefault: false),
                 TextColumn::make('tipo')->searchable()->sortable()->toggleable(isToggledHiddenByDefault: true),
