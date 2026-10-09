@@ -238,7 +238,7 @@
                             <div class="icon me-3">
                                 <i class="bi bi-chat-square-text"></i>
                             </div>
-                            <h3>Contacto</h3>
+                            <h3 style="border-left:0px ">Contacto</h3>
                         </div>
                         <div class="container">
                             <div class="row gy-4">
