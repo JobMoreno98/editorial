@@ -33,8 +33,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}">
 
-
-
     <style>
         :root {
             --accent-color: {{ $site->accent_color }};
@@ -96,11 +94,11 @@
             text-align: left;
             display: inline-block;
             color: #1e293b;
-            border-left: 4px solid #7d1c1c ;
+            border-left: 4px solid #7d1c1c;
             padding-left: 12px !important;
         }
     </style>
-
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="index-page font-montserrat">

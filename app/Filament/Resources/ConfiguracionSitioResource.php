@@ -17,6 +17,7 @@ use App\Models\ConfiguracionSitio;
 use Filament\Forms\Components\ColorPicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\RichEditor\ToolbarButtonGroup;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -64,7 +65,16 @@ class ConfiguracionSitioResource extends Resource
                         ->required()
                         ->maxLength(255),
                     TextInput::make('email')->required()->email(),
-                    RichEditor::make('about')->required()->columnSpanFull(),
+                    RichEditor::make('about')->required()->columnSpanFull()
+                    ->toolbarButtons([
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [ToolbarButtonGroup::make('Paragraph', ['paragraph', 'h1', 'h2', 'h3'])],
+                        [ToolbarButtonGroup::make('Alignment', ['alignStart', 'alignCenter', 'alignEnd', 'alignJustify'])],
+                        ['blockquote', 'codeBlock', 'bulletList', 'orderedList'],
+                        ['undo', 'redo'],
+                    ]),
+
+
                 ])->columns(2),
                 Section::make()->schema([
                     Section::make('Colores del sitio')->schema([

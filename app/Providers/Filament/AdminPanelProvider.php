@@ -57,6 +57,7 @@ class AdminPanelProvider extends PanelProvider
                     ->navigationBadgeColor('success')                 
 
             ])->maxContentWidth(Width::Full)
+            //->viteTheme('resources/css/app.css')
             //->profile(isSimple: false)
             ->unsavedChangesAlerts()->sidebarCollapsibleOnDesktop()
             ->resources([])

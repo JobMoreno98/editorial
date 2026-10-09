@@ -16,10 +16,10 @@
     <section id="about" class="about section">
 
         <!-- Section Title -->
-        <div class="container" data-aos="zoom-in">
+        <div class="container font-montserrat" data-aos="zoom-in">
             <h3>{{ __('About Us') }}<br></h3>
-            <p style="text-align: justify" class="font-montserrat">
-                {!! isset($site->about) ? $site->about : 'Aquí va la descripción de la página' !!}
+            <p style="text-align: justify">
+                {!! isset($site->about) ? str($site->about)->sanitizeHtml() : 'Aquí va la descripción de la página' !!}
             </p>
         </div>
         <!-- End Section Title -->
@@ -67,7 +67,9 @@
 
         </div>
 --}}
-    </section><!-- /About Section -->
+    </section>
+    
+    <!-- /About Section -->
 
     @if (!$novedades->isEmpty())
         <section id="novedades" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
