@@ -6,7 +6,7 @@
     <section id="team" class="team section ">
         <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
-            <h2 class="text-uppercase">{{ $tipo . 's' }}</h2>
+            <h2 class="text-uppercase" style="border-left:0px;">{{ $tipo . 's' }}</h2>
         </div><!-- End Section Title -->
 
         <div class="container">

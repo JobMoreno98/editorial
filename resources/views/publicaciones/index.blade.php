@@ -6,7 +6,7 @@
     <section id="team" class="team section ">
         <!-- Section Title -->
         <div class="container section-title " data-aos="fade-up">
-            <h2 class="text-uppercase">{{ $categoria->name }}</h2>
+            <h2 style="border-left:0px;" class="text-uppercase">{{ $categoria->name }}</h2>
             <p>{{ $categoria->descripcion }}</p>
         </div><!-- End Section Title -->
         <div class="container my-2">

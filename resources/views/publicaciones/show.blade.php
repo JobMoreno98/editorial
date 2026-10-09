@@ -6,7 +6,7 @@
     <section id="team" class="team section ">
         @if (isset($publicacion))
             <div class="container section-title pb-0" data-aos="fade-up">
-                <h2>{{ $publicacion->nombre }}</h2>
+                <h2 style="border-left:0px;">{{ $publicacion->nombre }}</h2>
                 <p>Categoria: {{ $publicacion->categoria->name }}</p>
             </div>
             <div class="container">

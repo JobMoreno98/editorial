@@ -6,7 +6,7 @@
     <section id="team" class="team section ">
         @if (isset($actividad))
             <div class="container section-title pb-0" data-aos="fade-up">
-                <h2>{{ $actividad->nombre }}</h2>
+                <h2 style="border-left:0px;">{{ $actividad->nombre }}</h2>
                 <p>Fecha: {{ $actividad->fecha }}</p>
             </div>
             <div class="container">

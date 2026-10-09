@@ -17,7 +17,7 @@
 
         <!-- Section Title -->
         <div class="container font-montserrat" data-aos="zoom-in">
-            <h3>{{ __('About Us') }}<br></h3>
+            <h2>{{ __('About Us') }}<br></h2>
             <p style="text-align: justify">
                 {!! isset($site->about) ? str($site->about)->sanitizeHtml() : 'Aquí va la descripción de la página' !!}
             </p>

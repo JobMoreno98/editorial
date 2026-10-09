@@ -4,8 +4,8 @@
 
 @section('content')
     <section id="team" class="team section ">
-        <div class="container section-title " data-aos="fade-up">
-            <h2>{{ __('Directory') }}</h2>
+        <div class="container section-title "  data-aos="fade-up">
+            <h2 style="border-left:0px;">{{ __('Directory') }}</h2>
         </div>
         <div class="container">
             @include('directorio.partials.nodo', ['items' => $directorio, 'nivel' => 0])
