@@ -91,13 +91,12 @@
             display: inline-block;
         }
 */
-        h1,
         h2,
         h3 {
             text-align: left;
             display: inline-block;
             color: #1e293b;
-            border-left: 4px solid #7d1c1c !important;
+            border-left: 4px solid #7d1c1c ;
             padding-left: 12px !important;
         }
     </style>
@@ -142,7 +141,7 @@
                 <a href="{{ route('home') }}" class="logo d-flex align-items-center ">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1 class="sitename text-uppercase text-center">{{ $site->nombre }}</h1>
+                    <h1 class="sitename text-uppercase text-center" style="border-left:0px ">{{ $site->nombre }}</h1>
                 </a>
                 <nav id="navmenu" class="navmenu">
                     <ul>
