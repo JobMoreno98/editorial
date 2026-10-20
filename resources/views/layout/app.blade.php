@@ -94,7 +94,7 @@
             text-align: left;
             display: inline-block;
             color: #1e293b;
-            border-left: 4px solid #7d1c1c;
+            border-left: 4px solid {{ $site->heading_color }};;
             padding-left: 12px !important;
         }
     </style>
