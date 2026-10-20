@@ -47,7 +47,7 @@ class DirectorioResource extends Resource
                 ->disk('public')
                 ->visibility('public')
                 ->directory('directorio')
-                ->imageEditor()
+                ->imageEditor()->imageEditorMode(2)
                 ->imageCropAspectRatio('1:1')
                 ->avatar()
                 ->alignCenter()

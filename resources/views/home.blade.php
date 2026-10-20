@@ -5,7 +5,8 @@
         <div class="container-fluid position-relative" id="contenedor-banner" data-aos="zoom-in" data-aos-delay="50">
             <div class="row gy-5 justify-content-between">
                 <div class="col-sm-12 order-2 order-lg-1 d-flex flex-column justify-content-center banner p-0 m-0 ">
-                    <img src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
+                    <img style="filter: brightness(0.7);"
+                        src="{{ isset($site->image_banner) ? asset('storage/' . $site->image_banner) : asset('img/banner.jpg') }}"
                         class="h-100 img-banner" alt="">
                 </div>
             </div>
@@ -68,7 +69,7 @@
         </div>
 --}}
     </section>
-    
+
     <!-- /About Section -->
 
     @if (!$novedades->isEmpty())
@@ -105,6 +106,12 @@
         </section>
     @endif
 
+
+
+    {{-- 
+
+
+    NOTICIAS 
     @if (!$noticias->isEmpty())
         <section id="noticias" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
             <div class="container ">
@@ -138,7 +145,7 @@
             </div>
         </section>
     @endif
-    {{-- 
+    
     <section id="services" class="services section">
         <div class="container section-title" data-aos="fade-up">
             <h2>Our Services</h2>

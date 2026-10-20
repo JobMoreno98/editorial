@@ -158,14 +158,14 @@
 
                         <li><a href="{{ route('directorio') }}"
                                 class="{{ Route::is('directorio') ? 'active' : '' }}">{{ __('Directory') }}</a></li>
-
+                        {{--  
                         @if ($noticias > 0)
                             <li><a href="{{ route('actividades.index', 'Noticia') }}"
                                     class="{{ request()->route('tipo') === 'Noticia' ? 'active' : '' }}"">Noticias</a>
                             </li>
                         @endif
 
-                        {{--  
+                      
                         <li><a href="{{ route('consejo.editorial') }}"
                                 class="{{ Route::is('consejo.editorial') ? 'active' : '' }}">Consejo Editorial</a></li>
                         --}}

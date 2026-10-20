@@ -41,10 +41,12 @@ Route::middleware([TrackVisitors::class])->group(function () {
     Route::get('/download/{file}', [PublicacionesController::class, 'getFile'])->name('ver-archivo');
 
     Route::get('/buscador', [PublicacionesController::class, 'buscador'])->name('buscador');
+/*
 
     Route::get('/actividades/{tipo}', [ActividadesController::class, 'index'])->name('actividades.index');
 
     Route::get('/actividades/{tipo}/{slug}', [ActividadesController::class, 'ver_actividad'])->name('ver-actividad');
+    */
 
 });
 

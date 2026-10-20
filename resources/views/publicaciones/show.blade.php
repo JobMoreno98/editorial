@@ -30,8 +30,9 @@
                         @endif
                         @if (count($publicacion->coordinadores) > 0)
                             <p>
-                                <span class="fs-5  text-uppercase"><b>Corrdinadores:
-                                        {{ implode(', ', $publicacion->coordinadores->toArray()) }}</b></span>
+                                <span class="fs-5  text-uppercase"><b>
+                                    Corrdinadores:</b>
+                                        {{ implode(', ', $publicacion->coordinadores->toArray()) }}</span>
                             </p>
                         @endif
                         <p>
