@@ -47,40 +47,62 @@ class UserResource extends Resource
         return __('Usuarios');
     }
 
-    public static function form(Schema $schema): Schema
-    {
-        return $schema
-            ->components([
-                FileUpload::make('avatar_url')->name('Avatar')
-                    ->acceptedFileTypes(['image/*'])
-                    ->avatar()
-                    ->imageEditor()
-                    ->circleCropper()->alignCenter()->columnSpanFull()->directory('users'),
+public static function form(Schema $schema): Schema
+{
+    return $schema
+        ->components([
+            FileUpload::make('avatar_url')
+                ->label('Avatar')
+                ->avatar()
+                ->image()
+                ->imageEditor()
+                ->circleCropper()
+                ->disk('public')
+                ->visibility('public')
+                ->directory('users')
+                ->alignCenter()
+                ->columnSpanFull(),
 
-                Section::make()->schema([
+            Section::make()
+                ->schema([
                     TextInput::make('name')
+                        ->label('Nombre')
                         ->required()
                         ->maxLength(255),
+
                     TextInput::make('email')
                         ->email()
                         ->required()
                         ->maxLength(255),
-                    DateTimePicker::make('email_verified_at')->hiddenOn(['create', 'edit']),
+
+                    DateTimePicker::make('email_verified_at')
+                        ->visibleOn('view'),
+
                     TextInput::make('password')
                         ->password()
-                        ->dehydrateStateUsing(fn(?string $state): ?string => filled($state) ? Hash::make($state) : null)
-                        ->dehydrated(fn(?string $state): bool => filled($state))
-                        ->required(fn(string $operation): bool => $operation === 'create')
-                        ->hiddenOn(['view'])
+                        ->revealable()
+                        ->dehydrateStateUsing(fn (?string $state): ?string => filled($state) ? Hash::make($state) : null)
+                        ->dehydrated(fn (?string $state): bool => filled($state))
+                        ->required(fn (string $operation): bool => $operation === 'create')
+                        ->hiddenOn('view')
                         ->maxLength(255),
-                    Forms\Components\Select::make('roles')
-                        ->relationship('roles', 'name')
+
+                    Select::make('roles')
+                        ->relationship(
+                            name: 'roles',
+                            titleAttribute: 'name',
+                            modifyQueryUsing: fn (Builder $query) => auth()->user()?->hasRole('Super Admin')
+                                ? $query
+                                : $query->where('name', '!=', 'Super Admin'),
+                        )
                         ->multiple()
                         ->preload()
-                        ->searchable()->hidden(! auth()->user()->hasRole('Super Admin')),
-                ])->columns(2),
-            ]);
-    }
+                        ->searchable()
+                        ->visible(fn (): bool => auth()->user()?->can('update_user') ?? false),
+                ])
+                ->columns(2)->columnSpanFull(),
+        ]);
+}
 
     public static function table(Table $table): Table
     {
