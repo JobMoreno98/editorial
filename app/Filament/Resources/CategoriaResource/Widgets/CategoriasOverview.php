@@ -18,7 +18,7 @@ class CategoriasOverview extends BaseWidget
             Stat::make(
                 label: 'Publicaciones',
                 value: Publicaciones::where('active', 1)->count()
-            )->color('success')->description('Total de publiaciones') //->description('32k increase')
+            )->color('success')->description('Total de publicaciones') //->description('32k increase')
             //->descriptionIcon('heroicon-m-arrow-trending-up', IconPosition::Before)
         ];
     }

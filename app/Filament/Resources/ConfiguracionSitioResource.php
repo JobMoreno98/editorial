@@ -48,7 +48,7 @@ class ConfiguracionSitioResource extends Resource
         return $schema
             ->components([
                 Section::make('Información del sitio')->schema([
-                    FileUpload::make('image_banner')
+                    FileUpload::make('image_banner')->label('Banner')
                         ->acceptedFileTypes(['image/*'])
                         ->imageEditor()
                         ->imageCropAspectRatio('16:3')->columnSpanFull()->getUploadedFileNameForStorageUsing(
@@ -61,11 +61,11 @@ class ConfiguracionSitioResource extends Resource
                     TextInput::make('contacto')
                         ->required()
                         ->maxLength(255),
-                    TextInput::make('direccion')
+                    TextInput::make('direccion')->label('Dirección')
                         ->required()
                         ->maxLength(255),
                     TextInput::make('email')->required()->email(),
-                    RichEditor::make('about')->required()->columnSpanFull()
+                    RichEditor::make('about')->required()->columnSpanFull()->label('Acerca de')
                     ->toolbarButtons([
                         ['bold', 'italic', 'underline', 'strike'],
                         [ToolbarButtonGroup::make('Paragraph', ['paragraph', 'h1', 'h2', 'h3'])],
@@ -113,9 +113,9 @@ class ConfiguracionSitioResource extends Resource
                     ->searchable(),
                 TextColumn::make('contacto')
                     ->searchable(),
-                TextColumn::make('direccion')
+                TextColumn::make('direccion')->label('Dirección')
                     ->searchable(),
-                ImageColumn::make('image_banner'),
+                ImageColumn::make('image_banner')->label('Banner'),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

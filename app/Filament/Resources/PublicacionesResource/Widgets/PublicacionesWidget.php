@@ -16,7 +16,7 @@ class PublicacionesWidget extends BaseWidget
             Stat::make(
                 label: 'Publicaciones',
                 value: Publicaciones::where('active', 1)->count()
-            )->color('primary')->description('Total de publiaciones'),
+            )->color('primary')->description('Total de publicaciones'),
 
             Stat::make(
                 label: 'Total de Descargas',
